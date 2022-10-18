@@ -6,6 +6,9 @@
 #define CODE_GAMEMAP_H
 
 
+#include <fstream>
+#include <vector>
+#include <string>
 #include "utility.h"
 
 #define WALLCHAR '#'
@@ -19,6 +22,7 @@ private:
     int mapWidth;
 
     char* map;
+    std::vector<std::string> levelData;
 
 public:
     GameMap();
