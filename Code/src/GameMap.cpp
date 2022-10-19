@@ -5,7 +5,8 @@
 #include "GameMap.h"
 
 GameMap::GameMap(int mapWidth, int mapHeight)
-    : map{nullptr}, mapWidth{mapWidth}, mapHeight{mapHeight} {
+    : mapWidth{mapWidth}, mapHeight{mapHeight} {
+    map = new char[mapWidth * mapHeight];
 }
 
 GameMap::~GameMap() {
@@ -19,10 +20,6 @@ void GameMap::loadMap() {
 
     MoveWindow(console, r.left, r.top, WINDOWSIZE_X, WINDOWSIZE_Y, TRUE); // window size in pixels
     utility::showConsoleCursor(FALSE);
-
-
-    // allocate memory for the 2D array
-    map = new char[mapWidth * mapHeight];
 
 
     // Read map from gameMap.txt
@@ -40,21 +37,11 @@ void GameMap::loadMap() {
             continue;
 
         if (c == '=')
-            c = FLOORCHAR;
+            c = floorChar;
 
         map[counter] = c;
         counter++;
     }
-
-    // For now just create a map with walls. Later we implement reading from file
-//    for (int y = 0; y < mapHeight; y++) {
-//        for (int x = 0; x < mapWidth; x++) {
-//            if (x == 0 || x == mapWidth - 1 || y == 0 || y == mapHeight -1)
-//                map[y * mapWidth + x] = WALLCHAR;
-//            else
-//                map[y * mapWidth + x] = FLOORCHAR;
-//        }
-//    }
 
     printMap();
     gameMapFile.close();

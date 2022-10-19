@@ -5,15 +5,16 @@
 #include "GameManager.h"
 
 GameManager::GameManager()
-    : map{MAPSIZEX, MAPSIZEY}, player{}, level{1} {
+    : map{MAPSIZEX, MAPSIZEY},
+      player{map},
+      level{1} {
 }
 
 void GameManager::startGame() {
     map.loadMap();
 
-    while(!stopGame) {
+    while(!stopGame)
         update();
-    }
 }
 
 void GameManager::update() {
@@ -22,10 +23,10 @@ void GameManager::update() {
 }
 
 void GameManager::renderUI() {
-    utility::gotoScreenPosition(0, MAPSIZEY);
+    utility::gotoScreenPosition(0, MAPSIZEY + 1);
 
     std::cout << "Level: " << level << " "
-              << "| Gold: " << player.getGoldCoins() << " "
+              << "| Gold: " << player.getInventory().getNumGoldCoins() << " "
               << "| Str: " << player.getStrength() << " "
               << "| HP: " << player.getHealth() << " "
               << "| XP: " << player.getXP();

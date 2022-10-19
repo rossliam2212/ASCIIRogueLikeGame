@@ -4,24 +4,20 @@
 
 #include "Player.h"
 
-Player::Player()
-    : strength{defaultStrength},
-      health{defaultHealth},
-      xp{defaultXP},
-      positionX{defaultStartPositionX},
-      positionY{defaultStartPositionY},
-      newPositionX{defaultStartPositionX},
-      newPositionY{defaultStartPositionY} {
+
+Player::Player(const GameMap& map)
+        : Player(map, defaultStartPositionX, defaultStartPositionY) {
 }
 
-Player::Player(int startPositionX, int startPositionY)
+Player::Player(const GameMap& map, int startPositionX, int startPositionY)
     : strength{defaultStrength},
       health{defaultHealth},
       xp{defaultXP},
       positionX(startPositionX),
       positionY(startPositionY),
       newPositionX{startPositionX},
-      newPositionY{startPositionY} {
+      newPositionY{startPositionY},
+      map{map} {
 }
 
 void Player::update() {
@@ -35,22 +31,26 @@ void Player::handleInput() {
 
     // Moving Up - W
     if (GetKeyState(87) & 0x8000) {
-        newPositionY = positionY - 1;
+        if (map.getXY(positionX, positionY-1) != GameMap::roofChar)
+            newPositionY = positionY - 1;
     }
 
     // Moving Down - S
     if (GetKeyState(83) & 0x8000) {
-        newPositionY = positionY + 1;
+        if (map.getXY(positionX, positionY+1) != GameMap::roofChar)
+            newPositionY = positionY + 1;
     }
 
     // Moving Right - D
     if (GetKeyState(68) & 0x8000) {
-        newPositionX = positionX + 1;
+        if (map.getXY(positionX+1, positionY) != GameMap::wallChar)
+            newPositionX = positionX + 1;
     }
 
     // Moving Left - A
     if (GetKeyState(65) & 0x8000) {
-        newPositionX = positionX - 1;
+        if (map.getXY(positionX-1, positionY) != GameMap::wallChar)
+            newPositionX = positionX - 1;
     }
 }
 
@@ -70,5 +70,6 @@ void Player::renderPlayer() {
 int Player::getStrength() const { return  strength; }
 int Player::getXP() const { return xp; }
 int Player::getHealth() const { return health; }
-int Player::getGoldCoins() const { return goldCoins; }
+Inventory Player::getInventory() const { return inventory; }
+
 

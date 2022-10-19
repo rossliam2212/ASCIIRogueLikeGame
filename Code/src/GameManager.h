@@ -9,8 +9,8 @@
 #include "Player.h"
 
 class GameManager {
-    static constexpr int MAPSIZEX{24};
-    static constexpr int MAPSIZEY{16};
+    static constexpr int MAPSIZEX{83}; // 82 + 1 (WIDTH)
+    static constexpr int MAPSIZEY{11}; // 11 (Height)
 
 private:
     GameMap map;

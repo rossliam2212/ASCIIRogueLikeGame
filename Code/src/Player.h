@@ -5,6 +5,8 @@
 #ifndef CODE_PLAYER_H
 #define CODE_PLAYER_H
 
+#include "GameMap.h"
+#include "Inventory.h"
 #include "utility.h"
 
 class Player {
@@ -26,18 +28,19 @@ private:
     int newPositionX;
     int newPositionY;
 
-    int goldCoins{0};
-    // Inventory
+    Inventory inventory;
+    GameMap map; // Needs access to map for boundary checking
 
 public:
-    Player();
-    Player(int startPositionX, int startPositionY);
+    Player(const GameMap& map);
+    Player(const GameMap& map, int startPositionX, int startPositionY);
     void update();
 
     int getStrength() const;
     int getHealth() const;
     int getXP() const;
-    int getGoldCoins() const;
+
+    Inventory getInventory() const;
 
 private:
     void handleInput();

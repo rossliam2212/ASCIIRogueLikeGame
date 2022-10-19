@@ -7,12 +7,14 @@ set(SOURCE_FILES src/main.cpp
         src/utility.cpp
         src/Player.cpp
         src/GameManager.cpp
-        src/Monster.cpp)
+        src/Monster.cpp
+        src/Inventory.cpp)
 
 set(HEADER_FILES src/GameMap.h
         src/utility.h
         src/Player.h
         src/GameManager.h
-        src/Monster.h)
+        src/Monster.h
+        src/Inventory.h)
 
 add_executable(Code ${SOURCE_FILES} ${HEADER_FILES})

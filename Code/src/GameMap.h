@@ -9,12 +9,16 @@
 #include <fstream>
 #include "utility.h"
 
-#define WALLCHAR '#'
-#define FLOORCHAR ' '
 #define WINDOWSIZE_X 800 // in px
 #define WINDOWSIZE_Y 600 // in px
 
 class GameMap {
+public:
+    // Map Characters
+    static constexpr char floorChar = ' ';
+    static constexpr char roofChar = '-';
+    static constexpr char wallChar = '|';
+
 private:
     char* map;
 
