@@ -4,15 +4,15 @@
 
 #include "GameMap.h"
 
-GameMap::GameMap()
-    : mapWidth{0}, mapHeight{0}, map{nullptr}, levelData{} {
+GameMap::GameMap(int mapWidth, int mapHeight)
+    : map{nullptr}, mapWidth{mapWidth}, mapHeight{mapHeight} {
 }
 
 GameMap::~GameMap() {
     delete[] map;
 }
 
-void GameMap::loadMap(int width, int height) {
+void GameMap::loadMap() {
     HWND console = GetConsoleWindow();
     RECT r;
     GetWindowRect(console, &r);
@@ -21,51 +21,54 @@ void GameMap::loadMap(int width, int height) {
     utility::showConsoleCursor(FALSE);
 
 
-    // define the size of the array
-    mapWidth = width;
-    mapHeight = height;
-
     // allocate memory for the 2D array
     map = new char[mapWidth * mapHeight];
 
 
-    // Map read from gameMap.txt
-    std::ifstream gameMapFile{ "../../../gameMap.txt" }; // Visual Studio
+    // Read map from gameMap.txt
+    std::ifstream gameMapFile{ "../gameMap.txt" };
 
     if (!gameMapFile) {
-        std::cerr << "Error opening file\n";
+        std::cerr << "Error opening level file\n";
         exit(1);
     }
 
     char c;
+    int counter{};
     while (gameMapFile >> c) {
+        if (std::isdigit(c))
+            continue;
 
+        if (c == '=')
+            c = FLOORCHAR;
+
+        map[counter] = c;
+        counter++;
     }
 
     // For now just create a map with walls. Later we implement reading from file
-    /*for (int y = 0; y < mapHeight; y++) {
-        for (int x = 0; x < mapWidth; x++) {
-            if (x == 0 || x == mapWidth - 1 || y == 0 || y == mapHeight -1)
-                map[y * mapWidth + x] = WALLCHAR;
-            else
-                map[y * mapWidth + x] = FLOORCHAR;
-        }
-    }*/
+//    for (int y = 0; y < mapHeight; y++) {
+//        for (int x = 0; x < mapWidth; x++) {
+//            if (x == 0 || x == mapWidth - 1 || y == 0 || y == mapHeight -1)
+//                map[y * mapWidth + x] = WALLCHAR;
+//            else
+//                map[y * mapWidth + x] = FLOORCHAR;
+//        }
+//    }
 
     printMap();
     gameMapFile.close();
 }
 
 void GameMap::printMap() {
-
     utility::gotoScreenPosition(0, 0);
 
-    /*for (int y = 0; y < mapHeight; y++) {
+    for (int y = 0; y < mapHeight; y++) {
         for (int x = 0; x < mapWidth; x++) {
             std::cout << map[y * mapWidth + x];
         }
-        std::cout << std::endl;
-    }*/
+        std::cout << "\n";
+    }
 }
 
 // Get the character at position xy on the map

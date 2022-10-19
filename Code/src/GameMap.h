@@ -7,8 +7,6 @@
 
 
 #include <fstream>
-#include <vector>
-#include <string>
 #include "utility.h"
 
 #define WALLCHAR '#'
@@ -18,20 +16,20 @@
 
 class GameMap {
 private:
+    char* map;
+
     int mapHeight;
     int mapWidth;
 
-    char* map;
-    std::vector<std::string> levelData;
-
 public:
-    GameMap();
+    GameMap(int mapWidth, int mapHeight);
     ~GameMap();
 
-    void loadMap(int width, int height);
+    void loadMap();
+    void printMap();
+
     char getXY(int x, int y);
     bool setXY(int x, int y, char value);
-    void printMap();
 };
 
 

@@ -5,12 +5,19 @@
 #include "Player.h"
 
 Player::Player()
-    : health{100}, xp{0}, positionX{5}, positionY{5}, newPositionX{5}, newPositionY{5} {
+    : strength{defaultStrength},
+      health{defaultHealth},
+      xp{defaultXP},
+      positionX{defaultStartPositionX},
+      positionY{defaultStartPositionY},
+      newPositionX{defaultStartPositionX},
+      newPositionY{defaultStartPositionY} {
 }
 
 Player::Player(int startPositionX, int startPositionY)
-    : health{100},
-      xp{0},
+    : strength{defaultStrength},
+      health{defaultHealth},
+      xp{defaultXP},
       positionX(startPositionX),
       positionY(startPositionY),
       newPositionX{startPositionX},
@@ -60,16 +67,8 @@ void Player::renderPlayer() {
     Sleep(120);
 }
 
-
-int Player::getXp() const { return xp; }
-void Player::setXp(int xp) { this->xp = xp; }
-
+int Player::getStrength() const { return  strength; }
+int Player::getXP() const { return xp; }
 int Player::getHealth() const { return health; }
-void Player::setHealth(int health) { this->health = health; }
-
-int Player::getPositionX() const { return positionX; }
-void Player::setPositionX(int startPositionX) { this->positionX = startPositionX; }
-
-int Player::getPositionY() const { return positionY; }
-void Player::setPositionY(int startPositionY) { this->positionY = startPositionY; }
+int Player::getGoldCoins() const { return goldCoins; }
 

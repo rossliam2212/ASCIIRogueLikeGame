@@ -7,10 +7,17 @@
 
 #include "utility.h"
 
-
 class Player {
+    static constexpr int defaultStrength{20};
+    static constexpr int defaultHealth{100};
+    static constexpr int defaultXP{0};
+    static constexpr int defaultStartPositionX{5};
+    static constexpr int defaultStartPositionY{5};
+
 private:
     const char playerSymbol{'@'};
+
+    int strength;
     int health;
     int xp;
 
@@ -19,23 +26,18 @@ private:
     int newPositionX;
     int newPositionY;
 
+    int goldCoins{0};
+    // Inventory
+
 public:
     Player();
     Player(int startPositionX, int startPositionY);
     void update();
 
-    // Getters & Setters
-    int getXp() const;
-    void setXp(int xp);
-
+    int getStrength() const;
     int getHealth() const;
-    void setHealth(int health);
-
-    int getPositionX() const;
-    void setPositionX(int startPositionX);
-
-    int getPositionY() const;
-    void setPositionY(int startPositionY);
+    int getXP() const;
+    int getGoldCoins() const;
 
 private:
     void handleInput();
