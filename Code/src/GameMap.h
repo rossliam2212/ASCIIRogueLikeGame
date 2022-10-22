@@ -14,10 +14,17 @@
 
 class GameMap {
 public:
-    // Map Characters
+    // --- Map Characters ---
+    // Environment
     static constexpr char floorChar = ' ';
     static constexpr char roofChar = '-';
     static constexpr char wallChar = '|';
+
+    // Game Items
+    static constexpr char healthPotionChar = '^';
+    static constexpr char goldCoinChar = '*';
+    static constexpr char weaponChar = '?';
+
 
 private:
     char* map;

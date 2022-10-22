@@ -10,8 +10,9 @@
 #include "utility.h"
 
 class Player {
+    static constexpr int maxHealth{100};
     static constexpr int defaultStrength{20};
-    static constexpr int defaultHealth{100};
+    static constexpr int defaultHealth{50};
     static constexpr int defaultXP{0};
     static constexpr int defaultStartPositionX{5};
     static constexpr int defaultStartPositionY{5};
@@ -32,9 +33,11 @@ private:
     GameMap map; // Needs access to map for boundary checking
 
 public:
-    Player(const GameMap& map);
+    explicit Player(const GameMap& map);
     Player(const GameMap& map, int startPositionX, int startPositionY);
     void update();
+
+    void increaseXP(int amount);
 
     int getStrength() const;
     int getHealth() const;

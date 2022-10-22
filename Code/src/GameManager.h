@@ -10,7 +10,7 @@
 
 class GameManager {
     static constexpr int MAPSIZEX{83}; // 82 + 1 (WIDTH)
-    static constexpr int MAPSIZEY{11}; // 11 (Height)
+    static constexpr int MAPSIZEY{26}; // 11 (Height)
 
 private:
     GameMap map;
