@@ -2,21 +2,24 @@ cmake_minimum_required(VERSION 3.21)
 project(Code)
 
 set(CMAKE_CXX_STANDARD 20)
-set(SOURCE_FILES src/main.cpp
-        src/GameMap.cpp
-        src/utility.cpp
-        src/Player.cpp
+set(CMAKE_EXE_LINKER_FLAGS "-static")
+set(SOURCE_FILES
+        src/main.cpp
         src/GameManager.cpp
-        src/Monster.cpp
-        src/Inventory.cpp
-        src/Weapon.cpp)
-
-set(HEADER_FILES src/GameMap.h
-        src/utility.h
-        src/Player.h
         src/GameManager.h
-        src/Monster.h
+        src/GameMap.cpp
+        src/GameMap.h
+        src/Inventory.cpp
         src/Inventory.h
-        src/Weapon.h)
+        src/Player.cpp
+        src/Player.h
+        src/utility.cpp
+        src/utility.h
+        src/Monster.cpp
+        src/Monster.h
+        src/Weapon.cpp
+        src/Weapon.h
+        src/Skeleton.cpp
+        src/Skeleton.h)
 
-add_executable(Code ${SOURCE_FILES} ${HEADER_FILES})
+add_executable(Code ${SOURCE_FILES})

@@ -7,25 +7,31 @@
 
 #include "GameMap.h"
 #include "Player.h"
+#include "Monster.h"
+#include "Skeleton.h"
 
 class GameManager {
     static constexpr int MAPSIZEX{83}; // 82 + 1 (WIDTH)
-    static constexpr int MAPSIZEY{26}; // 11 (Height)
+    static constexpr int MAPSIZEY{26}; // 26 (Height)
 
 private:
     GameMap map;
     Player player;
+    std::vector<Monster*> monsters;
     int level;
     bool stopGame{false};
 
 public:
     GameManager();
+    ~GameManager();
     void startGame();
     void endGame();
 
 private:
     void update();
     void renderUI();
+    void renderGameOverUI();
+    void setUpMonsters();
 };
 
 

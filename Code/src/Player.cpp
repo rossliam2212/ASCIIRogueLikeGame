@@ -61,17 +61,26 @@ void Player::handleInput() {
     if (map.getXY(positionX, positionY) == GameMap::goldCoinChar){
         std::cout << "\n\nPicked up gold coin\n";
         inventory.pickUpGoldCoin();
+
+        // Setting the character at the position of the coin back to the default map character '='
+        map.setXY(positionX, positionY, GameMap::defaultChar);
     }
 
     // Checking for Health Potion Collision
     if (map.getXY(positionX, positionY) == GameMap::healthPotionChar) {
         std::cout << "\n\nPicked up health potion\n";
         health = maxHealth;
+
+        // Setting the character at the position of the health potion back to the default map character '='
+        map.setXY(positionX, positionY, GameMap::defaultChar);
     }
 
     // Checking for Weapon Collision
-    if (map.getXY(positionX, positionY) == GameMap::healthPotionChar){
+    if (map.getXY(positionX, positionY) == GameMap::weaponChar){
         std::cout << "Picked up weapon:\n";
+
+        // Setting the character at the position of the weapon back to the default map character '='
+        map.setXY(positionX, positionY, GameMap::defaultChar);
     }
 }
 
@@ -80,7 +89,7 @@ void Player::renderPlayer() {
     std::cout << " ";
 
     utility::gotoScreenPosition(newPositionX, newPositionY);
-    std::cout << playerSymbol;
+    std::cout << GameMap::playerChar;
 
     positionX = newPositionX;
     positionY = newPositionY;

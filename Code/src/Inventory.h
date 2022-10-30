@@ -14,16 +14,12 @@ private:
     int numHealthPotion;
 
     // Weapons
-    std::vector<Weapon> weapons;
 
 public:
     Inventory();
     void pickUpGoldCoin();
-    void pickUpWeapon();
 
     int getNumGoldCoins() const;
-    std::vector<Weapon> getWeapons() const;
-    Weapon getRecentPickedUpWeapon() const;
 };
 
 

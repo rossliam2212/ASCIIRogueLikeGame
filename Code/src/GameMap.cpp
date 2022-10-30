@@ -36,8 +36,15 @@ void GameMap::loadMap() {
         if (std::isdigit(c))
             continue;
 
-        if (c == '=')
+        if (c == defaultChar)
             c = floorChar;
+
+        if (c == skeletonChar)
+            monsters.emplace_back(skeletonChar);
+
+        if (c == zombieChar)
+            monsters.emplace_back(zombieChar);
+
 
         map[counter] = c;
         counter++;
@@ -68,6 +75,11 @@ bool GameMap::setXY(int x, int y, char value) {
     map[y * mapWidth + x] = value; //update value
     return true;
 }
+
+std::vector<char> GameMap::getMonsters() const {
+    return monsters;
+}
+
 
 
 

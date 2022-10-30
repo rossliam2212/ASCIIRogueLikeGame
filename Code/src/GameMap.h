@@ -7,6 +7,7 @@
 
 
 #include <fstream>
+#include <vector>
 #include "utility.h"
 
 #define WINDOWSIZE_X 800 // in px
@@ -16,6 +17,7 @@ class GameMap {
 public:
     // --- Map Characters ---
     // Environment
+    static constexpr char defaultChar = '=';
     static constexpr char floorChar = ' ';
     static constexpr char roofChar = '-';
     static constexpr char wallChar = '|';
@@ -25,12 +27,19 @@ public:
     static constexpr char goldCoinChar = '*';
     static constexpr char weaponChar = '?';
 
+    // Characters
+    static constexpr char playerChar = '@';
+    static constexpr char skeletonChar = 'S';
+    static constexpr char zombieChar = 'Z';
+
 
 private:
     char* map;
 
     int mapHeight;
     int mapWidth;
+
+    std::vector<char> monsters{};
 
 public:
     GameMap(int mapWidth, int mapHeight);
@@ -41,6 +50,7 @@ public:
 
     char getXY(int x, int y);
     bool setXY(int x, int y, char value);
+    std::vector<char> getMonsters() const;
 };
 
 

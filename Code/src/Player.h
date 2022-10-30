@@ -18,7 +18,7 @@ class Player {
     static constexpr int defaultStartPositionY{5};
 
 private:
-    const char playerSymbol{'@'};
+//    const char playerSymbol{'@'};
 
     int strength;
     int health;
