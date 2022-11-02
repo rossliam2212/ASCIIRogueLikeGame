@@ -9,6 +9,7 @@
 #include "Player.h"
 #include "Monster.h"
 #include "Skeleton.h"
+#include "Zombie.h"
 
 class GameManager {
     static constexpr int MAPSIZEX{83}; // 82 + 1 (WIDTH)
@@ -18,6 +19,8 @@ private:
     GameMap map;
     Player player;
     std::vector<Monster*> monsters;
+    std::vector<std::pair<int, int>> monsterPositions;
+
     int level;
     bool stopGame{false};
 

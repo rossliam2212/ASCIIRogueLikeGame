@@ -4,11 +4,18 @@
 
 #include "Skeleton.h"
 
-Skeleton::Skeleton(const GameMap& map)
-    : Monster(map, skeletonStrength, skeletonHealth, skeletonXP, skeletonFollowDistance) {
+Skeleton::Skeleton(const GameMap& map, int startPositionX, int startPositionY)
+    : Monster(map, skeletonStrength, skeletonHealth, skeletonDeathXP, skeletonFollowDistance, startPositionX, startPositionY) {
 }
 
-Skeleton::Skeleton(const GameMap& map, int strength, int health, int xp)
-    : Monster(map, strength, health, xp, skeletonFollowDistance) {
+void Skeleton::update() {
+    render();
+    // check for attack
+}
+
+void Skeleton::render() {}
+
+void Skeleton::attack() {
+    std::cout << "Skeleton Attack\n";
 }
 

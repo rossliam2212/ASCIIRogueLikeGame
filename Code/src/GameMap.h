@@ -39,7 +39,8 @@ private:
     int mapHeight;
     int mapWidth;
 
-    std::vector<char> monsters{};
+    std::vector<char> monsters;
+    std::vector<std::pair<int, int>> monsterPositions;
 
 public:
     GameMap(int mapWidth, int mapHeight);
@@ -49,8 +50,10 @@ public:
     void printMap();
 
     char getXY(int x, int y);
-    bool setXY(int x, int y, char value);
+    void setXY(int x, int y, char value);
+
     std::vector<char> getMonsters() const;
+    std::vector<std::pair<int, int>> getMonsterPositions() const;
 };
 
 

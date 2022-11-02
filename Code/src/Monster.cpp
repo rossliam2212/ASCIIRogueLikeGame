@@ -4,16 +4,20 @@
 
 #include "Monster.h"
 
-Monster::Monster(const GameMap& map)
-    : Monster(map, defaultStrength, defaultHealth, defaultXP, defaultFollowDistance) {
-}
-
-Monster::Monster(const GameMap& map, int strength, int health, int xp, int followDistance)
+Monster::Monster(const GameMap& map, int strength, int health, int deathXP, int followDistance, int startPositionX, int startPositionY)
     : map{map},
       strength{strength},
       health{health},
-      xp{xp},
-      followDistance{defaultFollowDistance} {
+      deathXP{deathXP},
+      followDistance{followDistance},
+      positionX{startPositionX},
+      positionY{startPositionY},
+      newPositionX{startPositionX},
+      newPositionY{startPositionY} {
+}
+
+int Monster::playerInRange() {
+    return 1;
 }
 
 void Monster::takeDamage(int damageAmount) {
@@ -22,7 +26,7 @@ void Monster::takeDamage(int damageAmount) {
 
 int Monster::getStrength() const { return strength; }
 int Monster::getHealth() const { return health; }
-int Monster::getXP() const { return xp; }
+int Monster::getDeathXP() const { return deathXP; }
 
 bool Monster::isDead() const {
     return health <= 0;

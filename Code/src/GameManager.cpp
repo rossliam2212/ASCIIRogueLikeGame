@@ -12,8 +12,10 @@ GameManager::GameManager()
 }
 
 GameManager::~GameManager() {
-    for (auto p : monsters)
-        delete p;
+    if (!monsters.empty()) {
+        for (auto p: monsters)
+            delete p;
+    }
 }
 
 void GameManager::startGame() {
@@ -27,17 +29,23 @@ void GameManager::startGame() {
 void GameManager::update() {
     player.update();
     renderUI();
-    // call update for all monsters
+
+    if (!monsters.empty()) {
+        for (const auto& monster: monsters)
+            monster->update();
+    }
 }
 
 void GameManager::setUpMonsters() {
-    auto monsterLetters = map.getMonsters();
+    auto monsterChars = map.getMonsters();
+    auto positions = map.getMonsterPositions();
 
-    for (auto letter : monsterLetters) {
-        if (letter == GameMap::skeletonChar)
-            monsters.push_back(new Skeleton(map));
-        else if (letter == GameMap::zombieChar) {
-
+    for (int i = 0; i < monsterChars.size(); i++) {
+        if (monsterChars[i] == GameMap::skeletonChar)
+            monsters.emplace_back(new Skeleton(map, positions[i].first, positions[i].second));
+        else if (monsterChars[i] == GameMap::zombieChar){
+            monsters.emplace_back(new Zombie(map, positions[i].first, positions[i].second));
+            std::cout << "Zombie: (" << positions[i].first << ", " << positions[i].second << ")\n\n";
         }
     }
 }

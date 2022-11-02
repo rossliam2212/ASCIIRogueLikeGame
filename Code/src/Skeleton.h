@@ -10,13 +10,16 @@
 class Skeleton : public Monster {
     static constexpr int skeletonStrength{50};
     static constexpr int skeletonHealth{100};
-    static constexpr int skeletonXP{0};
+    static constexpr int skeletonDeathXP{0};
     static constexpr int skeletonFollowDistance{0};
 
 public:
-    Skeleton(const GameMap& map);
-    Skeleton(const GameMap& map, int strength, int health, int xp);
+    Skeleton(const GameMap& map, int startPositionX, int startPositionY);
     ~Skeleton() override = default;
+
+    void update() override;
+    void render() override;
+    void attack() override;
 };
 
 

@@ -5,7 +5,7 @@
 #include "GameMap.h"
 
 GameMap::GameMap(int mapWidth, int mapHeight)
-    : mapWidth{mapWidth}, mapHeight{mapHeight} {
+    : mapWidth{mapWidth}, mapHeight{mapHeight}, monsters{}, monsterPositions{} {
     map = new char[mapWidth * mapHeight];
 }
 
@@ -39,15 +39,22 @@ void GameMap::loadMap() {
         if (c == defaultChar)
             c = floorChar;
 
-        if (c == skeletonChar)
-            monsters.emplace_back(skeletonChar);
-
-        if (c == zombieChar)
-            monsters.emplace_back(zombieChar);
-
-
         map[counter] = c;
         counter++;
+    }
+
+    for (int y = 0; y < mapHeight; y++) {
+        for (int x = 0; x < mapWidth; x++) {
+            if (map[y * mapWidth + x] == skeletonChar) {
+                monsters.emplace_back(skeletonChar);
+                monsterPositions.emplace_back(std::make_pair(x, y * mapWidth));
+            }
+
+            if (map[y * mapWidth + x] == zombieChar) {
+                monsters.emplace_back(zombieChar);
+                monsterPositions.emplace_back(std::make_pair(x, y * mapWidth));
+            }
+        }
     }
 
     printMap();
@@ -71,13 +78,16 @@ char GameMap::getXY(int x, int y) {
 }
 
 // Set the character at position xy on the map
-bool GameMap::setXY(int x, int y, char value) {
+void GameMap::setXY(int x, int y, char value) {
     map[y * mapWidth + x] = value; //update value
-    return true;
 }
 
 std::vector<char> GameMap::getMonsters() const {
     return monsters;
+}
+
+std::vector<std::pair<int, int>> GameMap::getMonsterPositions() const {
+    return monsterPositions;
 }
 
 

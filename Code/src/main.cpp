@@ -5,7 +5,5 @@
 int main() {
     GameManager gm;
     gm.startGame();
-//    std::cout << "Hello\n";
-//    getch();
     return 0;
 }

@@ -8,31 +8,35 @@
 #include "GameMap.h"
 
 class Monster {
-    static constexpr int defaultStrength{50};
-    static constexpr int defaultHealth{100};
-    static constexpr int defaultXP{0};
-    static constexpr int defaultFollowDistance{0};
-
 protected:
     GameMap map;
 
     int strength;
     int health;
-    int xp;
+    int deathXP;
 
     int followDistance;
 
+    int positionX;
+    int positionY;
+    int newPositionX;
+    int newPositionY;
+
 public:
-    explicit Monster(const GameMap& map);
-    Monster(const GameMap& map, int strength, int health, int xp, int followDistance);
+    Monster(const GameMap& map, int strength, int health, int deathXP, int followDistance, int startPositionX, int startPositionY);
     virtual ~Monster() = default;
 
+    virtual void update() = 0;
+    virtual void render() = 0;
+    virtual void attack() = 0;
+
+    int playerInRange();
     void takeDamage(int damageAmount);
     bool isDead() const;
 
     int getStrength() const;
     int getHealth() const;
-    int getXP() const;
+    int getDeathXP() const;
 };
 
 
