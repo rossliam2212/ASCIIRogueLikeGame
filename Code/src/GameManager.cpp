@@ -6,8 +6,8 @@
 
 GameManager::GameManager()
     : map{MAPSIZEX, MAPSIZEY},
-      player{map},
       monsters{},
+      player{map, monsters},
       level{1} {
 }
 
@@ -31,7 +31,7 @@ void GameManager::update() {
     renderUI();
 
     if (!monsters.empty()) {
-        for (const auto& monster: monsters)
+        for (const auto monster: monsters)
             monster->update();
     }
 }
@@ -43,21 +43,33 @@ void GameManager::setUpMonsters() {
     for (int i = 0; i < monsterChars.size(); i++) {
         if (monsterChars[i] == GameMap::skeletonChar)
             monsters.emplace_back(new Skeleton(map, positions[i].first, positions[i].second));
+
         else if (monsterChars[i] == GameMap::zombieChar){
             monsters.emplace_back(new Zombie(map, positions[i].first, positions[i].second));
-            std::cout << "Zombie: (" << positions[i].first << ", " << positions[i].second << ")\n\n";
         }
     }
 }
 
 void GameManager::renderUI() {
+    // General UI
     utility::gotoScreenPosition(0, MAPSIZEY + 1);
-
     std::cout << "Level: " << level << " "
-              << "| Gold: " << player.getInventory().getNumGoldCoins() << " "
               << "| Str: " << player.getStrength() << " "
               << "| HP: " << player.getHealth() << " "
               << "| XP: " << player.getXP();
+
+    // Inventory UI
+    utility::gotoScreenPosition(0, MAPSIZEY + 3);
+    std::cout << "Inventory {\n Gold Coins: " << player.getInventory().getNumGoldCoins()
+              << "\n Health Potions: " << player.getInventory().getNumHealthPotions()
+              << "\n";
+
+    if (!player.getInventory().getWeapons().empty()) {
+        for (const auto& w : player.getInventory().getWeapons()) {
+            std::cout << " " << w << "\n";
+        }
+    }
+    std::cout << "}";
 }
 
 void GameManager::renderGameOverUI() {

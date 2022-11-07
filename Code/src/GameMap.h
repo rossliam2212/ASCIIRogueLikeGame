@@ -11,7 +11,7 @@
 #include "utility.h"
 
 #define WINDOWSIZE_X 800 // in px
-#define WINDOWSIZE_Y 600 // in px
+#define WINDOWSIZE_Y 700 // in px
 
 class GameMap {
 public:

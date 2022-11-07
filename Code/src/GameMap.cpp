@@ -43,19 +43,23 @@ void GameMap::loadMap() {
         counter++;
     }
 
+    // Checking for monsters in the map and creating instances for them
     for (int y = 0; y < mapHeight; y++) {
         for (int x = 0; x < mapWidth; x++) {
             if (map[y * mapWidth + x] == skeletonChar) {
                 monsters.emplace_back(skeletonChar);
-                monsterPositions.emplace_back(std::make_pair(x, y * mapWidth));
+                monsterPositions.emplace_back(std::make_pair(x, y));
             }
 
             if (map[y * mapWidth + x] == zombieChar) {
                 monsters.emplace_back(zombieChar);
-                monsterPositions.emplace_back(std::make_pair(x, y * mapWidth));
+                monsterPositions.emplace_back(std::make_pair(x, y));
             }
         }
     }
+
+    monsters.shrink_to_fit();
+    monsterPositions.shrink_to_fit();
 
     printMap();
     gameMapFile.close();

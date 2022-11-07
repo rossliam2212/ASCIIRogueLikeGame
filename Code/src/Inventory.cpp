@@ -5,11 +5,26 @@
 #include "Inventory.h"
 
 Inventory::Inventory()
-    : numGoldCoins{},
-      numHealthPotion{} {
+    : goldCoins{},
+      healthPotions{},
+      weapons{} {
 }
 
-void Inventory::pickUpGoldCoin() { numGoldCoins++; }
+void Inventory::pickUpGoldCoin() { goldCoins++; }
+void Inventory::pickUpHealthPotion() { healthPotions++; }
+void Inventory::pickUpWeapon() { weapons.emplace_back(Weapon{}); }
 
-int Inventory::getNumGoldCoins() const { return numGoldCoins; }
+void Inventory::removeGoldCoin() {
+    if (goldCoins > 0)
+        goldCoins--;
+}
+
+void Inventory::removeHealthPotion() {
+    if (healthPotions > 0)
+        healthPotions--;
+}
+
+int Inventory::getNumGoldCoins() const { return goldCoins; }
+int Inventory::getNumHealthPotions() const { return healthPotions; }
+std::vector<Weapon> Inventory::getWeapons() const { return weapons; }
 

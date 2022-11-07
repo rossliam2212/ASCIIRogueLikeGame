@@ -17,8 +17,8 @@ class GameManager {
 
 private:
     GameMap map;
-    Player player;
     std::vector<Monster*> monsters;
+    Player player;
     std::vector<std::pair<int, int>> monsterPositions;
 
     int level;

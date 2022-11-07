@@ -6,11 +6,12 @@
 
 Zombie::Zombie(const GameMap& map, int startPositionX, int startPositionY)
     : Monster(map, zombieStrength, zombieHealth, zombieDeathXP, zombieFollowDistance, startPositionX, startPositionY) {
+    name = "Zombie";
 }
 
 void Zombie::update() {
     render();
-    // check for attack
+    // check for checkMonster
 }
 
 void Zombie::render() {}

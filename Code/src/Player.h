@@ -5,12 +5,16 @@
 #ifndef CODE_PLAYER_H
 #define CODE_PLAYER_H
 
+#include <algorithm>
 #include "GameMap.h"
 #include "Inventory.h"
 #include "utility.h"
+#include "Monster.h"
+#include "Skeleton.h"
+#include "Zombie.h"
+
 
 class Player {
-    static constexpr int maxHealth{100};
     static constexpr int defaultStrength{20};
     static constexpr int defaultHealth{50};
     static constexpr int defaultXP{0};
@@ -18,7 +22,9 @@ class Player {
     static constexpr int defaultStartPositionY{5};
 
 private:
-//    const char playerSymbol{'@'};
+    Inventory inventory;
+    GameMap map; // Needs access to map for boundary checking
+    std::vector<Monster*>& monsters;
 
     int strength;
     int health;
@@ -29,25 +35,30 @@ private:
     int newPositionX;
     int newPositionY;
 
-    Inventory inventory;
-    GameMap map; // Needs access to map for boundary checking
+    bool attacking{false};
 
 public:
-    explicit Player(const GameMap& map);
-    Player(const GameMap& map, int startPositionX, int startPositionY);
+    Player(const GameMap& map, std::vector<Monster*>& monsters);
+    Player(const GameMap &map, int startPositionX, int startPositionY, std::vector<Monster*>& monsters);
     void update();
 
     void increaseXP(int amount);
+    bool isDead() const;
 
     int getStrength() const;
     int getHealth() const;
     int getXP() const;
+    int getPositionX() const;
+    int getPositionY() const;
 
     Inventory getInventory() const;
 
 private:
     void handleInput();
     void renderPlayer();
+    void checkCollisions();
+    void attack(Monster *monster);
+    void checkMonster(int x, int y);
 };
 
 
