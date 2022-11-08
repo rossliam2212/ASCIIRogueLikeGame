@@ -20,9 +20,11 @@ void Inventory::pickUpWeapon() {
     weapons.emplace_back(Weapon{}); }
 
 void Inventory::nextWeapon() {
+    if (weapons.size() == 1) return;
+
     currentWeapon++;
 
-    if (currentWeapon > maxNumberOfWeapons) {
+    if (currentWeapon > weapons.size()-1) {
         currentWeapon = 0;
     }
 }

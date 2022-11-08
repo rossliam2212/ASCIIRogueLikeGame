@@ -21,10 +21,10 @@ void Skeleton::update() {
 }
 
 void Skeleton::render() {
-    utility::gotoScreenPosition(positionX, positionY);
+    utility::gotoScreenPosition((short)positionX,(short)positionY);
     std::cout << " ";
 
-    utility::gotoScreenPosition(newPositionX, newPositionY);
+    utility::gotoScreenPosition((short)newPositionX, (short)newPositionY);
     std::cout << GameMap::skeletonChar;
 
     positionX = newPositionX;

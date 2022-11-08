@@ -5,5 +5,7 @@
 int main() {
     GameManager gm;
     gm.startGame();
+
+    system("pause");
     return 0;
 }

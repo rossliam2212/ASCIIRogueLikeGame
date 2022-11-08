@@ -19,7 +19,18 @@ void Zombie::update() {
     //  Skeleton stays still
 }
 
-void Zombie::render() {}
+void Zombie::render() {
+    utility::gotoScreenPosition((short)positionX,(short)positionY);
+    std::cout << " ";
+
+    utility::gotoScreenPosition((short)newPositionX, (short)newPositionY);
+    std::cout << GameMap::skeletonChar;
+
+    positionX = newPositionX;
+    positionY = newPositionY;
+
+    Sleep(120);
+}
 
 void Zombie::attack() {
     std::cout << "Zombie Attack\n";

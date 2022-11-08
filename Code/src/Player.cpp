@@ -43,8 +43,8 @@ void Player::handleInput() {
         }
 
         // Checking for enemies
-        if (map.getXY(positionX, positionY-1) == GameMap::skeletonChar ||
-            map.getXY(positionX, positionY-1) == GameMap::zombieChar) {
+        if (map.getXY(positionX, positionY - 1) == GameMap::skeletonChar ||
+            map.getXY(positionX, positionY - 1) == GameMap::zombieChar) {
             checkMonster(positionX, positionY - 1);
         } else
             attacking = false;
@@ -127,39 +127,57 @@ void Player::handleInput() {
 void Player::attack(Monster* monster) {
 //    std::cout << "Player attacking: " << monster->getName() << "\n";
 
-    while (attacking) {
+    if (attacking) {
         if (!isDead()) {
-            // Players Turn
             monster->takeDamage(inventory.getCurrentWeapon().attack());
 
             if (monster->isDead()) {
+                attacking = false;
                 increaseXP(monster->getDeathXP());
                 map.setXY(monster->getPositionX(), monster->getPositionY(), GameMap::defaultChar);
 
-//                auto m = std::find(std::begin(monsters), std::end(monsters), monster);
-//                delete *m;
-//                monsters.erase(m);
-
-                attacking = false;
+                utility::gotoScreenPosition(0, 80);
+                std::cout << monster->getName() << " KILLED!\n";
             }
-
-            // Monsters Turn
-            takeDamage(monster->getStrength());
-        }
-        else {
-            std::cout << "GAME OVER!!!\n";
-            break;
         }
     }
+
+//    while (attacking) {
+//        if (!isDead()) {
+//            // Players Turn
+//            monster->takeDamage(inventory.getCurrentWeapon().attack());
+//
+//            if (monster->isDead()) {
+//                increaseXP(monster->getDeathXP());
+//                map.setXY(monster->getPositionX(), monster->getPositionY(), GameMap::defaultChar);
+//
+////                auto m = std::find(std::begin(monsters), std::end(monsters), monster);
+////                delete *m;
+////                monsters.erase(m);
+//
+//                attacking = false;
+//            }
+//
+//            // Monsters Turn
+//            takeDamage(monster->getStrength());
+//        }
+//        else {
+//            std::cout << "GAME OVER!!!\n";
+//            break;
+//        }
+//    }
 }
 
 void Player::checkMonster(int x, int y) {
-   for (auto& m : monsters) {
-       if (m->getPositionX() == x && m->getPositionY() == y) {
-           attacking = true;
-           attack(m);
-       }
-   }
+    if (!attacking) {
+        for (auto &m: monsters) {
+            if (m->getPositionX() == x && m->getPositionY() == y) {
+                attacking = true;
+                attack(m);
+                break;
+            }
+        }
+    }
 }
 
 void Player::renderPlayer() {

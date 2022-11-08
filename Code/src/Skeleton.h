@@ -8,9 +8,9 @@
 #include "Monster.h"
 
 class Skeleton : public Monster {
-    static constexpr int skeletonStrength{50};
+    static constexpr int skeletonStrength{20};
     static constexpr int skeletonHealth{100};
-    static constexpr int skeletonDeathXP{0};
+    static constexpr int skeletonDeathXP{15};
     static constexpr int skeletonFollowDistance{0};
 
 public:

@@ -23,7 +23,7 @@ void GameMap::loadMap() {
 
 
     // Read map from gameMap.txt
-    std::ifstream gameMapFile{ "../gameMap.txt" };
+    std::ifstream gameMapFile{ "../gameMap.txt", std::ios::in };
 
     if (!gameMapFile) {
         std::cerr << "Error opening level file\n";

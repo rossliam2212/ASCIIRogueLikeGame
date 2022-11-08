@@ -8,9 +8,9 @@
 #include "Monster.h"
 
 class Zombie : public Monster {
-    static constexpr int zombieStrength{50};
+    static constexpr int zombieStrength{15};
     static constexpr int zombieHealth{100};
-    static constexpr int zombieDeathXP{0};
+    static constexpr int zombieDeathXP{10};
     static constexpr int zombieFollowDistance{0};
 
 public:

@@ -24,6 +24,8 @@ void GameManager::startGame() {
 
     while(!gameOver())
         update();
+
+    renderGameOverUI();
 }
 
 void GameManager::update() {
@@ -64,16 +66,30 @@ void GameManager::renderUI() {
               << "\n Health Potions: " << player.getInventory().getNumHealthPotions()
               << "\n";
 
+    std::cout << " Current Weapon: ";
+
     if (!player.getInventory().getWeapons().empty()) {
+        std::cout << player.getInventory().getCurrentWeapon() << "\n\n";
+        std::cout << " Weapons: \n";
         for (const auto& w : player.getInventory().getWeapons()) {
-            std::cout << " " << w << "\n";
+            std::cout << "  " << w << "\n";
         }
     }
     std::cout << "}";
 }
 
 void GameManager::renderGameOverUI() {
+    system("cls");
 
+    std::cout << R"(
+ _____   ___  ___  ___ _____   _____  _   _  _____ ______
+|  __ \ / _ \ |  \/  ||  ___| |  _  || | | ||  ___|| ___ \
+| |  \// /_\ \| .  . || |__   | | | || | | || |__  | |_/ /
+| | __ |  _  || |\/| ||  __|  | | | || | | ||  __| |    /
+| |_\ \| | | || |  | || |___  \ \_/ /\ \_/ /| |___ | |\ \
+ \____/\_| |_/\_|  |_/\____/   \___/  \___/ \____/ \_| \_|)";
+
+    std::cout << "\n";
 }
 
 bool GameManager::gameOver() {
