@@ -22,7 +22,7 @@ void GameManager::startGame() {
     map.loadMap();
     setUpMonsters();
 
-    while(!stopGame)
+    while(!gameOver())
         update();
 }
 
@@ -76,6 +76,6 @@ void GameManager::renderGameOverUI() {
 
 }
 
-void GameManager::endGame() {
-    stopGame = true;
+bool GameManager::gameOver() {
+    return player.isDead();
 }

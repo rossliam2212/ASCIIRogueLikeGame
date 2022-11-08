@@ -43,6 +43,7 @@ public:
     void update();
 
     void increaseXP(int amount);
+    void takeDamage(int amount);
     bool isDead() const;
 
     int getStrength() const;
@@ -57,7 +58,7 @@ private:
     void handleInput();
     void renderPlayer();
     void checkCollisions();
-    void attack(Monster *monster);
+    void attack(Monster* monster);
     void checkMonster(int x, int y);
 };
 

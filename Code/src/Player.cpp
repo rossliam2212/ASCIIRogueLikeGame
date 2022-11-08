@@ -115,6 +115,13 @@ void Player::handleInput() {
                 health += Inventory::healthPotionIncrease;
         }
     }
+
+    // Cycling through weapons - Right Arrow
+    if (GetKeyState(VK_RIGHT) & 0x8000) {
+        if (!inventory.getWeapons().empty()) {
+            inventory.nextWeapon();
+        }
+    }
 }
 
 void Player::attack(Monster* monster) {
@@ -123,9 +130,25 @@ void Player::attack(Monster* monster) {
     while (attacking) {
         if (!isDead()) {
             // Players Turn
+            monster->takeDamage(inventory.getCurrentWeapon().attack());
 
+            if (monster->isDead()) {
+                increaseXP(monster->getDeathXP());
+                map.setXY(monster->getPositionX(), monster->getPositionY(), GameMap::defaultChar);
+
+//                auto m = std::find(std::begin(monsters), std::end(monsters), monster);
+//                delete *m;
+//                monsters.erase(m);
+
+                attacking = false;
+            }
 
             // Monsters Turn
+            takeDamage(monster->getStrength());
+        }
+        else {
+            std::cout << "GAME OVER!!!\n";
+            break;
         }
     }
 }
@@ -140,16 +163,16 @@ void Player::checkMonster(int x, int y) {
 }
 
 void Player::renderPlayer() {
-    utility::gotoScreenPosition(positionX, positionY);
+    utility::gotoScreenPosition((short)positionX, (short)positionY);
     std::cout << " ";
 
-    utility::gotoScreenPosition(newPositionX, newPositionY);
+    utility::gotoScreenPosition((short)newPositionX, (short)newPositionY);
     std::cout << GameMap::playerChar;
 
     positionX = newPositionX;
     positionY = newPositionY;
 
-    Sleep(100);
+    Sleep(120);
 }
 
 void Player::checkCollisions() {
@@ -179,6 +202,7 @@ void Player::checkCollisions() {
 }
 
 void Player::increaseXP(int amount) { xp += amount; }
+void Player::takeDamage(int amount) { health -= amount; }
 bool Player::isDead() const { return health <= 0; }
 
 int Player::getStrength() const { return  strength; }

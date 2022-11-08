@@ -28,7 +28,7 @@ public:
     GameManager();
     ~GameManager();
     void startGame();
-    void endGame();
+    bool gameOver();
 
 private:
     void update();

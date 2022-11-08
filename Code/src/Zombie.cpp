@@ -10,8 +10,13 @@ Zombie::Zombie(const GameMap& map, int startPositionX, int startPositionY)
 }
 
 void Zombie::update() {
-    render();
-    // check for checkMonster
+//    render();
+
+    // Check if the player is near
+    // If he is
+    //  Then move towards the player
+    // Else
+    //  Skeleton stays still
 }
 
 void Zombie::render() {}

@@ -12,7 +12,24 @@ Inventory::Inventory()
 
 void Inventory::pickUpGoldCoin() { goldCoins++; }
 void Inventory::pickUpHealthPotion() { healthPotions++; }
-void Inventory::pickUpWeapon() { weapons.emplace_back(Weapon{}); }
+
+void Inventory::pickUpWeapon() {
+    if (weapons.size() >= maxNumberOfWeapons)
+        return;
+
+    weapons.emplace_back(Weapon{}); }
+
+void Inventory::nextWeapon() {
+    currentWeapon++;
+
+    if (currentWeapon > maxNumberOfWeapons) {
+        currentWeapon = 0;
+    }
+}
+
+Weapon Inventory::getCurrentWeapon() {
+    return weapons[currentWeapon];
+}
 
 void Inventory::removeGoldCoin() {
     if (goldCoins > 0)

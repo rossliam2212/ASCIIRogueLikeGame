@@ -11,6 +11,7 @@
 class Inventory {
 public:
     static constexpr int healthPotionIncrease{25};
+    static constexpr int maxNumberOfWeapons{3};
 
 private:
     int goldCoins;
@@ -18,12 +19,16 @@ private:
 
     // Weapons
     std::vector<Weapon> weapons;
+    int currentWeapon{};
 
 public:
     Inventory();
     void pickUpGoldCoin();
     void pickUpHealthPotion();
     void pickUpWeapon();
+
+    void nextWeapon();
+    Weapon getCurrentWeapon();
 
     void removeGoldCoin();
     void removeHealthPotion();

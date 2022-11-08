@@ -10,8 +10,14 @@ Skeleton::Skeleton(const GameMap& map, int startPositionX, int startPositionY)
 }
 
 void Skeleton::update() {
-    render();
+//    render();
 
+
+    // Check if the player is near
+    // If he is
+    //  Then move towards the player
+    // Else
+    //  Skeleton stays still
 }
 
 void Skeleton::render() {
