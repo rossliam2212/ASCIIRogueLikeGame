@@ -8,7 +8,11 @@ Weapon::Weapon() : name{}, damageAmount{} {
     generateStats();
 }
 
-int Weapon::attack() { return damageAmount; }
+bool Weapon::operator==(const Weapon &rhs) const {
+    return this->damageAmount == rhs.damageAmount && this->name == rhs.name;
+}
+
+int Weapon::attack() const { return damageAmount; }
 
 void Weapon::generateStats() {
     name = names[randomNum(0, (int)names.size()-1)];

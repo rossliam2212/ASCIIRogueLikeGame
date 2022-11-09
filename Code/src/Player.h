@@ -15,6 +15,7 @@
 
 
 class Player {
+    static constexpr int maxHealth{100};
     static constexpr int defaultStrength{20};
     static constexpr int defaultHealth{50};
     static constexpr int defaultXP{0};
@@ -36,6 +37,8 @@ private:
     int newPositionY;
 
     bool attacking{false};
+    bool nextWeaponPressed{false};
+    bool removeCurrentWeaponPressed{false};
 
 public:
     Player(const GameMap& map, std::vector<Monster*>& monsters);
@@ -51,8 +54,14 @@ public:
     int getXP() const;
     int getPositionX() const;
     int getPositionY() const;
-
     Inventory getInventory() const;
+
+    bool getNextWeaponPressed() const;
+    void resetNextWeaponPressed();
+
+    bool getRemoveCurrentWeaponPressed() const;
+    void resetRemoveCurrentWeaponPressed();
+
 
 private:
     void handleInput();

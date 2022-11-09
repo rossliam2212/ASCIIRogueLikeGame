@@ -33,6 +33,10 @@ Weapon Inventory::getCurrentWeapon() {
     return weapons[currentWeapon];
 }
 
+bool Inventory::weaponSlotsFull() {
+    return weapons.size() == maxNumberOfWeapons;
+}
+
 void Inventory::removeGoldCoin() {
     if (goldCoins > 0)
         goldCoins--;
@@ -41,6 +45,13 @@ void Inventory::removeGoldCoin() {
 void Inventory::removeHealthPotion() {
     if (healthPotions > 0)
         healthPotions--;
+}
+
+void Inventory::removeCurrentWeapon() {
+    auto weapon = weapons[currentWeapon];
+    auto iter = std::find(weapons.begin(), weapons.end(), weapon);
+
+    weapons.erase(iter);
 }
 
 int Inventory::getNumGoldCoins() const { return goldCoins; }

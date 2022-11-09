@@ -28,6 +28,9 @@ void Player::update() {
     checkCollisions();
 }
 
+/**
+ * Handles all the Player input.
+ */
 void Player::handleInput() {
     newPositionX = positionX;
     newPositionY = positionY;
@@ -106,20 +109,29 @@ void Player::handleInput() {
 
     // ==== Using Health Potion - R (82) ====
     if (GetKeyState(82) & 0x8000) {
-        if (inventory.getNumHealthPotions() > 0) {
+        if (inventory.getNumHealthPotions() > 0 && health < maxHealth) {
             inventory.removeHealthPotion();
 
-            if (health + Inventory::healthPotionIncrease >= 100)
-                health = 100;
+            if (health + Inventory::healthPotionIncrease >= maxHealth)
+                health = maxHealth;
             else
                 health += Inventory::healthPotionIncrease;
         }
     }
 
-    // Cycling through weapons - Right Arrow
+    // ==== Cycling through weapons - Right Arrow ====
     if (GetKeyState(VK_RIGHT) & 0x8000) {
         if (!inventory.getWeapons().empty()) {
+            nextWeaponPressed = true;
             inventory.nextWeapon();
+        }
+    }
+
+    // ==== Dropping Current Weapon - Q (81) ====
+    if (GetKeyState(81) & 0x8000) {
+        if (!inventory.getWeapons().empty()) {
+            removeCurrentWeaponPressed = true;
+            inventory.removeCurrentWeapon();
         }
     }
 }
@@ -168,6 +180,12 @@ void Player::attack(Monster* monster) {
 //    }
 }
 
+/**
+ * Called when the player is within one space from a monster. This function finds the monster at the given
+ * xy position and then the player begins attacking that particular monster.
+ * @param x The monsters x position.
+ * @param y The monsters y position.
+ */
 void Player::checkMonster(int x, int y) {
     if (!attacking) {
         for (auto &m: monsters) {
@@ -180,6 +198,9 @@ void Player::checkMonster(int x, int y) {
     }
 }
 
+/**
+ * Renders the player in the correct xy position whenever the player is moved.
+ */
 void Player::renderPlayer() {
     utility::gotoScreenPosition((short)positionX, (short)positionY);
     std::cout << " ";
@@ -193,6 +214,9 @@ void Player::renderPlayer() {
     Sleep(120);
 }
 
+/**
+ * Checks for collisions with all the different game objects, such as gold coins, health potions, etc.
+ */
 void Player::checkCollisions() {
     // Checking for Gold Coin Collision
     if (map.getXY(positionX, positionY) == GameMap::goldCoinChar){
@@ -211,23 +235,89 @@ void Player::checkCollisions() {
     }
 
     // Checking for Weapon Collision
-    if (map.getXY(positionX, positionY) == GameMap::weaponChar){
-        inventory.pickUpWeapon();
-
-        // Setting the character at the position of the weapon back to the default map character '='
-        map.setXY(positionX, positionY, GameMap::defaultChar);
+    if (map.getXY(positionX, positionY) == GameMap::weaponChar) {
+        if (!inventory.weaponSlotsFull()) {
+            inventory.pickUpWeapon();
+            // Setting the character at the position of the weapon back to the default map character '='
+            map.setXY(positionX, positionY, GameMap::defaultChar);
+        }
     }
 }
 
+/**
+ * Increases the players XP.
+ * @param amount The amount to increase the XP by.
+ */
 void Player::increaseXP(int amount) { xp += amount; }
+
+/**
+ * Deals damage to the player.
+ * @param amount The amount of damage to deal to the player.
+ */
 void Player::takeDamage(int amount) { health -= amount; }
+
+/**
+ * Checks if the player is dead - If their health is <= 0.
+ * @return True if the player is dead, False otherwise.
+ */
 bool Player::isDead() const { return health <= 0; }
 
+/**
+ * Players strength getter.
+ * @return The players strength.
+ */
 int Player::getStrength() const { return  strength; }
+
+/**
+ * Players health getter.
+ * @return The players health.
+ */
 int Player::getHealth() const { return health; }
+
+/**
+ * Players XP getter.
+ * @return The players XP.
+ */
 int Player::getXP() const { return xp; }
+
+/**
+ * Players x position getter.
+ * @return The players x position.
+ */
 int Player::getPositionX() const { return positionX; }
+
+/**
+ * Players y position getter.
+ * @return The players y position.
+ */
 int Player::getPositionY() const { return positionY; }
+
+/**
+ * Players inventory getter.
+ * @return The players inventory.
+ */
 Inventory Player::getInventory() const { return inventory; }
+
+/**
+ * Players next weapon pressed getter.
+ * @return Whether the player has pressed next weapon (Right Arrow)
+ */
+bool Player::getNextWeaponPressed() const { return nextWeaponPressed; }
+
+/**
+ * Resets next weapon pressed to false.
+ * Called from the GameManager to render the current weapon UI correctly.
+ */
+void Player::resetNextWeaponPressed() { nextWeaponPressed = false; }
+
+bool Player::getRemoveCurrentWeaponPressed() const {
+    return removeCurrentWeaponPressed;
+}
+
+void Player::resetRemoveCurrentWeaponPressed() {
+    removeCurrentWeaponPressed = true;
+}
+
+
 
 

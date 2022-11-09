@@ -5,6 +5,7 @@
 #ifndef CODE_INVENTORY_H
 #define CODE_INVENTORY_H
 
+#include <algorithm>
 #include <vector>
 #include "Weapon.h"
 
@@ -30,8 +31,11 @@ public:
     void nextWeapon();
     Weapon getCurrentWeapon();
 
+    bool weaponSlotsFull();
+
     void removeGoldCoin();
     void removeHealthPotion();
+    void removeCurrentWeapon();
 
     int getNumGoldCoins() const;
     int getNumHealthPotions() const;

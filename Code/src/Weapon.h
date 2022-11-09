@@ -35,7 +35,8 @@ private:
 
 public:
     Weapon();
-    int attack();
+    bool operator==(const Weapon& rhs) const;
+    int attack() const;
 
 private:
     void generateStats();
