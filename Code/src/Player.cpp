@@ -5,7 +5,7 @@
 #include "Player.h"
 
 
-Player::Player(const GameMap& map, std::vector<Monster*>& monsters)
+Player::Player(const GameMap& map, std::vector<Monster*>& monsters, const HistoryLogger& hl)
     : strength{defaultStrength},
       health{defaultHealth},
       xp{defaultXP},
@@ -13,7 +13,8 @@ Player::Player(const GameMap& map, std::vector<Monster*>& monsters)
       newPosition{defaultStartPositionX, defaultStartPositionY},
       map{map},
       inventory{},
-      monsters{monsters} {
+      monsters{monsters},
+      historyLogger{hl} {
 }
 
 //Player::Player(const GameMap &map, int startPositionX, int startPositionY, std::vector<Monster*>& monsters)
@@ -29,7 +30,7 @@ Player::Player(const GameMap& map, std::vector<Monster*>& monsters)
 //      monsters{monsters} {
 //}
 
-Player::Player(const GameMap& map, Point& startPosition, std::vector<Monster*>& monsters)
+Player::Player(const GameMap& map, Point& startPosition, std::vector<Monster*>& monsters, const HistoryLogger& hl)
     : strength{defaultStrength},
       health{defaultHealth},
       xp{defaultXP},
@@ -37,7 +38,8 @@ Player::Player(const GameMap& map, Point& startPosition, std::vector<Monster*>& 
       newPosition{startPosition},
       map{map},
       inventory{},
-      monsters{monsters} {
+      monsters{monsters},
+      historyLogger{hl} {
 }
 
 void Player::update() {
@@ -157,6 +159,11 @@ void Player::handleInput() {
             removeCurrentWeaponPressed = true;
             inventory.removeCurrentWeapon();
         }
+    }
+
+    // ==== FOR TESTING - Removing Players Health - X (88) ====
+    if (GetKeyState(88) & 0x8000) {
+        health -= 10;
     }
 }
 

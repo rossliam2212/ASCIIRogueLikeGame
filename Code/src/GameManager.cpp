@@ -7,7 +7,8 @@
 GameManager::GameManager()
     : map{MAPSIZEX, MAPSIZEY},
       monsters{},
-      player{map, monsters},
+      historyLogger{},
+      player{map, monsters, historyLogger},
       level{1} {
 }
 
@@ -26,6 +27,7 @@ void GameManager::startGame() {
         update();
 
     renderGameOverUI();
+    historyLogger.logGameOver();
 }
 
 void GameManager::update() {

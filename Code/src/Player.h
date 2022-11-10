@@ -12,6 +12,7 @@
 #include "Monster.h"
 #include "Skeleton.h"
 #include "Zombie.h"
+#include "HistoryLogger.h"
 
 
 class Player {
@@ -26,6 +27,7 @@ private:
     Inventory inventory;
     GameMap map; // Needs access to map for boundary checking
     std::vector<Monster*>& monsters;
+    HistoryLogger historyLogger;
 
     int strength;
     int health;
@@ -39,9 +41,9 @@ private:
     bool removeCurrentWeaponPressed{false};
 
 public:
-    Player(const GameMap& map, std::vector<Monster*>& monsters);
+    Player(const GameMap& map, std::vector<Monster*>& monsters, const HistoryLogger& hl);
 //    Player(const GameMap &map, int startPositionX, int startPositionY, std::vector<Monster*>& monsters);
-    Player(const GameMap &map, Point& startPosition, std::vector<Monster*>& monsters);
+    Player(const GameMap &map, Point& startPosition, std::vector<Monster*>& monsters, const HistoryLogger& hl);
     void update();
 
     void increaseXP(int amount);

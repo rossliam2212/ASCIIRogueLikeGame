@@ -24,6 +24,8 @@ set(SOURCE_FILES
         src/Zombie.cpp
         src/Zombie.h
         src/Point.cpp
-        src/Point.h)
+        src/Point.h
+        src/HistoryLogger.cpp
+        src/HistoryLogger.h)
 
 add_executable(Code ${SOURCE_FILES})
