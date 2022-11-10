@@ -21,3 +21,7 @@ void utility::gotoScreenPosition(short C, short R) {
     xy.Y = R;
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), xy);
 }
+
+void utility::gotoScreenPosition(Point pos) {
+    gotoScreenPosition((short)pos.getX(), (short)pos.getY());
+}

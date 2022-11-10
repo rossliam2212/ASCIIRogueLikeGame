@@ -6,17 +6,35 @@
 
 
 Player::Player(const GameMap& map, std::vector<Monster*>& monsters)
-        : Player(map, defaultStartPositionX, defaultStartPositionY, monsters) {
-}
-
-Player::Player(const GameMap &map, int startPositionX, int startPositionY, std::vector<Monster*>& monsters)
     : strength{defaultStrength},
       health{defaultHealth},
       xp{defaultXP},
-      positionX(startPositionX),
-      positionY(startPositionY),
-      newPositionX{startPositionX},
-      newPositionY{startPositionY},
+      position{defaultStartPositionX, defaultStartPositionY},
+      newPosition{defaultStartPositionX, defaultStartPositionY},
+      map{map},
+      inventory{},
+      monsters{monsters} {
+}
+
+//Player::Player(const GameMap &map, int startPositionX, int startPositionY, std::vector<Monster*>& monsters)
+//    : strength{defaultStrength},
+//      health{defaultHealth},
+//      xp{defaultXP},
+//      positionX(startPositionX),
+//      positionY(startPositionY),
+//      newPositionX{startPositionX},
+//      newPositionY{startPositionY},
+//      map{map},
+//      inventory{},
+//      monsters{monsters} {
+//}
+
+Player::Player(const GameMap& map, Point& startPosition, std::vector<Monster*>& monsters)
+    : strength{defaultStrength},
+      health{defaultHealth},
+      xp{defaultXP},
+      position{startPosition},
+      newPosition{startPosition},
       map{map},
       inventory{},
       monsters{monsters} {
@@ -32,23 +50,26 @@ void Player::update() {
  * Handles all the Player input.
  */
 void Player::handleInput() {
-    newPositionX = positionX;
-    newPositionY = positionY;
+//    newPositionX = positionX;
+//    newPositionY = positionY;
+
+    newPosition = position;
 
     // ==== Moving Up - W (87) ====
     if (GetKeyState(87) & 0x8000) {
         // Boundary Checking
-        if (map.getXY(positionX, positionY-1) != GameMap::roofChar &&
-            map.getXY(positionX, positionY-1) != GameMap::wallChar &&
-            map.getXY(positionX, positionY-1) != GameMap::skeletonChar &&
-            map.getXY(positionX, positionY-1) != GameMap::zombieChar) {
-            newPositionY = positionY - 1;
+        if (map.getXY(position.getX(), position.getY()-1) != GameMap::roofChar &&
+            map.getXY(position.getX(), position.getY()-1) != GameMap::wallChar &&
+            map.getXY(position.getX(), position.getY()-1) != GameMap::skeletonChar &&
+            map.getXY(position.getX(), position.getY()-1) != GameMap::zombieChar) {
+//            newPositionY = positionY - 1;
+            newPosition.setXY(position.getX(), position.getY()-1);
         }
 
         // Checking for enemies
-        if (map.getXY(positionX, positionY - 1) == GameMap::skeletonChar ||
-            map.getXY(positionX, positionY - 1) == GameMap::zombieChar) {
-            checkMonster(positionX, positionY - 1);
+        if (map.getXY(position.getX(), position.getY() - 1) == GameMap::skeletonChar ||
+            map.getXY(position.getX(), position.getY() - 1) == GameMap::zombieChar) {
+            checkMonster(position.getX(), position.getY() - 1);
         } else
             attacking = false;
     }
@@ -56,17 +77,18 @@ void Player::handleInput() {
     // ==== Moving Down - S (83) ====
     if (GetKeyState(83) & 0x8000) {
         // Boundary Checking
-        if (map.getXY(positionX, positionY+1) != GameMap::roofChar &&
-            map.getXY(positionX, positionY+1) != GameMap::wallChar &&
-            map.getXY(positionX, positionY+1) != GameMap::skeletonChar &&
-            map.getXY(positionX, positionY+1) != GameMap::zombieChar) {
-            newPositionY = positionY + 1;
+        if (map.getXY(position.getX(), position.getY()+1) != GameMap::roofChar &&
+            map.getXY(position.getX(), position.getY()+1) != GameMap::wallChar &&
+            map.getXY(position.getX(), position.getY()+1) != GameMap::skeletonChar &&
+            map.getXY(position.getX(), position.getY()+1) != GameMap::zombieChar) {
+//            newPositionY = positionY + 1;
+            newPosition.setXY(position.getX(), position.getY()+1);
         }
 
         // Checking for enemies
-        if (map.getXY(positionX, positionY+1) == GameMap::skeletonChar ||
-            map.getXY(positionX, positionY+1) == GameMap::zombieChar) {
-            checkMonster(positionX, positionY+1);
+        if (map.getXY(position.getX(), position.getY()+1) == GameMap::skeletonChar ||
+            map.getXY(position.getX(), position.getY()+1) == GameMap::zombieChar) {
+            checkMonster(position.getX(), position.getY()+1);
         } else
             attacking = false;
     }
@@ -74,17 +96,18 @@ void Player::handleInput() {
     // ==== Moving Right - D (68) ====
     if (GetKeyState(68) & 0x8000) {
         // Boundary Checking
-        if (map.getXY(positionX+1, positionY) != GameMap::wallChar &&
-            map.getXY(positionX+1, positionY) != GameMap::roofChar &&
-            map.getXY(positionX+1, positionY) != GameMap::skeletonChar &&
-            map.getXY(positionX+1, positionY) != GameMap::zombieChar) {
-            newPositionX = positionX + 1;
+        if (map.getXY(position.getX()+1, position.getY()) != GameMap::wallChar &&
+            map.getXY(position.getX()+1, position.getY()) != GameMap::roofChar &&
+            map.getXY(position.getX()+1, position.getY()) != GameMap::skeletonChar &&
+            map.getXY(position.getX()+1, position.getY()) != GameMap::zombieChar) {
+//            newPositionX = positionX + 1;
+            newPosition.setXY(position.getX()+1, position.getY());
         }
 
         // Checking for enemies
-        if (map.getXY(positionX+1, positionY) == GameMap::skeletonChar ||
-            map.getXY(positionX+1, positionY) == GameMap::zombieChar) {
-            checkMonster(positionX+1, positionY);
+        if (map.getXY(position.getX()+1, position.getY()) == GameMap::skeletonChar ||
+            map.getXY(position.getX()+1, position.getY()) == GameMap::zombieChar) {
+            checkMonster(position.getX()+1, position.getY());
         } else
             attacking = false;
     }
@@ -92,17 +115,18 @@ void Player::handleInput() {
     // ==== Moving Left - A (65) ====
     if (GetKeyState(65) & 0x8000) {
         // Boundary Checking
-        if (map.getXY(positionX-1, positionY) != GameMap::wallChar &&
-            map.getXY(positionX-1, positionY) != GameMap::roofChar &&
-            map.getXY(positionX-1, positionY) != GameMap::skeletonChar &&
-            map.getXY(positionX-1, positionY) != GameMap::zombieChar) {
-            newPositionX = positionX - 1;
+        if (map.getXY(position.getX()-1, position.getY()) != GameMap::wallChar &&
+            map.getXY(position.getX()-1, position.getY()) != GameMap::roofChar &&
+            map.getXY(position.getX()-1, position.getY()) != GameMap::skeletonChar &&
+            map.getXY(position.getX()-1, position.getY()) != GameMap::zombieChar) {
+//            newPositionX = positionX - 1;
+            newPosition.setXY(position.getX()-1, position.getY());
         }
 
         // Checking for enemies
-        if (map.getXY(positionX-1, positionY) == GameMap::skeletonChar ||
-            map.getXY(positionX-1, positionY) == GameMap::zombieChar) {
-            checkMonster(positionX-1, positionY);
+        if (map.getXY(position.getX()-1, position.getY()) == GameMap::skeletonChar ||
+            map.getXY(position.getX()-1, position.getY()) == GameMap::zombieChar) {
+            checkMonster(position.getX()-1, position.getY());
         } else
             attacking = false;
     }
@@ -146,9 +170,9 @@ void Player::attack(Monster* monster) {
             if (monster->isDead()) {
                 attacking = false;
                 increaseXP(monster->getDeathXP());
-                map.setXY(monster->getPositionX(), monster->getPositionY(), GameMap::defaultChar);
+                map.setXY(monster->getPosition().getX(), monster->getPosition().getY(), GameMap::defaultChar);
 
-                utility::gotoScreenPosition(0, 80);
+                utility::gotoScreenPosition(position);
                 std::cout << monster->getName() << " KILLED!\n";
             }
         }
@@ -188,8 +212,8 @@ void Player::attack(Monster* monster) {
  */
 void Player::checkMonster(int x, int y) {
     if (!attacking) {
-        for (auto &m: monsters) {
-            if (m->getPositionX() == x && m->getPositionY() == y) {
+        for (auto& m: monsters) {
+            if (m->getPosition().getX() == x && m->getPosition().getY() == y) {
                 attacking = true;
                 attack(m);
                 break;
@@ -202,14 +226,16 @@ void Player::checkMonster(int x, int y) {
  * Renders the player in the correct xy position whenever the player is moved.
  */
 void Player::renderPlayer() {
-    utility::gotoScreenPosition((short)positionX, (short)positionY);
+    utility::gotoScreenPosition(position);
     std::cout << " ";
 
-    utility::gotoScreenPosition((short)newPositionX, (short)newPositionY);
+    utility::gotoScreenPosition(newPosition);
     std::cout << GameMap::playerChar;
 
-    positionX = newPositionX;
-    positionY = newPositionY;
+//    positionX = newPositionX;
+//    positionY = newPositionY;
+
+    position = newPosition;
 
     Sleep(120);
 }
@@ -219,27 +245,27 @@ void Player::renderPlayer() {
  */
 void Player::checkCollisions() {
     // Checking for Gold Coin Collision
-    if (map.getXY(positionX, positionY) == GameMap::goldCoinChar){
+    if (map.getXY(position.getX(), position.getY()) == GameMap::goldCoinChar){
         inventory.pickUpGoldCoin();
 
         // Setting the character at the position of the coin back to the default map character '='
-        map.setXY(positionX, positionY, GameMap::defaultChar);
+        map.setXY(position.getX(), position.getY(), GameMap::defaultChar);
     }
 
     // Checking for Health Potion Collision
-    if (map.getXY(positionX, positionY) == GameMap::healthPotionChar) {
+    if (map.getXY(position.getX(), position.getY()) == GameMap::healthPotionChar) {
         inventory.pickUpHealthPotion();
 
         // Setting the character at the position of the health potion back to the default map character '='
-        map.setXY(positionX, positionY, GameMap::defaultChar);
+        map.setXY(position.getX(), position.getY(), GameMap::defaultChar);
     }
 
     // Checking for Weapon Collision
-    if (map.getXY(positionX, positionY) == GameMap::weaponChar) {
+    if (map.getXY(position.getX(), position.getY()) == GameMap::weaponChar) {
         if (!inventory.weaponSlotsFull()) {
             inventory.pickUpWeapon();
             // Setting the character at the position of the weapon back to the default map character '='
-            map.setXY(positionX, positionY, GameMap::defaultChar);
+            map.setXY(position.getX(), position.getY(), GameMap::defaultChar);
         }
     }
 }
@@ -281,16 +307,10 @@ int Player::getHealth() const { return health; }
 int Player::getXP() const { return xp; }
 
 /**
- * Players x position getter.
- * @return The players x position.
+ * Player position getter.
+ * @return The players position.
  */
-int Player::getPositionX() const { return positionX; }
-
-/**
- * Players y position getter.
- * @return The players y position.
- */
-int Player::getPositionY() const { return positionY; }
+Point Player::getPosition() const { return position; }
 
 /**
  * Players inventory getter.
@@ -315,7 +335,7 @@ bool Player::getRemoveCurrentWeaponPressed() const {
 }
 
 void Player::resetRemoveCurrentWeaponPressed() {
-    removeCurrentWeaponPressed = true;
+    removeCurrentWeaponPressed = false;
 }
 
 

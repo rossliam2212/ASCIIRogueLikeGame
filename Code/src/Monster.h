@@ -8,6 +8,14 @@
 #include <string>
 #include "GameMap.h"
 
+enum MoveState {
+    Idle,
+    Up,
+    Down,
+    Left,
+    Right
+};
+
 class Monster {
 protected:
     std::string name;
@@ -18,14 +26,14 @@ protected:
     int deathXP;
 
     int followDistance;
+    bool followingPLayer{false};
+    MoveState move{Idle};
 
-    int positionX;
-    int positionY;
-    int newPositionX;
-    int newPositionY;
+    Point position;
+    Point newPosition;
 
 public:
-    Monster(const GameMap& map, int strength, int health, int deathXP, int followDistance, int startPositionX, int startPositionY);
+    Monster(const GameMap& map, int strength, int health, int deathXP, int followDistance, Point startPosition);
     virtual ~Monster() = default;
 
     bool operator==(const Monster& rhs) const;
@@ -34,6 +42,7 @@ public:
     virtual void render() = 0;
     virtual void attack() = 0;
 
+    void checkInFollowRange();
     bool inFollowRange();
     void takeDamage(int damageAmount);
     bool isDead() const;
@@ -42,8 +51,7 @@ public:
     int getStrength() const;
     int getHealth() const;
     int getDeathXP() const;
-    int getPositionX() const;
-    int getPositionY() const;
+    Point getPosition() const;
 };
 
 

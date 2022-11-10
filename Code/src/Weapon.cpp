@@ -15,7 +15,7 @@ bool Weapon::operator==(const Weapon &rhs) const {
 int Weapon::attack() const { return damageAmount; }
 
 void Weapon::generateStats() {
-    name = names[randomNum(0, (int)names.size()-1)];
+    name = weaponNames[randomNum(0, (int)weaponNames.size() - 1)];
     damageAmount = randomNum(minWeaponDamage, maxWeaponDamage);
 }
 

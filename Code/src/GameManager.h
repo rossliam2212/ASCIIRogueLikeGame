@@ -19,7 +19,7 @@ private:
     GameMap map;
     std::vector<Monster*> monsters;
     Player player;
-    std::vector<std::pair<int, int>> monsterPositions;
+    std::vector<Point> monsterPositions;
 
     int level;
     bool stopGame{false};

@@ -48,12 +48,12 @@ void GameMap::loadMap() {
         for (int x = 0; x < mapWidth; x++) {
             if (map[y * mapWidth + x] == skeletonChar) {
                 monsters.emplace_back(skeletonChar);
-                monsterPositions.emplace_back(std::make_pair(x, y));
+                monsterPositions.emplace_back(Point{x, y});
             }
 
             if (map[y * mapWidth + x] == zombieChar) {
                 monsters.emplace_back(zombieChar);
-                monsterPositions.emplace_back(std::make_pair(x, y));
+                monsterPositions.emplace_back(Point{x, y});
             }
         }
     }
@@ -90,7 +90,7 @@ std::vector<char> GameMap::getMonsters() const {
     return monsters;
 }
 
-std::vector<std::pair<int, int>> GameMap::getMonsterPositions() const {
+std::vector<Point> GameMap::getMonsterPositions() const {
     return monsterPositions;
 }
 

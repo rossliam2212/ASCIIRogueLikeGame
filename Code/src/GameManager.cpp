@@ -33,8 +33,10 @@ void GameManager::update() {
     renderUI();
 
     if (!monsters.empty()) {
-        for (const auto monster: monsters)
-            monster->update();
+        for (const auto monster: monsters) {
+            if (!monster->isDead())
+                monster->update();
+        }
     }
 }
 
@@ -44,10 +46,10 @@ void GameManager::setUpMonsters() {
 
     for (int i = 0; i < monsterChars.size(); i++) {
         if (monsterChars[i] == GameMap::skeletonChar)
-            monsters.emplace_back(new Skeleton(map, positions[i].first, positions[i].second));
+            monsters.emplace_back(new Skeleton(map, positions[i]));
 
-        else if (monsterChars[i] == GameMap::zombieChar){
-            monsters.emplace_back(new Zombie(map, positions[i].first, positions[i].second));
+        else if (monsterChars[i] == GameMap::zombieChar) {
+            monsters.emplace_back(new Zombie(map, positions[i]));
         }
     }
 }
@@ -74,15 +76,28 @@ void GameManager::renderUI() {
         if (player.getNextWeaponPressed()) {
             std::cout << "                                                     \n\n";
             player.resetNextWeaponPressed();
-        } else
+        }
+        else
             std::cout << player.getInventory().getCurrentWeapon() << "\n\n";
 
         // Displaying all the players weapons
         std::cout << " Weapons: \n";
-        for (const auto& w : player.getInventory().getWeapons()) {
-            std::cout << "  " << w << "\n";
+        if (player.getRemoveCurrentWeaponPressed()) {
+            for (int i = 0; i < player.getInventory().getWeapons().size()+3; i++) {
+                std::cout << "                                                     \n";
+            }
+            player.resetRemoveCurrentWeaponPressed();
+        }
+        else {
+            for (const auto& w : player.getInventory().getWeapons()) {
+                std::cout << "  " << w << "\n";
+            }
         }
     }
+    else {
+        std::cout << "                                                     \n\n";
+    }
+
     std::cout << "}";
 }
 

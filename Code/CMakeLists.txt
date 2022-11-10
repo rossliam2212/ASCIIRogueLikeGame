@@ -22,6 +22,8 @@ set(SOURCE_FILES
         src/Skeleton.cpp
         src/Skeleton.h
         src/Zombie.cpp
-        src/Zombie.h)
+        src/Zombie.h
+        src/Point.cpp
+        src/Point.h)
 
 add_executable(Code ${SOURCE_FILES})

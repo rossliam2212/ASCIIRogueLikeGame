@@ -11,10 +11,10 @@ class Zombie : public Monster {
     static constexpr int zombieStrength{15};
     static constexpr int zombieHealth{100};
     static constexpr int zombieDeathXP{10};
-    static constexpr int zombieFollowDistance{0};
+    static constexpr int zombieFollowDistance{5};
 
 public:
-    Zombie(const GameMap& map, int startPositionX, int startPositionY);
+    Zombie(const GameMap& map, Point position);
     ~Zombie() override = default;
 
     void update() override;

@@ -31,10 +31,8 @@ private:
     int health;
     int xp;
 
-    int positionX;
-    int positionY;
-    int newPositionX;
-    int newPositionY;
+    Point position;
+    Point newPosition;
 
     bool attacking{false};
     bool nextWeaponPressed{false};
@@ -42,7 +40,8 @@ private:
 
 public:
     Player(const GameMap& map, std::vector<Monster*>& monsters);
-    Player(const GameMap &map, int startPositionX, int startPositionY, std::vector<Monster*>& monsters);
+//    Player(const GameMap &map, int startPositionX, int startPositionY, std::vector<Monster*>& monsters);
+    Player(const GameMap &map, Point& startPosition, std::vector<Monster*>& monsters);
     void update();
 
     void increaseXP(int amount);
@@ -52,8 +51,7 @@ public:
     int getStrength() const;
     int getHealth() const;
     int getXP() const;
-    int getPositionX() const;
-    int getPositionY() const;
+    Point getPosition() const;
     Inventory getInventory() const;
 
     bool getNextWeaponPressed() const;

@@ -20,8 +20,9 @@ private:
     std::string name;
     int damageAmount;
 
-    std::array<std::string, 10> names {
+    std::array<std::string, 11> weaponNames {
         "Bayonet",
+        "Karambit",
         "Club",
         "Dagger",
         "Halberd",

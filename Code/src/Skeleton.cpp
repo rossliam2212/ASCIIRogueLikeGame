@@ -4,8 +4,8 @@
 
 #include "Skeleton.h"
 
-Skeleton::Skeleton(const GameMap& map, int startPositionX, int startPositionY)
-    : Monster(map, skeletonStrength, skeletonHealth, skeletonDeathXP, skeletonFollowDistance, startPositionX, startPositionY) {
+Skeleton::Skeleton(const GameMap& map, Point position)
+    : Monster(map, skeletonStrength, skeletonHealth, skeletonDeathXP, skeletonFollowDistance, position) {
     name = "Skeleton";
 }
 
@@ -21,16 +21,15 @@ void Skeleton::update() {
 }
 
 void Skeleton::render() {
-    utility::gotoScreenPosition((short)positionX,(short)positionY);
+    utility::gotoScreenPosition(position);
     std::cout << " ";
 
-    utility::gotoScreenPosition((short)newPositionX, (short)newPositionY);
+    utility::gotoScreenPosition(newPosition);
     std::cout << GameMap::skeletonChar;
 
-    positionX = newPositionX;
-    positionY = newPositionY;
+    position = newPosition;
 
-    Sleep(120);
+    Sleep(1000);
 }
 
 void Skeleton::attack() {

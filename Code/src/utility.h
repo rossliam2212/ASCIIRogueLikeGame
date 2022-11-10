@@ -7,11 +7,13 @@
 
 #include <windows.h>
 #include <iostream>
+#include "Point.h"
 
 namespace utility {
     void showConsoleCursor(bool showFlag);
 
     void gotoScreenPosition(short C, short R);
+    void gotoScreenPosition(Point pos);
 }
 
 
