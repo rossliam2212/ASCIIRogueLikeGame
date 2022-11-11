@@ -9,6 +9,7 @@
 #include <fstream>
 #include <vector>
 #include "utility.h"
+#include "Point.h"
 
 #define WINDOWSIZE_X 800 // in px
 #define WINDOWSIZE_Y 700 // in px
@@ -39,8 +40,7 @@ private:
     int mapHeight;
     int mapWidth;
 
-    std::vector<char> monsters;
-    std::vector<Point> monsterPositions;
+    std::vector<std::pair<char, Point>> monstersAndItems;
 
 public:
     GameMap(int mapWidth, int mapHeight);
@@ -50,10 +50,12 @@ public:
     void printMap();
 
     char getXY(int x, int y);
-    void setXY(int x, int y, char value);
+    char getXY(Point& position);
 
-    std::vector<char> getMonsters() const;
-    std::vector<Point> getMonsterPositions() const;
+    void setXY(int x, int y, char value);
+    void setXY(Point& position, char value);
+
+    std::vector<std::pair<char, Point>> getMonstersAndItems() const;
 };
 
 

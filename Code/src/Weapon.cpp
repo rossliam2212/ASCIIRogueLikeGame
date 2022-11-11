@@ -4,12 +4,14 @@
 
 #include "Weapon.h"
 
-Weapon::Weapon() : name{}, damageAmount{} {
+Weapon::Weapon(const Point& position)
+    : Item{"DefaultItemName", position},
+      damageAmount{} {
     generateStats();
 }
 
 bool Weapon::operator==(const Weapon &rhs) const {
-    return this->damageAmount == rhs.damageAmount && this->name == rhs.name;
+    return damageAmount == rhs.damageAmount && name == rhs.name;
 }
 
 int Weapon::attack() const { return damageAmount; }

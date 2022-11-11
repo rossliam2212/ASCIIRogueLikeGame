@@ -14,7 +14,6 @@
 #include "Zombie.h"
 #include "HistoryLogger.h"
 
-
 class Player {
     static constexpr int maxHealth{100};
     static constexpr int defaultStrength{20};
@@ -27,7 +26,9 @@ private:
     Inventory inventory;
     GameMap map; // Needs access to map for boundary checking
     std::vector<Monster*>& monsters;
+    std::vector<Item*>& items;
     HistoryLogger historyLogger;
+//    GameManager* gm;
 
     int strength;
     int health;
@@ -41,9 +42,9 @@ private:
     bool removeCurrentWeaponPressed{false};
 
 public:
-    Player(const GameMap& map, std::vector<Monster*>& monsters, const HistoryLogger& hl);
-//    Player(const GameMap &map, int startPositionX, int startPositionY, std::vector<Monster*>& monsters);
-    Player(const GameMap &map, Point& startPosition, std::vector<Monster*>& monsters, const HistoryLogger& hl);
+    Player(const GameMap& map, std::vector<Monster*>& monsters, std::vector<Item*>& items, const HistoryLogger& hl);
+    Player(const GameMap &map, Point& startPosition, std::vector<Monster*>& monsters, std::vector<Item*>& items, const HistoryLogger& hl);
+
     void update();
 
     void increaseXP(int amount);
@@ -69,6 +70,7 @@ private:
     void checkCollisions();
     void attack(Monster* monster);
     void checkMonster(int x, int y);
+    void checkItem(int x, int y);
 };
 
 

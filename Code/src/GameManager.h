@@ -6,11 +6,14 @@
 #define CODE_GAMEMANAGER_H
 
 #include "GameMap.h"
+#include "Item.h"
 #include "Player.h"
 #include "Monster.h"
 #include "Skeleton.h"
 #include "Zombie.h"
 #include "HistoryLogger.h"
+#include "GoldCoin.h"
+#include "HealthPotion.h"
 
 class GameManager {
     static constexpr int MAPSIZEX{83}; // 82 + 1 (WIDTH)
@@ -19,7 +22,7 @@ class GameManager {
 private:
     GameMap map;
     std::vector<Monster*> monsters;
-    std::vector<Point> monsterPositions;
+    std::vector<Item*> mapItems;
     HistoryLogger historyLogger;
     Player player;
 
@@ -32,11 +35,13 @@ public:
     void startGame();
     bool gameOver();
 
+
+
 private:
     void update();
     void renderUI();
     void renderGameOverUI();
-    void setUpMonsters();
+    void setUpGameItemsAndMonsters();
 };
 
 

@@ -5,7 +5,7 @@
 #include "GameMap.h"
 
 GameMap::GameMap(int mapWidth, int mapHeight)
-    : mapWidth{mapWidth}, mapHeight{mapHeight}, monsters{}, monsterPositions{} {
+    : mapWidth{mapWidth}, mapHeight{mapHeight}, monstersAndItems{} {
     map = new char[mapWidth * mapHeight];
 }
 
@@ -43,23 +43,31 @@ void GameMap::loadMap() {
         counter++;
     }
 
-    // Checking for monsters in the map and creating instances for them
+    // Checking for monsters/items in the map and creating instances for them
     for (int y = 0; y < mapHeight; y++) {
         for (int x = 0; x < mapWidth; x++) {
-            if (map[y * mapWidth + x] == skeletonChar) {
-                monsters.emplace_back(skeletonChar);
-                monsterPositions.emplace_back(Point{x, y});
+            char currentChar = map[y * mapWidth + x];
+
+            if (currentChar == skeletonChar) {
+                monstersAndItems.emplace_back(std::make_pair(skeletonChar, Point{x,y}));
+            }
+            else if (currentChar == zombieChar) {
+                monstersAndItems.emplace_back(std::make_pair(zombieChar, Point{x,y}));
+            }
+            else if (currentChar == goldCoinChar) {
+                monstersAndItems.emplace_back(std::make_pair(goldCoinChar, Point{x, y}));
+            }
+            else if (currentChar == healthPotionChar) {
+                monstersAndItems.emplace_back(std::make_pair(healthPotionChar, Point{x, y}));
+            }
+            else if (currentChar == weaponChar) {
+                monstersAndItems.emplace_back(std::make_pair(weaponChar, Point{x, y}));
             }
 
-            if (map[y * mapWidth + x] == zombieChar) {
-                monsters.emplace_back(zombieChar);
-                monsterPositions.emplace_back(Point{x, y});
-            }
         }
     }
 
-    monsters.shrink_to_fit();
-    monsterPositions.shrink_to_fit();
+    monstersAndItems.shrink_to_fit();
 
     printMap();
     gameMapFile.close();
@@ -81,18 +89,23 @@ char GameMap::getXY(int x, int y) {
     return map[y * mapWidth + x];
 }
 
+char GameMap::getXY(Point& position) {
+    return map[position.getY() * mapWidth + position.getX()];
+}
+
 // Set the character at position xy on the map
 void GameMap::setXY(int x, int y, char value) {
     map[y * mapWidth + x] = value; //update value
 }
 
-std::vector<char> GameMap::getMonsters() const {
-    return monsters;
+void GameMap::setXY(Point& position, char value) {
+    map[position.getY() * mapWidth + position.getX()] = value;
 }
 
-std::vector<Point> GameMap::getMonsterPositions() const {
-    return monsterPositions;
+std::vector<std::pair<char, Point>> GameMap::getMonstersAndItems() const {
+    return monstersAndItems;
 }
+
 
 
 

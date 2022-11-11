@@ -21,11 +21,20 @@ HistoryLogger::HistoryLogger(const std::string&& fileName)
 void HistoryLogger::setUpFile() {
     std::ofstream outputFile{fileName};
 
-    if (!outputFile) {
+    if (!outputFile)
         return;
-    }
 
     outputFile << "Game Session Started @ " << getDateTime() << "\n";
+    outputFile.close();
+}
+
+void HistoryLogger::logItemPickUp(Item *item) {
+    std::ofstream outputFile{fileName, std::ios::app};
+
+    if (!outputFile)
+        return;
+
+    outputFile << "\nPicked Up -> " << item->getName() << " @ position " << item->getPosition() << "\n";
     outputFile.close();
 }
 
@@ -36,7 +45,7 @@ void HistoryLogger::logGameOver() {
         return;
 
     outputFile << "\nGame Over @ " << getDateTime() << "\n";
-
+    outputFile.close();
 }
 
 const char* HistoryLogger::getDateTime() {

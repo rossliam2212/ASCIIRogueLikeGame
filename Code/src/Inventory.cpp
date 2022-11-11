@@ -7,7 +7,12 @@
 Inventory::Inventory()
     : goldCoins{},
       healthPotions{},
+      items{},
       weapons{} {
+}
+
+void Inventory::addItem(Item *item) {
+    items.emplace_back(item);
 }
 
 void Inventory::pickUpGoldCoin() { goldCoins++; }
@@ -17,7 +22,8 @@ void Inventory::pickUpWeapon() {
     if (weapons.size() >= maxNumberOfWeapons)
         return;
 
-    weapons.emplace_back(Weapon{}); }
+//    weapons.emplace_back(Weapon{});
+}
 
 void Inventory::nextWeapon() {
     if (weapons.size() == 1) return;

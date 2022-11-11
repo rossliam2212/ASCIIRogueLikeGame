@@ -7,8 +7,9 @@
 GameManager::GameManager()
     : map{MAPSIZEX, MAPSIZEY},
       monsters{},
+      mapItems{},
       historyLogger{},
-      player{map, monsters, historyLogger},
+      player{map, monsters, mapItems, historyLogger},
       level{1} {
 }
 
@@ -17,11 +18,16 @@ GameManager::~GameManager() {
         for (auto p: monsters)
             delete p;
     }
+
+    if (!items.empty()) {
+        for (auto i : items)
+            delete i;
+    }
 }
 
 void GameManager::startGame() {
     map.loadMap();
-    setUpMonsters();
+    setUpGameItemsAndMonsters();
 
     while(!gameOver())
         update();
@@ -42,16 +48,24 @@ void GameManager::update() {
     }
 }
 
-void GameManager::setUpMonsters() {
-    auto monsterChars = map.getMonsters();
-    auto positions = map.getMonsterPositions();
+void GameManager::setUpGameItemsAndMonsters() {
+    auto monstersAndItems = map.getMonstersAndItems();
 
-    for (int i = 0; i < monsterChars.size(); i++) {
-        if (monsterChars[i] == GameMap::skeletonChar)
-            monsters.emplace_back(new Skeleton(map, positions[i]));
+    for (auto& monstersAndItem : monstersAndItems) {
+        if (monstersAndItem.first == GameMap::skeletonChar)
+            monsters.emplace_back(new Skeleton(map, monstersAndItem.second));
 
-        else if (monsterChars[i] == GameMap::zombieChar) {
-            monsters.emplace_back(new Zombie(map, positions[i]));
+        else if (monstersAndItem.first == GameMap::zombieChar) {
+            monsters.emplace_back(new Zombie(map, monstersAndItem.second));
+        }
+        else if (monstersAndItem.first == GameMap::goldCoinChar) {
+            mapItems.emplace_back(new GoldCoin{monstersAndItem.second});
+        }
+        else if (monstersAndItem.first == GameMap::goldCoinChar) {
+            mapItems.emplace_back(new HealthPotion{monstersAndItem.second});
+        }
+        else if (monstersAndItem.first == GameMap::goldCoinChar) {
+            mapItems.emplace_back(new Weapon{monstersAndItem.second});
         }
     }
 }
@@ -120,3 +134,4 @@ void GameManager::renderGameOverUI() {
 bool GameManager::gameOver() {
     return player.isDead();
 }
+

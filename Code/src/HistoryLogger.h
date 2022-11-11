@@ -9,11 +9,10 @@
 #include <fstream>
 #include <string>
 #include <ctime>
-
-enum LogType {
-    PickedUpGoldCoin,
-    PickUpWeapon,
-};
+#include "Item.h"
+#include "GoldCoin.h"
+#include "HealthPotion.h"
+#include "Weapon.h"
 
 class HistoryLogger {
 private:
@@ -24,6 +23,7 @@ public:
     HistoryLogger(const std::string& fileName);
     HistoryLogger(const std::string&& fileName);
 
+    void logItemPickUp(Item* item);
     void logGameOver();
 
 private:

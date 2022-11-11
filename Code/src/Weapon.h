@@ -5,19 +5,19 @@
 #ifndef CODE_WEAPON_H
 #define CODE_WEAPON_H
 
+#include "Item.h"
 #include <iostream>
 #include <string>
 #include <random>
 #include <array>
 
-class Weapon {
+class Weapon : public Item {
     static constexpr int minWeaponDamage{10};
     static constexpr int maxWeaponDamage{30};
 
     friend std::ostream& operator<<(std::ostream& os, const Weapon& weapon);
 
 private:
-    std::string name;
     int damageAmount;
 
     std::array<std::string, 11> weaponNames {
@@ -35,7 +35,7 @@ private:
     };
 
 public:
-    Weapon();
+    Weapon(const Point& position);
     bool operator==(const Weapon& rhs) const;
     int attack() const;
 

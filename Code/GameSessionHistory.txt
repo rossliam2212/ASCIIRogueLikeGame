@@ -1,5 +1,11 @@
-Game Session - Thu Nov 10 17:03:33 2022
+Game Session Started @ Fri Nov 11 15:37:32 2022
 
 
-Game Over @ Thu Nov 10 17:03:48 2022
+Picked Up -> Gold Coin @ position (8, 5)
+
+Picked Up -> Gold Coin @ position (8, 3)
+
+Picked Up -> Gold Coin @ position (8, 4)
+
+Game Over @ Fri Nov 11 15:37:47 2022
 

@@ -14,13 +14,13 @@ Point& Point::operator=(const Point& rhs) {
     if (this == &rhs)
         return *this;
 
-    this->x = rhs.x;
-    this->y = rhs.y;
+    x = rhs.x;
+    y = rhs.y;
     return *this;
 }
 
 bool Point::operator==(const Point& rhs) const {
-    return this->x == rhs.x && this->y == rhs.y;
+    return x == rhs.x && y == rhs.y;
 }
 
 void Point::setXY(int newX, int newY) {

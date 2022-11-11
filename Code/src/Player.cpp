@@ -4,8 +4,10 @@
 
 #include "Player.h"
 
-
-Player::Player(const GameMap& map, std::vector<Monster*>& monsters, const HistoryLogger& hl)
+Player::Player(const GameMap& map,
+               std::vector<Monster*>& monsters,
+               std::vector<Item*>& items,
+               const HistoryLogger& hl)
     : strength{defaultStrength},
       health{defaultHealth},
       xp{defaultXP},
@@ -14,23 +16,15 @@ Player::Player(const GameMap& map, std::vector<Monster*>& monsters, const Histor
       map{map},
       inventory{},
       monsters{monsters},
+      items{items},
       historyLogger{hl} {
 }
 
-//Player::Player(const GameMap &map, int startPositionX, int startPositionY, std::vector<Monster*>& monsters)
-//    : strength{defaultStrength},
-//      health{defaultHealth},
-//      xp{defaultXP},
-//      positionX(startPositionX),
-//      positionY(startPositionY),
-//      newPositionX{startPositionX},
-//      newPositionY{startPositionY},
-//      map{map},
-//      inventory{},
-//      monsters{monsters} {
-//}
-
-Player::Player(const GameMap& map, Point& startPosition, std::vector<Monster*>& monsters, const HistoryLogger& hl)
+Player::Player(const GameMap& map,
+               Point& startPosition,
+               std::vector<Monster*>& monsters,
+               std::vector<Item*>& items,
+               const HistoryLogger& hl)
     : strength{defaultStrength},
       health{defaultHealth},
       xp{defaultXP},
@@ -39,6 +33,7 @@ Player::Player(const GameMap& map, Point& startPosition, std::vector<Monster*>& 
       map{map},
       inventory{},
       monsters{monsters},
+      items{items},
       historyLogger{hl} {
 }
 
@@ -52,9 +47,6 @@ void Player::update() {
  * Handles all the Player input.
  */
 void Player::handleInput() {
-//    newPositionX = positionX;
-//    newPositionY = positionY;
-
     newPosition = position;
 
     // ==== Moving Up - W (87) ====
@@ -138,10 +130,10 @@ void Player::handleInput() {
         if (inventory.getNumHealthPotions() > 0 && health < maxHealth) {
             inventory.removeHealthPotion();
 
-            if (health + Inventory::healthPotionIncrease >= maxHealth)
+            if (health + HealthPotion::healthPotionIncrease >= maxHealth)
                 health = maxHealth;
             else
-                health += Inventory::healthPotionIncrease;
+                health += HealthPotion::healthPotionIncrease;
         }
     }
 
@@ -229,6 +221,16 @@ void Player::checkMonster(int x, int y) {
     }
 }
 
+void Player::checkItem(int x, int y) {
+     for (auto& item : items) {
+        if (item->getPosition().getX() == x && item->getPosition().getY() == y) {
+            inventory.addItem(item);
+            historyLogger.logItemPickUp(item);
+            break;
+        }
+    }
+}
+
 /**
  * Renders the player in the correct xy position whenever the player is moved.
  */
@@ -238,9 +240,6 @@ void Player::renderPlayer() {
 
     utility::gotoScreenPosition(newPosition);
     std::cout << GameMap::playerChar;
-
-//    positionX = newPositionX;
-//    positionY = newPositionY;
 
     position = newPosition;
 
@@ -252,27 +251,28 @@ void Player::renderPlayer() {
  */
 void Player::checkCollisions() {
     // Checking for Gold Coin Collision
-    if (map.getXY(position.getX(), position.getY()) == GameMap::goldCoinChar){
-        inventory.pickUpGoldCoin();
+    if (map.getXY(position) == GameMap::goldCoinChar){
+        checkItem(position.getX(), position.getY());
 
         // Setting the character at the position of the coin back to the default map character '='
-        map.setXY(position.getX(), position.getY(), GameMap::defaultChar);
+        map.setXY(position, GameMap::defaultChar);
     }
 
     // Checking for Health Potion Collision
-    if (map.getXY(position.getX(), position.getY()) == GameMap::healthPotionChar) {
+    if (map.getXY(position) == GameMap::healthPotionChar) {
         inventory.pickUpHealthPotion();
 
         // Setting the character at the position of the health potion back to the default map character '='
-        map.setXY(position.getX(), position.getY(), GameMap::defaultChar);
+        map.setXY(position, GameMap::defaultChar);
     }
 
     // Checking for Weapon Collision
-    if (map.getXY(position.getX(), position.getY()) == GameMap::weaponChar) {
+    if (map.getXY(position) == GameMap::weaponChar) {
         if (!inventory.weaponSlotsFull()) {
             inventory.pickUpWeapon();
+
             // Setting the character at the position of the weapon back to the default map character '='
-            map.setXY(position.getX(), position.getY(), GameMap::defaultChar);
+            map.setXY(position, GameMap::defaultChar);
         }
     }
 }

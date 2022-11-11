@@ -26,6 +26,8 @@ set(SOURCE_FILES
         src/Point.cpp
         src/Point.h
         src/HistoryLogger.cpp
-        src/HistoryLogger.h)
+        src/HistoryLogger.h
+        src/Item.cpp
+        src/Item.h src/GoldCoin.cpp src/GoldCoin.h src/HealthPotion.cpp src/HealthPotion.h)
 
 add_executable(Code ${SOURCE_FILES})

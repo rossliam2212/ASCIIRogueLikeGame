@@ -7,16 +7,20 @@
 
 #include <algorithm>
 #include <vector>
+#include "Item.h"
+#include "GoldCoin.h"
+#include "HealthPotion.h"
 #include "Weapon.h"
 
 class Inventory {
 public:
-    static constexpr int healthPotionIncrease{25};
     static constexpr int maxNumberOfWeapons{3};
 
 private:
     int goldCoins;
     int healthPotions;
+
+    std::vector<Item*> items;
 
     // Weapons
     std::vector<Weapon> weapons;
@@ -24,6 +28,11 @@ private:
 
 public:
     Inventory();
+    void addItem(Item* item);
+
+
+
+    // OLD METHODS
     void pickUpGoldCoin();
     void pickUpHealthPotion();
     void pickUpWeapon();
