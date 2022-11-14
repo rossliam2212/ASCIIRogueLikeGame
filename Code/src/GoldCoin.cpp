@@ -4,7 +4,9 @@
 
 #include "GoldCoin.h"
 
+const std::string GoldCoin::goldCoinName = "Gold Coin";
+
 GoldCoin::GoldCoin(const Point& position)
-    : Item("Gold Coin", position) {
+    : Item(goldCoinName, position) {
 
 }

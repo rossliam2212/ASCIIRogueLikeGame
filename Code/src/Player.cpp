@@ -164,43 +164,22 @@ void Player::attack(Monster* monster) {
 
     if (attacking) {
         if (!isDead()) {
-            monster->takeDamage(inventory.getCurrentWeapon().attack());
+            utility::gotoScreenPosition(position);
+            std::cout << monster->getName() << " KILLED!\n";
 
-            if (monster->isDead()) {
-                attacking = false;
-                increaseXP(monster->getDeathXP());
-                map.setXY(monster->getPosition().getX(), monster->getPosition().getY(), GameMap::defaultChar);
-
-                utility::gotoScreenPosition(position);
-                std::cout << monster->getName() << " KILLED!\n";
-            }
-        }
-    }
-
-//    while (attacking) {
-//        if (!isDead()) {
-//            // Players Turn
-//            monster->takeDamage(inventory.getCurrentWeapon().attack());
+//            auto w = dynamic_cast<Weapon&&>(inventory.getCurrentWeapon());
+////            monster->takeDamage(inventory.getCurrentWeapon().attack());
+//            monster->takeDamage(w.attack());
 //
 //            if (monster->isDead()) {
-//                increaseXP(monster->getDeathXP());
-//                map.setXY(monster->getPositionX(), monster->getPositionY(), GameMap::defaultChar);
-//
-////                auto m = std::find(std::begin(monsters), std::end(monsters), monster);
-////                delete *m;
-////                monsters.erase(m);
-//
 //                attacking = false;
-//            }
+//                increaseXP(monster->getDeathXP());
+//                map.setXY(monster->getPosition().getX(), monster->getPosition().getY(), GameMap::defaultChar);
 //
-//            // Monsters Turn
-//            takeDamage(monster->getStrength());
-//        }
-//        else {
-//            std::cout << "GAME OVER!!!\n";
-//            break;
-//        }
-//    }
+//                utility::gotoScreenPosition(position);
+//                std::cout << monster->getName() << " KILLED!\n";
+        }
+    }
 }
 
 /**
@@ -247,33 +226,44 @@ void Player::renderPlayer() {
 }
 
 /**
- * Checks for collisions with all the different game objects, such as gold coins, health potions, etc.
+ * Checks for collisions with all the different game items, such as gold coins, health potions, etc.
  */
 void Player::checkCollisions() {
-    // Checking for Gold Coin Collision
-    if (map.getXY(position) == GameMap::goldCoinChar){
+////    // Checking for Gold Coin Collision
+//    if (map.getXY(position) == GameMap::goldCoinChar){
+//        checkItem(position.getX(), position.getY());
+//
+//        // Setting the character at the position of the coin back to the default map character '='
+//        map.setXY(position, GameMap::defaultChar);
+//    }
+//
+//    // Checking for Health Potion Collision
+//    if (map.getXY(position) == GameMap::healthPotionChar) {
+//        checkItem(position.getX(), position.getY());
+////        inventory.pickUpHealthPotion();
+//
+//        // Setting the character at the position of the health potion back to the default map character '='
+//        map.setXY(position, GameMap::defaultChar);
+//    }
+//
+//    // Checking for Weapon Collision
+//    if (map.getXY(position) == GameMap::weaponChar) {
+//        checkItem(position.getX(), position.getY());
+//
+////        if (!inventory.weaponSlotsFull()) {
+////            inventory.pickUpWeapon();
+//
+//            // Setting the character at the position of the weapon back to the default map character '='
+//            map.setXY(position, GameMap::defaultChar);
+//        }
+//    }
+
+    if (map.getXY(position) == GameMap::goldCoinChar ||
+        map.getXY(position) == GameMap::healthPotionChar ||
+        map.getXY(position) == GameMap::weaponChar) {
         checkItem(position.getX(), position.getY());
-
-        // Setting the character at the position of the coin back to the default map character '='
+        // Setting the character at the position of the item back to the default map character '='
         map.setXY(position, GameMap::defaultChar);
-    }
-
-    // Checking for Health Potion Collision
-    if (map.getXY(position) == GameMap::healthPotionChar) {
-        inventory.pickUpHealthPotion();
-
-        // Setting the character at the position of the health potion back to the default map character '='
-        map.setXY(position, GameMap::defaultChar);
-    }
-
-    // Checking for Weapon Collision
-    if (map.getXY(position) == GameMap::weaponChar) {
-        if (!inventory.weaponSlotsFull()) {
-            inventory.pickUpWeapon();
-
-            // Setting the character at the position of the weapon back to the default map character '='
-            map.setXY(position, GameMap::defaultChar);
-        }
     }
 }
 

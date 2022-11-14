@@ -19,8 +19,8 @@ GameManager::~GameManager() {
             delete p;
     }
 
-    if (!items.empty()) {
-        for (auto i : items)
+    if (!mapItems.empty()) {
+        for (auto i : mapItems)
             delete i;
     }
 }
@@ -61,10 +61,10 @@ void GameManager::setUpGameItemsAndMonsters() {
         else if (monstersAndItem.first == GameMap::goldCoinChar) {
             mapItems.emplace_back(new GoldCoin{monstersAndItem.second});
         }
-        else if (monstersAndItem.first == GameMap::goldCoinChar) {
+        else if (monstersAndItem.first == GameMap::healthPotionChar) {
             mapItems.emplace_back(new HealthPotion{monstersAndItem.second});
         }
-        else if (monstersAndItem.first == GameMap::goldCoinChar) {
+        else if (monstersAndItem.first == GameMap::weaponChar) {
             mapItems.emplace_back(new Weapon{monstersAndItem.second});
         }
     }

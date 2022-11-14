@@ -10,11 +10,18 @@ Weapon::Weapon(const Point& position)
     generateStats();
 }
 
-bool Weapon::operator==(const Weapon &rhs) const {
-    return damageAmount == rhs.damageAmount && name == rhs.name;
+int Weapon::attack() const { return damageAmount; }
+
+std::ostream& Weapon::write(std::ostream& os) const {
+    os << name << ": " << damageAmount << " damage";
+    return os;
 }
 
-int Weapon::attack() const { return damageAmount; }
+bool Weapon::isEqual(const Item& item) const {
+    auto v = dynamic_cast<const Weapon&>(item);
+    return Item::isEqual(v) && v.damageAmount == damageAmount;
+}
+
 
 void Weapon::generateStats() {
     name = weaponNames[randomNum(0, (int)weaponNames.size() - 1)];
@@ -29,7 +36,3 @@ int Weapon::randomNum(int min, int max) {
     return dist(mt);
 }
 
-std::ostream& operator<<(std::ostream& os, const Weapon& weapon) {
-    os << weapon.name << ": " << weapon.damageAmount << " damage";
-    return os;
-}

@@ -15,8 +15,6 @@ class Weapon : public Item {
     static constexpr int minWeaponDamage{10};
     static constexpr int maxWeaponDamage{30};
 
-    friend std::ostream& operator<<(std::ostream& os, const Weapon& weapon);
-
 private:
     int damageAmount;
 
@@ -36,8 +34,10 @@ private:
 
 public:
     Weapon(const Point& position);
-    bool operator==(const Weapon& rhs) const;
     int attack() const;
+
+    std::ostream& write(std::ostream& os) const override;
+    bool isEqual(const Item& item) const override;
 
 private:
     void generateStats();

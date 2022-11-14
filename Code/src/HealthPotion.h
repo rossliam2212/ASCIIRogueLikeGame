@@ -9,6 +9,7 @@
 
 class HealthPotion : public Item {
 public:
+    static const std::string healthPotionName;
     static constexpr int healthPotionIncrease{25};
 
     HealthPotion(const Point& position);

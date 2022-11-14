@@ -11,18 +11,16 @@ Inventory::Inventory()
       weapons{} {
 }
 
-void Inventory::addItem(Item *item) {
-    items.emplace_back(item);
-}
-
-void Inventory::pickUpGoldCoin() { goldCoins++; }
-void Inventory::pickUpHealthPotion() { healthPotions++; }
-
-void Inventory::pickUpWeapon() {
-    if (weapons.size() >= maxNumberOfWeapons)
+void Inventory::addItem(Item* item) {
+    if (item->getName() != GoldCoin::goldCoinName)
+        goldCoins++;
+    else if (item->getName() != HealthPotion::healthPotionName)
+        healthPotions++;
+    else {
+        weapons.emplace_back(item);
         return;
-
-//    weapons.emplace_back(Weapon{});
+    }
+    items.emplace_back(item);
 }
 
 void Inventory::nextWeapon() {
@@ -35,8 +33,8 @@ void Inventory::nextWeapon() {
     }
 }
 
-Weapon Inventory::getCurrentWeapon() {
-    return weapons[currentWeapon];
+Item Inventory::getCurrentWeapon() {
+    return *(weapons[currentWeapon]);
 }
 
 bool Inventory::weaponSlotsFull() {
@@ -62,5 +60,5 @@ void Inventory::removeCurrentWeapon() {
 
 int Inventory::getNumGoldCoins() const { return goldCoins; }
 int Inventory::getNumHealthPotions() const { return healthPotions; }
-std::vector<Weapon> Inventory::getWeapons() const { return weapons; }
+std::vector<Item*> Inventory::getWeapons() const { return weapons; }
 

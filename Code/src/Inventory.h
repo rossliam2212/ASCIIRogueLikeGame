@@ -17,13 +17,13 @@ public:
     static constexpr int maxNumberOfWeapons{3};
 
 private:
+    // Items
+    std::vector<Item*> items;
     int goldCoins;
     int healthPotions;
 
-    std::vector<Item*> items;
-
     // Weapons
-    std::vector<Weapon> weapons;
+    std::vector<Item*> weapons;
     int currentWeapon{};
 
 public:
@@ -33,12 +33,9 @@ public:
 
 
     // OLD METHODS
-    void pickUpGoldCoin();
-    void pickUpHealthPotion();
-    void pickUpWeapon();
 
     void nextWeapon();
-    Weapon getCurrentWeapon();
+    Item getCurrentWeapon();
 
     bool weaponSlotsFull();
 
@@ -48,7 +45,7 @@ public:
 
     int getNumGoldCoins() const;
     int getNumHealthPotions() const;
-    std::vector<Weapon> getWeapons() const;
+    std::vector<Item*> getWeapons() const;
 };
 
 
