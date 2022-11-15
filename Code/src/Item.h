@@ -20,8 +20,9 @@ protected:
 public:
     Item(const std::string& name, const Point& position);
     Item(const std::string&& name, const Point& position);
-    ~Item() = default;
+    virtual ~Item() = default;
 
+    Item& operator=(const Item& rhs);
     virtual std::ostream& write(std::ostream& os) const; // https://stackoverflow.com/questions/50979946/virtual-insertion-operator-overloading-for-base-and-derived-class
     virtual bool isEqual(const Item& item) const;
 

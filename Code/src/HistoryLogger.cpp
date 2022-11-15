@@ -73,13 +73,66 @@ void HistoryLogger::logUsedItem(Item* item) {
  * @param monster The monster that was killed.
  * @param weaponUsed The weapon used to kill the monster.
  */
-void HistoryLogger::logMonsterKill(Monster* monster, Weapon* weaponUsed) {
+void HistoryLogger::logMonsterKilled(Monster* monster, Weapon* weaponUsed) {
     std::ofstream outputFile{fileName, std::ios::app};
     if (!outputFile)
         return;
 
-    outputFile << getDateTime() << "\t- Killed Monster -> " << monster->getName() << "(+" << monster->getDeathXP() << "xp) w/ " << weaponUsed->getName() << " @ position " << monster->getPosition() << "\n";
+//    outputFile << getDateTime() << "\t- Killed Monster -> " << monster->getName() << "(+" << monster->getDeathXP() << "xp) w/ " << weaponUsed->getName() << " @ position " << monster->getPosition() << "\n";
+    outputFile << "\n\t\t- Killed Monster -> " << monster->getName() << "(+" << monster->getDeathXP() << "xp) w/ " << weaponUsed->getName() << " @ position " << monster->getPosition() << "\n";
     outputFile.close();
+}
+
+/**
+ * Logs attack started message to the output file.
+ * @param monster The monster that the player started attacking.
+ */
+void HistoryLogger::logAttackStarted(Monster* monster) {
+    std::ofstream outputFile{fileName, std::ios::app};
+    if (!outputFile)
+        return;
+
+    outputFile << "\n" << getDateTime() << "\t- Attack Started -> Attacking " << monster->getName() << " (" << monster->getHealth() << "hp) @ position " << monster->getPosition() << "\n\n";
+    outputFile.close();
+}
+
+/**
+ * Logs the damage dealt the monster that the player started attacking.
+ * @param monster The monster that the player is attacking.
+ * @param damageAmount The damage amount dealt to the monster.
+ */
+void HistoryLogger::logDamageDealtToMonster(Monster* monster, int damageAmount) {
+    std::ofstream outputFile{fileName, std::ios::app};
+    if (!outputFile)
+        return;
+
+    outputFile << "\t\t- Dealt " << damageAmount << " damage to " << monster->getName() << " (" << monster->getHealth() << "hp remaining)\n";
+    outputFile.close();
+}
+
+/**
+ * Logs the damage dealt to the player by the monster they are attacking.
+ * @param monster The monster that the player is attacking.
+ * @param hp The player remaining hp.
+ * @param damageAmount The damage amount dealt to the player.
+ */
+void HistoryLogger::logDamageDealtToPlayer(Monster* monster, int hp, int damageAmount) {
+    std::ofstream outputFile{fileName, std::ios::app};
+    if (!outputFile)
+        return;
+
+    outputFile << "\t\t- " << monster->getName() << " dealt " << damageAmount << " damage to You (" << hp << "hp remaining)\n";
+    outputFile.close();
+}
+
+void HistoryLogger::logPlayerKilled(Monster* monster) {
+    std::ofstream outputFile{fileName, std::ios::app};
+    if (!outputFile)
+        return;
+
+    outputFile << "\n\t\t Player killed by " << monster->getName() << " (" << monster->getHealth() << "hp remaining)\n";
+    outputFile.close();
+
 }
 
 /**

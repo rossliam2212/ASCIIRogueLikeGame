@@ -1,27 +1,67 @@
-Game Session Started @ Tue Nov 15 10:58:29 2022
+Game Session Started @ Tue Nov 15 23:09:22 2022
 
-Tue Nov 15 10:58:36 2022
-	- Picked Up Item -> Gold Coin @ position (8, 5)
-Tue Nov 15 10:58:36 2022
+Tue Nov 15 23:09:26 2022
+	- Picked Up Weapon -> Lance(29 damage) @ position (5, 8)
+Tue Nov 15 23:09:27 2022
+	- Picked Up Weapon -> Bayonet(25 damage) @ position (8, 8)
+Tue Nov 15 23:09:29 2022
+	- Picked Up Weapon -> Karambit(23 damage) @ position (4, 9)
+Tue Nov 15 23:09:30 2022
 	- Picked Up Item -> Gold Coin @ position (8, 4)
-Tue Nov 15 10:58:36 2022
+Tue Nov 15 23:09:31 2022
+	- Picked Up Item -> Gold Coin @ position (8, 5)
+Tue Nov 15 23:09:32 2022
 	- Picked Up Item -> Gold Coin @ position (8, 3)
-Tue Nov 15 10:58:39 2022
+Tue Nov 15 23:09:33 2022
 	- Picked Up Item -> Gold Coin @ position (15, 3)
-Tue Nov 15 10:58:40 2022
+Tue Nov 15 23:09:34 2022
 	- Picked Up Item -> Gold Coin @ position (19, 3)
-Tue Nov 15 10:58:42 2022
+Tue Nov 15 23:09:34 2022
 	- Picked Up Item -> Health Potion @ position (20, 5)
-Tue Nov 15 10:58:45 2022
-	- Picked Up Weapon -> Club(16 damage) @ position (8, 8)
-Tue Nov 15 10:58:46 2022
-	- Picked Up Weapon -> Pike(19 damage) @ position (5, 8)
-Tue Nov 15 10:58:46 2022
-	- Picked Up Weapon -> Lance(30 damage) @ position (4, 9)
-Tue Nov 15 10:58:51 2022
+Tue Nov 15 23:09:36 2022
 	- Used Item -> Health Potion
-Tue Nov 15 10:59:14 2022
-	- Killed Monster -> Zombie(+10xp) w/ Club @ position (8, 1)
 
-Game Over @ Tue Nov 15 10:59:32 2022
+Tue Nov 15 23:09:39 2022
+	- Attack Started -> Attacking Zombie (100hp) @ position (8, 1)
+
+		- Dealt 29 damage to Zombie (71hp remaining)
+		- Zombie dealt 15 damage to You (85hp remaining)
+		- Dealt 29 damage to Zombie (42hp remaining)
+		- Zombie dealt 15 damage to You (70hp remaining)
+		- Dealt 29 damage to Zombie (13hp remaining)
+		- Zombie dealt 15 damage to You (55hp remaining)
+		- Dealt 29 damage to Zombie (-16hp remaining)
+
+		- Killed Monster -> Zombie(+10xp) w/ Lance @ position (8, 1)
+Tue Nov 15 23:09:59 2022
+	- Picked Up Item -> Health Potion @ position (63, 2)
+Tue Nov 15 23:10:00 2022
+	- Used Item -> Health Potion
+
+Tue Nov 15 23:10:09 2022
+	- Attack Started -> Attacking Skeleton (100hp) @ position (18, 6)
+
+		- Dealt 29 damage to Skeleton (71hp remaining)
+		- Skeleton dealt 20 damage to You (80hp remaining)
+		- Dealt 29 damage to Skeleton (42hp remaining)
+		- Skeleton dealt 20 damage to You (60hp remaining)
+		- Dealt 29 damage to Skeleton (13hp remaining)
+		- Skeleton dealt 20 damage to You (40hp remaining)
+		- Dealt 29 damage to Skeleton (-16hp remaining)
+
+		- Killed Monster -> Skeleton(+15xp) w/ Lance @ position (18, 6)
+
+Tue Nov 15 23:10:18 2022
+	- Attack Started -> Attacking Zombie (100hp) @ position (9, 17)
+
+		- Dealt 29 damage to Zombie (71hp remaining)
+		- Zombie dealt 15 damage to You (25hp remaining)
+		- Dealt 29 damage to Zombie (42hp remaining)
+		- Zombie dealt 15 damage to You (10hp remaining)
+		- Dealt 29 damage to Zombie (13hp remaining)
+		- Zombie dealt 15 damage to You (-5hp remaining)
+
+		 Player killed by Zombie (13hp remaining)
+
+Game Over @ Tue Nov 15 23:10:21 2022
 

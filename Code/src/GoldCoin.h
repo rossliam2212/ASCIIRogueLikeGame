@@ -10,7 +10,8 @@
 class GoldCoin : public Item {
 public:
     static const std::string goldCoinName;
-    GoldCoin(const Point& position);
+    explicit GoldCoin(const Point& position);
+    ~GoldCoin() override = default;
 };
 
 

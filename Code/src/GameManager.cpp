@@ -144,6 +144,7 @@ void GameManager::renderUI() {
 void GameManager::renderGameOverUI() {
     system("cls");
 
+    utility::gotoScreenPosition(0, 0);
     std::cout << R"(
  _____   ___  ___  ___ _____   _____  _   _  _____ ______
 |  __ \ / _ \ |  \/  ||  ___| |  _  || | | ||  ___|| ___ \
@@ -152,7 +153,11 @@ void GameManager::renderGameOverUI() {
 | |_\ \| | | || |  | || |___  \ \_/ /\ \_/ /| |___ | |\ \
  \____/\_| |_/\_|  |_/\____/   \___/  \___/ \____/ \_| \_|)";
 
-    std::cout << "\n";
+    std::cout << "\n\n";
+
+    std::cout << " Hard Luck! \nYou were killed by a monster!\n";
+    std::cout << "Better luck next time.\n\n";
+    std::cout << "Check the GameSessionHistory.txt file for your game details.\n\n\n\n";
 }
 
 /**

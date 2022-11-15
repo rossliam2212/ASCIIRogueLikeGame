@@ -11,9 +11,20 @@ Item::Item(const std::string& name, const Point& position)
 }
 
 Item::Item(const std::string&& name, const Point& position)
-        : name{name},
-          position{position},
-          used{false} {
+    : name{name},
+      position{position},
+      used{false} {
+}
+
+Item& Item::operator=(const Item& rhs) {
+    if (this == &rhs)
+        return *this;
+
+    name = rhs.name;
+    position = rhs.position;
+    used = rhs.used;
+
+    return *this;
 }
 
 std::ostream& Item::write(std::ostream& os) const {

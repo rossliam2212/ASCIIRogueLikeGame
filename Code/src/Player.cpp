@@ -50,13 +50,12 @@ void Player::handleInput() {
     newPosition = position;
 
     // ==== Moving Up - W (87) ====
-    if (GetKeyState(87) & 0x8000) {
+    if (GetKeyState(87) & 0x8000 && !attacking) {
         // Boundary Checking
         if (map.getXY(position.getX(), position.getY()-1) != GameMap::roofChar &&
             map.getXY(position.getX(), position.getY()-1) != GameMap::wallChar &&
             map.getXY(position.getX(), position.getY()-1) != GameMap::skeletonChar &&
             map.getXY(position.getX(), position.getY()-1) != GameMap::zombieChar) {
-//            newPositionY = positionY - 1;
             newPosition.setXY(position.getX(), position.getY()-1);
         }
 
@@ -64,18 +63,16 @@ void Player::handleInput() {
         if (map.getXY(position.getX(), position.getY() - 1) == GameMap::skeletonChar ||
             map.getXY(position.getX(), position.getY() - 1) == GameMap::zombieChar) {
             checkMonster(position.getX(), position.getY() - 1);
-        } else
-            attacking = false;
+        }
     }
 
     // ==== Moving Down - S (83) ====
-    if (GetKeyState(83) & 0x8000) {
+    if (GetKeyState(83) & 0x8000 && !attacking) {
         // Boundary Checking
         if (map.getXY(position.getX(), position.getY()+1) != GameMap::roofChar &&
             map.getXY(position.getX(), position.getY()+1) != GameMap::wallChar &&
             map.getXY(position.getX(), position.getY()+1) != GameMap::skeletonChar &&
             map.getXY(position.getX(), position.getY()+1) != GameMap::zombieChar) {
-//            newPositionY = positionY + 1;
             newPosition.setXY(position.getX(), position.getY()+1);
         }
 
@@ -83,18 +80,16 @@ void Player::handleInput() {
         if (map.getXY(position.getX(), position.getY()+1) == GameMap::skeletonChar ||
             map.getXY(position.getX(), position.getY()+1) == GameMap::zombieChar) {
             checkMonster(position.getX(), position.getY()+1);
-        } else
-            attacking = false;
+        }
     }
 
     // ==== Moving Right - D (68) ====
-    if (GetKeyState(68) & 0x8000) {
+    if (GetKeyState(68) & 0x8000 && !attacking) {
         // Boundary Checking
         if (map.getXY(position.getX()+1, position.getY()) != GameMap::wallChar &&
             map.getXY(position.getX()+1, position.getY()) != GameMap::roofChar &&
             map.getXY(position.getX()+1, position.getY()) != GameMap::skeletonChar &&
             map.getXY(position.getX()+1, position.getY()) != GameMap::zombieChar) {
-//            newPositionX = positionX + 1;
             newPosition.setXY(position.getX()+1, position.getY());
         }
 
@@ -102,18 +97,16 @@ void Player::handleInput() {
         if (map.getXY(position.getX()+1, position.getY()) == GameMap::skeletonChar ||
             map.getXY(position.getX()+1, position.getY()) == GameMap::zombieChar) {
             checkMonster(position.getX()+1, position.getY());
-        } else
-            attacking = false;
+        }
     }
 
     // ==== Moving Left - A (65) ====
-    if (GetKeyState(65) & 0x8000) {
+    if (GetKeyState(65) & 0x8000 && !attacking) {
         // Boundary Checking
         if (map.getXY(position.getX()-1, position.getY()) != GameMap::wallChar &&
             map.getXY(position.getX()-1, position.getY()) != GameMap::roofChar &&
             map.getXY(position.getX()-1, position.getY()) != GameMap::skeletonChar &&
             map.getXY(position.getX()-1, position.getY()) != GameMap::zombieChar) {
-//            newPositionX = positionX - 1;
             newPosition.setXY(position.getX()-1, position.getY());
         }
 
@@ -121,8 +114,7 @@ void Player::handleInput() {
         if (map.getXY(position.getX()-1, position.getY()) == GameMap::skeletonChar ||
             map.getXY(position.getX()-1, position.getY()) == GameMap::zombieChar) {
             checkMonster(position.getX()-1, position.getY());
-        } else
-            attacking = false;
+        }
     }
 
     // ==== Using Health Potion - R (82) ====
@@ -132,14 +124,11 @@ void Player::handleInput() {
             if (inventory.getNumHealthPotions() > 0 && health < maxHealth) {
                 inventory.removeHealthPotion();
 
-                if (health + HealthPotion::healthPotionIncrease >= maxHealth)
-                    health = maxHealth;
-                else
-                    health += HealthPotion::healthPotionIncrease;
+                health = maxHealth;
             }
         }
 
-        Sleep(1000);
+        Sleep(500); // Half second delay
         removeItemPressed = false;
     }
 
@@ -149,7 +138,7 @@ void Player::handleInput() {
             inventory.nextWeapon();
         }
 
-        Sleep(1000);
+        Sleep(500); // Half second delay
     }
 
     // ==== Dropping Current Weapon - Q (81) ====
@@ -159,7 +148,7 @@ void Player::handleInput() {
             inventory.removeCurrentWeapon();
         }
 
-        Sleep(1000);
+        Sleep(500); // Half second delay
     }
 
     // ==== FOR TESTING - Removing Players Health - X (88) ====
@@ -168,37 +157,51 @@ void Player::handleInput() {
     }
 }
 
+
+/**
+ * This function handles the combat between the player and monsters.
+ * This function begins the combat loop and allows both the player and the monster a chance
+ * to attack. The players gets the first turn and then the monster gets theirs. The loop continues
+ * until either the player or monster is killed.
+ * @param monster The monster that the player is attacking.
+ */
 void Player::attack(Monster* monster) {
-    if (attacking) {
+    while (attacking) {
         if (!isDead()) {
 
-            auto w = dynamic_cast<Weapon&&>(inventory.getCurrentWeapon());
-            monster->takeDamage(w.attack());
+            int damageAmount;
+            Weapon w{Point{}}; // Temp Weapon variable
+
+            // If the player does not have a weapon, use their strength to attack the enemy
+            if (!inventory.getWeapons().empty()) {
+                w = dynamic_cast<Weapon &&>(inventory.getCurrentWeapon());
+                damageAmount = w.attack();
+            } else {
+                damageAmount = strength;
+            }
+            monster->takeDamage(damageAmount);
+            historyLogger.logDamageDealtToMonster(monster, damageAmount);
 
             if (monster->isDead()) {
                 attacking = false;
 
-                utility::gotoScreenPosition(position);
+                // Testing
+                utility::gotoScreenPosition(monster->getPosition());
                 std::cout << monster->getName() << " KILLED!\n";
 
                 increaseXP(monster->getDeathXP());
-                historyLogger.logMonsterKill(monster, &w);
+                historyLogger.logMonsterKilled(monster, &w);
 
                 auto p = monster->getPosition();
                 map.setXY(p, GameMap::defaultChar);
+            } else {
+                Sleep(1000); // One-second delay
+                takeDamage(monster->getStrength());
+                historyLogger.logDamageDealtToPlayer(monster, health, monster->getStrength());
             }
-
-//            auto w = dynamic_cast<Weapon&&>(inventory.getCurrentWeapon());
-////            monster->takeDamage(inventory.getCurrentWeapon().attack());
-//            monster->takeDamage(w.attack());
-//
-//            if (monster->isDead()) {
-//                attacking = false;
-//                increaseXP(monster->getDeathXP());
-//                map.setXY(monster->getPosition().getX(), monster->getPosition().getY(), GameMap::defaultChar);
-//
-//                utility::gotoScreenPosition(position);
-//                std::cout << monster->getName() << " KILLED!\n";
+        } else {
+            attacking = false;
+            historyLogger.logPlayerKilled(monster);
         }
     }
 }
@@ -210,17 +213,22 @@ void Player::attack(Monster* monster) {
  * @param y The monsters y position.
  */
 void Player::checkMonster(int x, int y) {
-    if (!attacking) {
-        for (auto* m: monsters) {
-            if (m->getPosition().getX() == x && m->getPosition().getY() == y) {
-                attacking = true;
-                attack(m);
-                break;
-            }
+    for (auto* m: monsters) {
+        if (m->getPosition().getX() == x && m->getPosition().getY() == y) {
+            attacking = true;
+            historyLogger.logAttackStarted(m);
+            attack(m);
+            break;
         }
     }
 }
 
+/**
+ * Called when the player collects a game item. This function finds the item at the given
+ * xy position and then adds the item to the players inventory.
+ * @param x The items x position.
+ * @param y The items y position.
+ */
 void Player::checkItem(int x, int y) {
      for (auto* item : items) {
         if (item->getPosition().getX() == x && item->getPosition().getY() == y) {

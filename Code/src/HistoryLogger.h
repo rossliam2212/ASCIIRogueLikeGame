@@ -26,7 +26,12 @@ public:
 
     void logItemPickUp(Item* item);
     void logUsedItem(Item* item);
-    void logMonsterKill(Monster* monster, Weapon* weaponUsed);
+
+    void logAttackStarted(Monster* monster);
+    void logDamageDealtToMonster(Monster* monster, int damageAmount);
+    void logDamageDealtToPlayer(Monster* monster, int hp, int damageAmount);
+    void logPlayerKilled(Monster* monster);
+    void logMonsterKilled(Monster* monster, Weapon* weaponUsed);
     void logGameOver();
 
 private:

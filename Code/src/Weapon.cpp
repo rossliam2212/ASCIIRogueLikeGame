@@ -4,6 +4,10 @@
 
 #include "Weapon.h"
 
+Weapon::Weapon()
+    : Weapon{Point{}} {
+}
+
 Weapon::Weapon(const Point& position)
     : Item{"DefaultItemName", position},
       damageAmount{} {
