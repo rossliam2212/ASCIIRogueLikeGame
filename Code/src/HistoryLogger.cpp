@@ -34,7 +34,28 @@ void HistoryLogger::logItemPickUp(Item *item) {
     if (!outputFile)
         return;
 
-    outputFile << "\nPicked Up -> " << item->getName() << " @ position " << item->getPosition() << "\n";
+    if (item->getName() == GoldCoin::goldCoinName ||
+        item->getName() == HealthPotion::healthPotionName)
+        outputFile << "\nPicked Up Item -> " << item->getName() << " @ position " << item->getPosition() << "\n";
+    else {
+//        auto w = dynamic_cast<Weapon&>(*item);
+//        outputFile << "\nPicked Up -> " << w.getName() << "(" << w.attack() << " damage) @ position " << item->getPosition() << "\n";
+    }
+    outputFile.close();
+}
+
+void HistoryLogger::logUsedItem(Item* item) {
+    std::ofstream outputFile{fileName, std::ios::app};
+
+    if (!outputFile)
+        return;
+
+    if (item->getName() == GoldCoin::goldCoinName ||
+        item->getName() == HealthPotion::healthPotionName)
+        outputFile << "\nUsed Item -> " << item->getName() << " @ " << getDateTime() << "\n";
+    else
+        outputFile << "\nDropped Weapon -> " << item->getName() << " @ " << getDateTime() << "\n";
+
     outputFile.close();
 }
 

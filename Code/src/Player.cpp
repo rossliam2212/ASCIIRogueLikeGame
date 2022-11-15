@@ -14,10 +14,10 @@ Player::Player(const GameMap& map,
       position{defaultStartPositionX, defaultStartPositionY},
       newPosition{defaultStartPositionX, defaultStartPositionY},
       map{map},
-      inventory{},
+      historyLogger{hl},
+      inventory{hl},
       monsters{monsters},
-      items{items},
-      historyLogger{hl} {
+      items{items} {
 }
 
 Player::Player(const GameMap& map,
@@ -31,10 +31,10 @@ Player::Player(const GameMap& map,
       position{startPosition},
       newPosition{startPosition},
       map{map},
-      inventory{},
+      historyLogger{hl},
+      inventory{hl},
       monsters{monsters},
-      items{items},
-      historyLogger{hl} {
+      items{items} {
 }
 
 void Player::update() {
@@ -127,20 +127,22 @@ void Player::handleInput() {
 
     // ==== Using Health Potion - R (82) ====
     if (GetKeyState(82) & 0x8000) {
-        if (inventory.getNumHealthPotions() > 0 && health < maxHealth) {
-            inventory.removeHealthPotion();
+        if (!removeItemPressed) {
+            if (inventory.getNumHealthPotions() > 0 && health < maxHealth) {
+                inventory.removeHealthPotion();
+                removeItemPressed = true;
 
-            if (health + HealthPotion::healthPotionIncrease >= maxHealth)
-                health = maxHealth;
-            else
-                health += HealthPotion::healthPotionIncrease;
+                if (health + HealthPotion::healthPotionIncrease >= maxHealth)
+                    health = maxHealth;
+                else
+                    health += HealthPotion::healthPotionIncrease;
+            }
         }
     }
 
     // ==== Cycling through weapons - Right Arrow ====
     if (GetKeyState(VK_RIGHT) & 0x8000) {
         if (!inventory.getWeapons().empty()) {
-            nextWeaponPressed = true;
             inventory.nextWeapon();
         }
     }
@@ -229,35 +231,6 @@ void Player::renderPlayer() {
  * Checks for collisions with all the different game items, such as gold coins, health potions, etc.
  */
 void Player::checkCollisions() {
-////    // Checking for Gold Coin Collision
-//    if (map.getXY(position) == GameMap::goldCoinChar){
-//        checkItem(position.getX(), position.getY());
-//
-//        // Setting the character at the position of the coin back to the default map character '='
-//        map.setXY(position, GameMap::defaultChar);
-//    }
-//
-//    // Checking for Health Potion Collision
-//    if (map.getXY(position) == GameMap::healthPotionChar) {
-//        checkItem(position.getX(), position.getY());
-////        inventory.pickUpHealthPotion();
-//
-//        // Setting the character at the position of the health potion back to the default map character '='
-//        map.setXY(position, GameMap::defaultChar);
-//    }
-//
-//    // Checking for Weapon Collision
-//    if (map.getXY(position) == GameMap::weaponChar) {
-//        checkItem(position.getX(), position.getY());
-//
-////        if (!inventory.weaponSlotsFull()) {
-////            inventory.pickUpWeapon();
-//
-//            // Setting the character at the position of the weapon back to the default map character '='
-//            map.setXY(position, GameMap::defaultChar);
-//        }
-//    }
-
     if (map.getXY(position) == GameMap::goldCoinChar ||
         map.getXY(position) == GameMap::healthPotionChar ||
         map.getXY(position) == GameMap::weaponChar) {
@@ -315,9 +288,10 @@ Point Player::getPosition() const { return position; }
  */
 Inventory Player::getInventory() const { return inventory; }
 
+
 /**
  * Players next weapon pressed getter.
- * @return Whether the player has pressed next weapon (Right Arrow)
+ * @return Whether the player has pressed next weapon (Right Arrow).
  */
 bool Player::getNextWeaponPressed() const { return nextWeaponPressed; }
 
@@ -327,13 +301,24 @@ bool Player::getNextWeaponPressed() const { return nextWeaponPressed; }
  */
 void Player::resetNextWeaponPressed() { nextWeaponPressed = false; }
 
-bool Player::getRemoveCurrentWeaponPressed() const {
-    return removeCurrentWeaponPressed;
-}
 
-void Player::resetRemoveCurrentWeaponPressed() {
-    removeCurrentWeaponPressed = false;
-}
+/**
+ * Players remove current weapon pressed getter.
+ * @return Whether the player has pressed to drop their current weapon (Q).
+ */
+bool Player::getRemoveCurrentWeaponPressed() const { return removeCurrentWeaponPressed; }
+
+/**
+ * Resets resets remove current weapon pressed to false.
+ * Called from the GameManager to render the current weapon UI correctly.
+ */
+void Player::resetRemoveCurrentWeaponPressed() { removeCurrentWeaponPressed = false; }
+
+
+
+bool Player::getRemoveItemPressed() const { return removeItemPressed; }
+void Player::resetRemoveItemPressed() { removeItemPressed = false; }
+
 
 
 

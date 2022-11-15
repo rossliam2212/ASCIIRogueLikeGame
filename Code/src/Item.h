@@ -10,7 +10,7 @@
 
 class Item {
     friend std::ostream& operator<<(std::ostream& os, const Item& item);
-    friend bool operator==(const Item& lhs, const Item& rhs);
+    friend bool operator==(const Item& lhs, const Item& rhs); // https://stackoverflow.com/questions/1691007/whats-the-right-way-to-overload-operator-for-a-class-hierarchy
 
 protected:
     std::string name;
@@ -22,12 +22,13 @@ public:
     Item(const std::string&& name, const Point& position);
     ~Item() = default;
 
-    virtual std::ostream& write(std::ostream& os) const;
+    virtual std::ostream& write(std::ostream& os) const; // https://stackoverflow.com/questions/50979946/virtual-insertion-operator-overloading-for-base-and-derived-class
     virtual bool isEqual(const Item& item) const;
 
     std::string getName() const;
     Point getPosition() const;
     bool isUsed() const;
+    void use();
 };
 
 

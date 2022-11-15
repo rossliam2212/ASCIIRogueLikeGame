@@ -24,6 +24,7 @@ public:
     HistoryLogger(const std::string&& fileName);
 
     void logItemPickUp(Item* item);
+    void logUsedItem(Item* item);
     void logGameOver();
 
 private:

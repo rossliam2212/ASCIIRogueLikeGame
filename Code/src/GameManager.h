@@ -35,8 +35,6 @@ public:
     void startGame();
     bool gameOver();
 
-
-
 private:
     void update();
     void renderUI();

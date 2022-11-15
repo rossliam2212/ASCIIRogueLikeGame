@@ -87,17 +87,19 @@ void GameManager::renderUI() {
     std::cout << " Current Weapon: ";
 
     if (!player.getInventory().getWeapons().empty()) {
-
-        // Clearing the current weapon text to display the next weapon when the player cycles through the weapons
         if (player.getNextWeaponPressed()) {
             std::cout << "                                                     \n\n";
             player.resetNextWeaponPressed();
         }
         else
             std::cout << player.getInventory().getCurrentWeapon() << "\n\n";
+    } else {
+        std::cout << "No Weapons\n\n";
+    }
 
-        // Displaying all the players weapons
-        std::cout << " Weapons: \n";
+    std::cout << " Weapons: \n";
+
+    if (!player.getInventory().getWeapons().empty()) {
         if (player.getRemoveCurrentWeaponPressed()) {
             for (int i = 0; i < player.getInventory().getWeapons().size()+3; i++) {
                 std::cout << "                                                     \n";
@@ -106,12 +108,9 @@ void GameManager::renderUI() {
         }
         else {
             for (const auto& w : player.getInventory().getWeapons()) {
-                std::cout << "  " << w << "\n";
+                std::cout << "  " << *w << "\n";
             }
         }
-    }
-    else {
-        std::cout << "                                                     \n\n";
     }
 
     std::cout << "}";

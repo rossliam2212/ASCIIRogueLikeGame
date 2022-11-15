@@ -37,7 +37,9 @@ public:
     int attack() const;
 
     std::ostream& write(std::ostream& os) const override;
+
     bool isEqual(const Item& item) const override;
+    int getDamageAmount() const;
 
 private:
     void generateStats();

@@ -1,19 +1,7 @@
-Game Session Started @ Mon Nov 14 00:14:38 2022
+Game Session Started @ Mon Nov 14 23:46:04 2022
 
 
-Picked Up -> Health Potion @ position (20, 5)
+Picked Up Item -> Health Potion @ position (20, 5)
 
-Picked Up -> Pike @ position (8, 8)
-
-Picked Up -> Quarterstaff @ position (5, 8)
-
-Picked Up -> Sabre @ position (4, 9)
-
-Picked Up -> Gold Coin @ position (8, 5)
-
-Picked Up -> Gold Coin @ position (8, 4)
-
-Picked Up -> Gold Coin @ position (8, 3)
-
-Game Over @ Mon Nov 14 00:14:54 2022
+Used Item -> Health Potion @ Mon Nov 14 23:46:19 2022
 

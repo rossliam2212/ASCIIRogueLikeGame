@@ -42,3 +42,4 @@ bool operator==(const Item& lhs, const Item& rhs) {
 std::string Item::getName() const { return name; }
 Point Item::getPosition() const { return position; }
 bool Item::isUsed() const { return used; }
+void Item::use() { used = true; }

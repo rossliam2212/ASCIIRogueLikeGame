@@ -3,18 +3,20 @@
 //
 
 #include "Inventory.h"
+#include "Player.h"
 
-Inventory::Inventory()
+Inventory::Inventory(const HistoryLogger& historyLogger)
     : goldCoins{},
       healthPotions{},
       items{},
-      weapons{} {
+      weapons{},
+      historyLogger{historyLogger} {
 }
 
 void Inventory::addItem(Item* item) {
-    if (item->getName() != GoldCoin::goldCoinName)
+    if (item->getName() == GoldCoin::goldCoinName)
         goldCoins++;
-    else if (item->getName() != HealthPotion::healthPotionName)
+    else if (item->getName() == HealthPotion::healthPotionName)
         healthPotions++;
     else {
         weapons.emplace_back(item);
@@ -33,8 +35,9 @@ void Inventory::nextWeapon() {
     }
 }
 
-Item Inventory::getCurrentWeapon() {
-    return *(weapons[currentWeapon]);
+Weapon Inventory::getCurrentWeapon() {
+    auto cw = dynamic_cast<Weapon&>(*(weapons[currentWeapon]));
+    return cw;
 }
 
 bool Inventory::weaponSlotsFull() {
@@ -42,20 +45,54 @@ bool Inventory::weaponSlotsFull() {
 }
 
 void Inventory::removeGoldCoin() {
-    if (goldCoins > 0)
+    if (goldCoins > 0) {
         goldCoins--;
+
+        for (const auto& item: items) {
+            if (item->getName() == GoldCoin::goldCoinName && !item->isUsed()) {
+                item->use();
+                removeItem(item, false);
+                break;
+            }
+        }
+    }
 }
 
 void Inventory::removeHealthPotion() {
-    if (healthPotions > 0)
+    if (healthPotions > 0) {
         healthPotions--;
+
+        for (const auto& item: items) {
+            if (item->getName() == HealthPotion::healthPotionName && !item->isUsed()) {
+                item->use();
+                removeItem(item, false);
+                break;
+            }
+        }
+    }
 }
 
 void Inventory::removeCurrentWeapon() {
     auto weapon = weapons[currentWeapon];
-    auto iter = std::find(weapons.begin(), weapons.end(), weapon);
+    removeItem(weapon, true);
+}
 
-    weapons.erase(iter);
+void Inventory::removeItem(Item* item, bool isWeapon) {
+    historyLogger.logUsedItem(item);
+
+    if (isWeapon) {
+        auto iter = std::find(std::begin(weapons), std::end(weapons), item);
+        if (iter != std::end(weapons)) {
+            weapons.erase(iter);
+            return;
+        }
+    } else {
+        auto iter = std::find(std::begin(items), std::end(items), item);
+        if (iter != std::end(items)) {
+            weapons.erase(iter);
+            return;
+        }
+    }
 }
 
 int Inventory::getNumGoldCoins() const { return goldCoins; }

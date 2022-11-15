@@ -11,6 +11,9 @@
 #include "GoldCoin.h"
 #include "HealthPotion.h"
 #include "Weapon.h"
+#include "HistoryLogger.h"
+
+class Player;
 
 class Inventory {
 public:
@@ -26,16 +29,14 @@ private:
     std::vector<Item*> weapons;
     int currentWeapon{};
 
+    HistoryLogger historyLogger;
+
 public:
-    Inventory();
+    Inventory(const HistoryLogger& historyLogger);
     void addItem(Item* item);
 
-
-
-    // OLD METHODS
-
     void nextWeapon();
-    Item getCurrentWeapon();
+    Weapon getCurrentWeapon();
 
     bool weaponSlotsFull();
 
@@ -46,6 +47,9 @@ public:
     int getNumGoldCoins() const;
     int getNumHealthPotions() const;
     std::vector<Item*> getWeapons() const;
+
+private:
+    void removeItem(Item* item, bool isWeapon);
 };
 
 

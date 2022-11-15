@@ -23,12 +23,11 @@ class Player {
     static constexpr int defaultStartPositionY{5};
 
 private:
+    HistoryLogger historyLogger;
     Inventory inventory;
     GameMap map; // Needs access to map for boundary checking
     std::vector<Monster*>& monsters;
     std::vector<Item*>& items;
-    HistoryLogger historyLogger;
-//    GameManager* gm;
 
     int strength;
     int health;
@@ -38,12 +37,14 @@ private:
     Point newPosition;
 
     bool attacking{false};
+
+    bool removeItemPressed{false};
     bool nextWeaponPressed{false};
     bool removeCurrentWeaponPressed{false};
 
 public:
     Player(const GameMap& map, std::vector<Monster*>& monsters, std::vector<Item*>& items, const HistoryLogger& hl);
-    Player(const GameMap &map, Point& startPosition, std::vector<Monster*>& monsters, std::vector<Item*>& items, const HistoryLogger& hl);
+    Player(const GameMap& map, Point& startPosition, std::vector<Monster*>& monsters, std::vector<Item*>& items, const HistoryLogger& hl);
 
     void update();
 
@@ -56,6 +57,9 @@ public:
     int getXP() const;
     Point getPosition() const;
     Inventory getInventory() const;
+
+    bool getRemoveItemPressed() const;
+    void resetRemoveItemPressed();
 
     bool getNextWeaponPressed() const;
     void resetNextWeaponPressed();
