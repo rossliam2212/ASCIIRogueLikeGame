@@ -15,39 +15,53 @@ GameManager::GameManager()
 
 GameManager::~GameManager() {
     if (!monsters.empty()) {
-        for (auto p: monsters)
+        for (auto* p: monsters)
             delete p;
     }
 
     if (!mapItems.empty()) {
-        for (auto i : mapItems)
+        for (auto* i : mapItems)
             delete i;
     }
 }
 
+/**
+ * Starts the game.
+ * The game map is loaded and then the main game loop starts.
+ */
 void GameManager::startGame() {
     map.loadMap();
     setUpGameItemsAndMonsters();
 
+    // Main Game Loop
     while(!gameOver())
         update();
 
+    // Called when game is over
     renderGameOverUI();
     historyLogger.logGameOver();
 }
 
+/**
+ * Calls the players and monsters update functions and also updates the UI.
+ */
 void GameManager::update() {
     player.update();
     renderUI();
 
     if (!monsters.empty()) {
-        for (const auto monster: monsters) {
+        for (auto* monster: monsters) {
             if (!monster->isDead())
                 monster->update();
         }
     }
 }
 
+/**
+ * Sets up all of the monsters and game items gathered when the map is loaded.
+ * Monsters & Items (gold coins & health potions) are created dynamically and placed into
+ * their respective vectors.
+ */
 void GameManager::setUpGameItemsAndMonsters() {
     auto monstersAndItems = map.getMonstersAndItems();
 
@@ -70,6 +84,9 @@ void GameManager::setUpGameItemsAndMonsters() {
     }
 }
 
+/**
+ * Renders (prints out) the Games UI elements.
+ */
 void GameManager::renderUI() {
     // General UI
     utility::gotoScreenPosition(0, MAPSIZEY + 1);
@@ -78,8 +95,13 @@ void GameManager::renderUI() {
               << "| HP: " << player.getHealth() << " "
               << "| XP: " << player.getXP();
 
-    // Inventory UI
+    // Players Attacking State
     utility::gotoScreenPosition(0, MAPSIZEY + 3);
+    std::cout << "Attacking: " << (player.getAttacking() ? "Yes\n" : "No \n");
+
+
+    // Inventory UI
+    utility::gotoScreenPosition(0, MAPSIZEY + 5);
     std::cout << "Inventory {\n Gold Coins: " << player.getInventory().getNumGoldCoins()
               << "\n Health Potions: " << player.getInventory().getNumHealthPotions()
               << "\n";
@@ -107,7 +129,7 @@ void GameManager::renderUI() {
             player.resetRemoveCurrentWeaponPressed();
         }
         else {
-            for (const auto& w : player.getInventory().getWeapons()) {
+            for (auto* w : player.getInventory().getWeapons()) {
                 std::cout << "  " << *w << "\n";
             }
         }
@@ -116,6 +138,9 @@ void GameManager::renderUI() {
     std::cout << "}";
 }
 
+/**
+ *  Renders the Games game over UI elements.
+ */
 void GameManager::renderGameOverUI() {
     system("cls");
 
@@ -130,6 +155,11 @@ void GameManager::renderGameOverUI() {
     std::cout << "\n";
 }
 
+/**
+ * Checks whether the player is dead.
+ * The game will end when the player is dead.
+ * @return True if the player is dead, false otherwise.
+ */
 bool GameManager::gameOver() {
     return player.isDead();
 }

@@ -20,7 +20,7 @@ bool Monster::operator==(const Monster& rhs) const {
 
 void Monster::checkInFollowRange() {
 
-    if (map.getXY(position.getX(), position.getY() +1) == GameMap::playerChar ||
+    if (map.getXY(position.getX(), position.getY() + 1) == GameMap::playerChar ||
         map.getXY(position.getX(), position.getY() + 2) == GameMap::playerChar ||
         map.getXY(position.getX(), position.getY() + 3) == GameMap::playerChar) {
         utility::gotoScreenPosition(position);

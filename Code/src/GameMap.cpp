@@ -73,6 +73,9 @@ void GameMap::loadMap() {
     gameMapFile.close();
 }
 
+/**
+ * Prints the map.
+ */
 void GameMap::printMap() {
     utility::gotoScreenPosition(0, 0);
 
@@ -84,24 +87,48 @@ void GameMap::printMap() {
     }
 }
 
-// Get the character at position xy on the map
+/**
+ * Gets the character at the xy position passed in.
+ * @param x The x position.
+ * @param y The y position.
+ * @return The character at the given xy position.
+ */
 char GameMap::getXY(int x, int y) {
     return map[y * mapWidth + x];
 }
 
-char GameMap::getXY(Point& position) {
+/**
+ * Gets the character at the position passed in
+ * @param position The xy position.
+ * @return The character at the given position.
+ */
+char GameMap::getXY(const Point& position) {
     return map[position.getY() * mapWidth + position.getX()];
 }
 
-// Set the character at position xy on the map
+/**
+ * Sets the character at the xy position passed in.
+ * @param x The x position.
+ * @param y The y position.
+ * @param value The new character to set the given xy position to.
+ */
 void GameMap::setXY(int x, int y, char value) {
     map[y * mapWidth + x] = value; //update value
 }
 
+/**
+ * Sets the character at the position passed in.
+ * @param position The xy position.
+ * @param value The new character to set the given position to.
+ */
 void GameMap::setXY(Point& position, char value) {
     map[position.getY() * mapWidth + position.getX()] = value;
 }
 
+/**
+ * Getter for the monsters and items vectors.
+ * @return The monsters and items vector.
+ */
 std::vector<std::pair<char, Point>> GameMap::getMonstersAndItems() const {
     return monstersAndItems;
 }

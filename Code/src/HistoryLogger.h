@@ -13,6 +13,7 @@
 #include "GoldCoin.h"
 #include "HealthPotion.h"
 #include "Weapon.h"
+#include "Monster.h"
 
 class HistoryLogger {
 private:
@@ -25,6 +26,7 @@ public:
 
     void logItemPickUp(Item* item);
     void logUsedItem(Item* item);
+    void logMonsterKill(Monster* monster, Weapon* weaponUsed);
     void logGameOver();
 
 private:

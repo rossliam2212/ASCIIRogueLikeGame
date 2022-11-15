@@ -48,10 +48,11 @@ void Inventory::removeGoldCoin() {
     if (goldCoins > 0) {
         goldCoins--;
 
-        for (const auto& item: items) {
+        for (auto* item: items) {
             if (item->getName() == GoldCoin::goldCoinName && !item->isUsed()) {
                 item->use();
-                removeItem(item, false);
+                historyLogger.logUsedItem(item);
+//                removeItem(item, false);
                 break;
             }
         }
@@ -62,10 +63,11 @@ void Inventory::removeHealthPotion() {
     if (healthPotions > 0) {
         healthPotions--;
 
-        for (const auto& item: items) {
+        for (auto* item: items) {
             if (item->getName() == HealthPotion::healthPotionName && !item->isUsed()) {
                 item->use();
-                removeItem(item, false);
+                historyLogger.logUsedItem(item);
+//                removeItem(item, false);
                 break;
             }
         }
@@ -74,12 +76,11 @@ void Inventory::removeHealthPotion() {
 
 void Inventory::removeCurrentWeapon() {
     auto weapon = weapons[currentWeapon];
+    historyLogger.logUsedItem(weapon);
     removeItem(weapon, true);
 }
 
 void Inventory::removeItem(Item* item, bool isWeapon) {
-    historyLogger.logUsedItem(item);
-
     if (isWeapon) {
         auto iter = std::find(std::begin(weapons), std::end(weapons), item);
         if (iter != std::end(weapons)) {

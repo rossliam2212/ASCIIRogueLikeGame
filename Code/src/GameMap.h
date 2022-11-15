@@ -12,7 +12,7 @@
 #include "Point.h"
 
 #define WINDOWSIZE_X 800 // in px
-#define WINDOWSIZE_Y 700 // in px
+#define WINDOWSIZE_Y 800 // in px
 
 class GameMap {
 public:
@@ -50,7 +50,7 @@ public:
     void printMap();
 
     char getXY(int x, int y);
-    char getXY(Point& position);
+    char getXY(const Point &position);
 
     void setXY(int x, int y, char value);
     void setXY(Point& position, char value);

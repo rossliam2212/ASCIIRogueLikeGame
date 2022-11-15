@@ -1,7 +1,27 @@
-Game Session Started @ Mon Nov 14 23:46:04 2022
+Game Session Started @ Tue Nov 15 10:58:29 2022
 
+Tue Nov 15 10:58:36 2022
+	- Picked Up Item -> Gold Coin @ position (8, 5)
+Tue Nov 15 10:58:36 2022
+	- Picked Up Item -> Gold Coin @ position (8, 4)
+Tue Nov 15 10:58:36 2022
+	- Picked Up Item -> Gold Coin @ position (8, 3)
+Tue Nov 15 10:58:39 2022
+	- Picked Up Item -> Gold Coin @ position (15, 3)
+Tue Nov 15 10:58:40 2022
+	- Picked Up Item -> Gold Coin @ position (19, 3)
+Tue Nov 15 10:58:42 2022
+	- Picked Up Item -> Health Potion @ position (20, 5)
+Tue Nov 15 10:58:45 2022
+	- Picked Up Weapon -> Club(16 damage) @ position (8, 8)
+Tue Nov 15 10:58:46 2022
+	- Picked Up Weapon -> Pike(19 damage) @ position (5, 8)
+Tue Nov 15 10:58:46 2022
+	- Picked Up Weapon -> Lance(30 damage) @ position (4, 9)
+Tue Nov 15 10:58:51 2022
+	- Used Item -> Health Potion
+Tue Nov 15 10:59:14 2022
+	- Killed Monster -> Zombie(+10xp) w/ Club @ position (8, 1)
 
-Picked Up Item -> Health Potion @ position (20, 5)
-
-Used Item -> Health Potion @ Mon Nov 14 23:46:19 2022
+Game Over @ Tue Nov 15 10:59:32 2022
 

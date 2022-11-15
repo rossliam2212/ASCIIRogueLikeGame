@@ -55,11 +55,9 @@ public:
     int getStrength() const;
     int getHealth() const;
     int getXP() const;
+    bool getAttacking() const;
     Point getPosition() const;
     Inventory getInventory() const;
-
-    bool getRemoveItemPressed() const;
-    void resetRemoveItemPressed();
 
     bool getNextWeaponPressed() const;
     void resetNextWeaponPressed();

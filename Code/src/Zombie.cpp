@@ -18,19 +18,30 @@ void Zombie::update() {
 
     checkInFollowRange();
 
+    utility::gotoScreenPosition(position);
+    switch(move) {
+        case Idle:
+//            std::cout << "Idle\n";
+            break;
+        case Down:
+            std::cout << "Down\n";
+            render();
+            break;
+    }
+
 //    if (move != Idle) {
 //        switch (move) {
 //            case Up:
-//                newPositionY = positionY - 1;
+//                newPosition.setXY(position.getX(), position.getY() - 1);
 //                break;
 //            case Down:
-//                newPositionY = positionY + 1;
+//                newPosition.setXY(position.getX(), position.getY() + 1);
 //                break;
 //            case Right:
-//                newPositionX = positionX + 1;
+//                newPosition.setXY(position.getX() + 1, position.getY());
 //                break;
 //            case Left:
-//                newPositionX = positionX - 1;
+//                newPosition.setXY(position.getX() - 1, position.getY());
 //                break;
 //        }
 //        render();

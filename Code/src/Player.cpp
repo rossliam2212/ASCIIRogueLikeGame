@@ -128,9 +128,9 @@ void Player::handleInput() {
     // ==== Using Health Potion - R (82) ====
     if (GetKeyState(82) & 0x8000) {
         if (!removeItemPressed) {
+            removeItemPressed = true;
             if (inventory.getNumHealthPotions() > 0 && health < maxHealth) {
                 inventory.removeHealthPotion();
-                removeItemPressed = true;
 
                 if (health + HealthPotion::healthPotionIncrease >= maxHealth)
                     health = maxHealth;
@@ -138,6 +138,9 @@ void Player::handleInput() {
                     health += HealthPotion::healthPotionIncrease;
             }
         }
+
+        Sleep(1000);
+        removeItemPressed = false;
     }
 
     // ==== Cycling through weapons - Right Arrow ====
@@ -145,6 +148,8 @@ void Player::handleInput() {
         if (!inventory.getWeapons().empty()) {
             inventory.nextWeapon();
         }
+
+        Sleep(1000);
     }
 
     // ==== Dropping Current Weapon - Q (81) ====
@@ -153,6 +158,8 @@ void Player::handleInput() {
             removeCurrentWeaponPressed = true;
             inventory.removeCurrentWeapon();
         }
+
+        Sleep(1000);
     }
 
     // ==== FOR TESTING - Removing Players Health - X (88) ====
@@ -162,12 +169,24 @@ void Player::handleInput() {
 }
 
 void Player::attack(Monster* monster) {
-//    std::cout << "Player attacking: " << monster->getName() << "\n";
-
     if (attacking) {
         if (!isDead()) {
-            utility::gotoScreenPosition(position);
-            std::cout << monster->getName() << " KILLED!\n";
+
+            auto w = dynamic_cast<Weapon&&>(inventory.getCurrentWeapon());
+            monster->takeDamage(w.attack());
+
+            if (monster->isDead()) {
+                attacking = false;
+
+                utility::gotoScreenPosition(position);
+                std::cout << monster->getName() << " KILLED!\n";
+
+                increaseXP(monster->getDeathXP());
+                historyLogger.logMonsterKill(monster, &w);
+
+                auto p = monster->getPosition();
+                map.setXY(p, GameMap::defaultChar);
+            }
 
 //            auto w = dynamic_cast<Weapon&&>(inventory.getCurrentWeapon());
 ////            monster->takeDamage(inventory.getCurrentWeapon().attack());
@@ -192,7 +211,7 @@ void Player::attack(Monster* monster) {
  */
 void Player::checkMonster(int x, int y) {
     if (!attacking) {
-        for (auto& m: monsters) {
+        for (auto* m: monsters) {
             if (m->getPosition().getX() == x && m->getPosition().getY() == y) {
                 attacking = true;
                 attack(m);
@@ -203,7 +222,7 @@ void Player::checkMonster(int x, int y) {
 }
 
 void Player::checkItem(int x, int y) {
-     for (auto& item : items) {
+     for (auto* item : items) {
         if (item->getPosition().getX() == x && item->getPosition().getY() == y) {
             inventory.addItem(item);
             historyLogger.logItemPickUp(item);
@@ -277,6 +296,12 @@ int Player::getHealth() const { return health; }
 int Player::getXP() const { return xp; }
 
 /**
+ * Players attacking flag getter.
+ * @return The players attacking flag.
+ */
+bool Player::getAttacking() const { return attacking; }
+
+/**
  * Player position getter.
  * @return The players position.
  */
@@ -314,10 +339,6 @@ bool Player::getRemoveCurrentWeaponPressed() const { return removeCurrentWeaponP
  */
 void Player::resetRemoveCurrentWeaponPressed() { removeCurrentWeaponPressed = false; }
 
-
-
-bool Player::getRemoveItemPressed() const { return removeItemPressed; }
-void Player::resetRemoveItemPressed() { removeItemPressed = false; }
 
 
 
