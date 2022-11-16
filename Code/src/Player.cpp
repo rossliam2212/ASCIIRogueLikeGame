@@ -52,111 +52,120 @@ void Player::update() {
 void Player::handleInput() {
     newPosition = position;
 
-    // ==== Moving Up - W (87) ====
-    if (GetKeyState(87) & 0x8000 && !attacking) {
-        // Boundary Checking
-        if (map.getXY(position.getX(), position.getY()-1) != GameMap::roofChar &&
-            map.getXY(position.getX(), position.getY()-1) != GameMap::wallChar &&
-            map.getXY(position.getX(), position.getY()-1) != GameMap::skeletonChar &&
-            map.getXY(position.getX(), position.getY()-1) != GameMap::zombieChar) {
-            newPosition.setXY(position.getX(), position.getY()-1);
-        }
+    // If player is attacking, then they cannot do anything until the attack is over.
+    if (!attacking) {
 
-        // Checking for enemies
-        if (map.getXY(position.getX(), position.getY() - 1) == GameMap::skeletonChar ||
-            map.getXY(position.getX(), position.getY() - 1) == GameMap::zombieChar) {
-            checkMonster(position.getX(), position.getY() - 1);
-        }
-    }
+        // ==== Moving Up - W (87) ====
+        if(GetKeyState(87) & 0x8000) {
+            // Boundary Checking
+            if(map.getXY(position.getX(), position.getY() - 1) != GameMap::roofChar &&
+               map.getXY(position.getX(), position.getY() - 1) != GameMap::wallChar &&
+               map.getXY(position.getX(), position.getY() - 1) != GameMap::skeletonChar &&
+               map.getXY(position.getX(), position.getY() - 1) != GameMap::zombieChar) {
+                newPosition.setXY(position.getX(), position.getY() - 1);
+            }
 
-    // ==== Moving Down - S (83) ====
-    if (GetKeyState(83) & 0x8000 && !attacking) {
-        // Boundary Checking
-        if (map.getXY(position.getX(), position.getY()+1) != GameMap::roofChar &&
-            map.getXY(position.getX(), position.getY()+1) != GameMap::wallChar &&
-            map.getXY(position.getX(), position.getY()+1) != GameMap::skeletonChar &&
-            map.getXY(position.getX(), position.getY()+1) != GameMap::zombieChar) {
-            newPosition.setXY(position.getX(), position.getY()+1);
-        }
-
-        // Checking for enemies
-        if (map.getXY(position.getX(), position.getY()+1) == GameMap::skeletonChar ||
-            map.getXY(position.getX(), position.getY()+1) == GameMap::zombieChar) {
-            checkMonster(position.getX(), position.getY()+1);
-        }
-    }
-
-    // ==== Moving Right - D (68) ====
-    if (GetKeyState(68) & 0x8000 && !attacking) {
-        // Boundary Checking
-        if (map.getXY(position.getX()+1, position.getY()) != GameMap::wallChar &&
-            map.getXY(position.getX()+1, position.getY()) != GameMap::roofChar &&
-            map.getXY(position.getX()+1, position.getY()) != GameMap::skeletonChar &&
-            map.getXY(position.getX()+1, position.getY()) != GameMap::zombieChar) {
-            newPosition.setXY(position.getX()+1, position.getY());
-        }
-
-        // Checking for enemies
-        if (map.getXY(position.getX()+1, position.getY()) == GameMap::skeletonChar ||
-            map.getXY(position.getX()+1, position.getY()) == GameMap::zombieChar) {
-            checkMonster(position.getX()+1, position.getY());
-        }
-    }
-
-    // ==== Moving Left - A (65) ====
-    if (GetKeyState(65) & 0x8000 && !attacking) {
-        // Boundary Checking
-        if (map.getXY(position.getX()-1, position.getY()) != GameMap::wallChar &&
-            map.getXY(position.getX()-1, position.getY()) != GameMap::roofChar &&
-            map.getXY(position.getX()-1, position.getY()) != GameMap::skeletonChar &&
-            map.getXY(position.getX()-1, position.getY()) != GameMap::zombieChar) {
-            newPosition.setXY(position.getX()-1, position.getY());
-        }
-
-        // Checking for enemies
-        if (map.getXY(position.getX()-1, position.getY()) == GameMap::skeletonChar ||
-            map.getXY(position.getX()-1, position.getY()) == GameMap::zombieChar) {
-            checkMonster(position.getX()-1, position.getY());
-        }
-    }
-
-    // ==== Using Health Potion - R (82) ====
-    if (GetKeyState(82) & 0x8000) {
-        if (!removeItemPressed) {
-            removeItemPressed = true;
-            if (inventory.getNumHealthPotions() > 0 && health < maxHealth) {
-                inventory.removeHealthPotion();
-
-                health = maxHealth;
+            // Checking for enemies
+            if(map.getXY(position.getX(), position.getY() - 1) == GameMap::skeletonChar ||
+               map.getXY(position.getX(), position.getY() - 1) == GameMap::zombieChar) {
+                checkMonster(position.getX(), position.getY() - 1);
             }
         }
 
-        Sleep(500); // Half second delay
-        removeItemPressed = false;
-    }
+        // ==== Moving Down - S (83) ====
+        if(GetKeyState(83) & 0x8000) {
+            // Boundary Checking
+            if(map.getXY(position.getX(), position.getY() + 1) != GameMap::roofChar &&
+               map.getXY(position.getX(), position.getY() + 1) != GameMap::wallChar &&
+               map.getXY(position.getX(), position.getY() + 1) != GameMap::skeletonChar &&
+               map.getXY(position.getX(), position.getY() + 1) != GameMap::zombieChar) {
+                newPosition.setXY(position.getX(), position.getY() + 1);
+            }
 
-    // ==== Cycling through weapons - Right Arrow ====
-    if (GetKeyState(VK_RIGHT) & 0x8000) {
-        if (!inventory.getWeapons().empty()) {
-            inventory.nextWeapon();
+            // Checking for enemies
+            if(map.getXY(position.getX(), position.getY() + 1) == GameMap::skeletonChar ||
+               map.getXY(position.getX(), position.getY() + 1) == GameMap::zombieChar) {
+                checkMonster(position.getX(), position.getY() + 1);
+            }
         }
 
-        Sleep(500); // Half second delay
-    }
+        // ==== Moving Right - D (68) ====
+        if(GetKeyState(68) & 0x8000) {
+            // Boundary Checking
+            if(map.getXY(position.getX() + 1, position.getY()) != GameMap::wallChar &&
+               map.getXY(position.getX() + 1, position.getY()) != GameMap::roofChar &&
+               map.getXY(position.getX() + 1, position.getY()) != GameMap::skeletonChar &&
+               map.getXY(position.getX() + 1, position.getY()) != GameMap::zombieChar) {
+                newPosition.setXY(position.getX() + 1, position.getY());
+            }
 
-    // ==== Dropping Current Weapon - Q (81) ====
-    if (GetKeyState(81) & 0x8000) {
-        if (!inventory.getWeapons().empty()) {
-            removeCurrentWeaponPressed = true;
-            inventory.removeCurrentWeapon();
+            // Checking for enemies
+            if(map.getXY(position.getX() + 1, position.getY()) == GameMap::skeletonChar ||
+               map.getXY(position.getX() + 1, position.getY()) == GameMap::zombieChar) {
+                checkMonster(position.getX() + 1, position.getY());
+            }
         }
 
-        Sleep(500); // Half second delay
-    }
+        // ==== Moving Left - A (65) ====
+        if(GetKeyState(65) & 0x8000) {
+            // Boundary Checking
+            if(map.getXY(position.getX() - 1, position.getY()) != GameMap::wallChar &&
+               map.getXY(position.getX() - 1, position.getY()) != GameMap::roofChar &&
+               map.getXY(position.getX() - 1, position.getY()) != GameMap::skeletonChar &&
+               map.getXY(position.getX() - 1, position.getY()) != GameMap::zombieChar) {
+                newPosition.setXY(position.getX() - 1, position.getY());
+            }
 
-    // ==== FOR TESTING - Removing Players Health - X (88) ====
-    if (GetKeyState(88) & 0x8000) {
-        health -= 10;
+            // Checking for enemies
+            if(map.getXY(position.getX() - 1, position.getY()) == GameMap::skeletonChar ||
+               map.getXY(position.getX() - 1, position.getY()) == GameMap::zombieChar) {
+                checkMonster(position.getX() - 1, position.getY());
+            }
+        }
+
+        // ==== Using Health Potion - R (82) ====
+        if(GetKeyState(82) & 0x8000) {
+            if(!removeItemPressed) {
+                removeItemPressed = true;
+                if(inventory.getNumHealthPotions() > 0 && health < maxHealth) {
+                    inventory.removeHealthPotion();
+
+                    health = maxHealth;
+                }
+            }
+
+            Sleep(500); // Half second delay
+            removeItemPressed = false;
+        }
+
+        // ==== Cycling through weapons - Right Arrow ====
+        if(GetKeyState(VK_RIGHT) & 0x8000) {
+            if(!inventory.getWeapons().empty()) {
+                inventory.nextWeapon();
+            }
+
+            Sleep(500); // Half second delay
+        }
+
+        // ==== Dropping Current Weapon - Q (81) ====
+        if(GetKeyState(81) & 0x8000) {
+            if(!inventory.getWeapons().empty()) {
+                removeCurrentWeaponPressed = true;
+                inventory.removeCurrentWeapon();
+            }
+
+            Sleep(500); // Half second delay
+        }
+
+        // ==== Opening Buy Menu - B (66) ====
+        if(GetKeyState(66) & 0x8000) {
+
+        }
+
+        // ==== FOR TESTING - Removing Players Health - X (88) ====
+        if(GetKeyState(88) & 0x8000) {
+            health -= 10;
+        }
     }
 }
 
@@ -177,7 +186,7 @@ void Player::attack(Monster* monster) {
 
             // If the player does not have a weapon, use their strength to attack the enemy
             if (!inventory.getWeapons().empty()) {
-                w = dynamic_cast<Weapon &&>(inventory.getCurrentWeapon());
+                w = dynamic_cast<Weapon&&>(inventory.getCurrentWeapon());
                 damageAmount = w.attack();
             } else {
                 damageAmount = strength;

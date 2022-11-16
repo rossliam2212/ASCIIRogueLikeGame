@@ -28,6 +28,12 @@ set(SOURCE_FILES
         src/HistoryLogger.cpp
         src/HistoryLogger.h
         src/Item.cpp
-        src/Item.h src/GoldCoin.cpp src/GoldCoin.h src/HealthPotion.cpp src/HealthPotion.h)
+        src/Item.h
+        src/GoldCoin.cpp
+        src/GoldCoin.h
+        src/HealthPotion.cpp
+        src/HealthPotion.h
+        src/BuyMenu.cpp
+        src/BuyMenu.h)
 
 add_executable(Code ${SOURCE_FILES})

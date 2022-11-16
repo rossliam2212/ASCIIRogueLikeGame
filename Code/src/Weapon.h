@@ -17,8 +17,9 @@ class Weapon : public Item {
 
 private:
     int damageAmount;
+    int price;
 
-    std::array<std::string, 11> weaponNames {
+    std::array<std::string, 11> meleeWeaponNames {
         "Bayonet",
         "Karambit",
         "Club",
@@ -35,6 +36,7 @@ private:
 public:
     Weapon();
     explicit Weapon(const Point& position);
+    Weapon(const std::string &name, int damageAmount, int price);
     ~Weapon() override = default;
 
     Weapon& operator=(const Weapon& rhs);
@@ -44,7 +46,7 @@ public:
     std::ostream& write(std::ostream& os) const override;
 
     bool isEqual(const Item& item) const override;
-    int getDamageAmount() const;
+    int getPrice() const;
 
 private:
     void generateStats();

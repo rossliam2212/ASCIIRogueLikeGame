@@ -10,8 +10,15 @@ Weapon::Weapon()
 
 Weapon::Weapon(const Point& position)
     : Item{"DefaultItemName", position},
-      damageAmount{} {
+      damageAmount{},
+      price{} {
     generateStats();
+}
+
+Weapon::Weapon(const std::string &name, int damageAmount, int price)
+    : Item{name, Point{}},
+      damageAmount{damageAmount},
+      price{price} {
 }
 
 Weapon& Weapon::operator=(const Weapon &rhs) {
@@ -34,10 +41,18 @@ bool Weapon::isEqual(const Item& item) const {
     return Item::isEqual(v) && v.damageAmount == damageAmount;
 }
 
+int Weapon::getPrice() const { return price; }
 
 void Weapon::generateStats() {
-    name = weaponNames[randomNum(0, (int)weaponNames.size() - 1)];
+    name = meleeWeaponNames[randomNum(0, (int)meleeWeaponNames.size() - 1)];
     damageAmount = randomNum(minWeaponDamage, maxWeaponDamage);
+
+    if (damageAmount >= 10 && damageAmount <= 15)
+        price = 3;
+    else if (damageAmount > 15 && damageAmount <= 25)
+        price = 8;
+    else
+        price = 12;
 }
 
 int Weapon::randomNum(int min, int max) {
@@ -47,4 +62,5 @@ int Weapon::randomNum(int min, int max) {
 
     return dist(mt);
 }
+
 
