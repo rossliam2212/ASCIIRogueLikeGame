@@ -15,10 +15,14 @@
 #include "HistoryLogger.h"
 
 class Player {
-    static constexpr int maxHealth{100};
-    static constexpr int defaultStrength{20};
+public:
+    static constexpr int defaultMaxHealth{100};
+    static constexpr int defaultStrength{10};
     static constexpr int defaultHealth{50};
+
+    static constexpr int maxXPLevel{5};
     static constexpr int defaultXP{0};
+
     static constexpr int defaultStartPositionX{5};
     static constexpr int defaultStartPositionY{5};
 
@@ -26,11 +30,13 @@ private:
     HistoryLogger historyLogger;
     Inventory inventory;
     GameMap map; // Needs access to map for boundary checking
-    std::vector<Monster*>& monsters;
-    std::vector<Item*>& items;
+    std::vector<Monster*>& monsters; // Reference to vector of monsters from GameManager
+    std::vector<Item*>& items; // Reference to vector of items from GameManager
 
     int strength;
     int health;
+    int maxHealth;
+    int xpLevel;
     int xp;
 
     Point position;
@@ -48,6 +54,7 @@ public:
 
     void update();
 
+    void levelUp();
     void increaseXP(int amount);
     void takeDamage(int amount);
     bool isDead() const;
@@ -55,6 +62,7 @@ public:
     int getStrength() const;
     int getHealth() const;
     int getXP() const;
+    int getXPLevel() const;
     bool getAttacking() const;
     Point getPosition() const;
     Inventory getInventory() const;

@@ -35,6 +35,10 @@ private:
 public:
     Weapon();
     explicit Weapon(const Point& position);
+    ~Weapon() override = default;
+
+    Weapon& operator=(const Weapon& rhs);
+
     int attack() const;
 
     std::ostream& write(std::ostream& os) const override;

@@ -17,13 +17,11 @@ Item::Item(const std::string&& name, const Point& position)
 }
 
 Item& Item::operator=(const Item& rhs) {
-    if (this == &rhs)
-        return *this;
-
-    name = rhs.name;
-    position = rhs.position;
-    used = rhs.used;
-
+    if (this != &rhs) {
+        name = rhs.name;
+        position = rhs.position;
+        used = rhs.used;
+    }
     return *this;
 }
 

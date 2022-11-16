@@ -11,11 +11,10 @@ Point::Point(int x, int y) : x{x}, y{y} {
 }
 
 Point& Point::operator=(const Point& rhs) {
-    if (this == &rhs)
-        return *this;
-
-    x = rhs.x;
-    y = rhs.y;
+    if (this != &rhs) {
+        x = rhs.x;
+        y = rhs.y;
+    }
     return *this;
 }
 

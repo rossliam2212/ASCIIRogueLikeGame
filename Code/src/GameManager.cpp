@@ -90,18 +90,20 @@ void GameManager::setUpGameItemsAndMonsters() {
 void GameManager::renderUI() {
     // General UI
     utility::gotoScreenPosition(0, MAPSIZEY + 1);
-    std::cout << "Level: " << level << " "
-              << "| Str: " << player.getStrength() << " "
+    std::cout << "Game Level: " << level << "\n";
+
+    std::cout << "Strength: " << player.getStrength() << " "
               << "| HP: " << player.getHealth() << " "
-              << "| XP: " << player.getXP();
+              << "| XP-Level: " << player.getXPLevel() << "/" << Player::maxXPLevel << " "
+              << "| XP: " << player.getXP() << " \n";
 
     // Players Attacking State
-    utility::gotoScreenPosition(0, MAPSIZEY + 3);
+    utility::gotoScreenPosition(0, MAPSIZEY + 4);
     std::cout << "Attacking: " << (player.getAttacking() ? "Yes\n" : "No \n");
 
 
     // Inventory UI
-    utility::gotoScreenPosition(0, MAPSIZEY + 5);
+    utility::gotoScreenPosition(0, MAPSIZEY + 6);
     std::cout << "Inventory {\n Gold Coins: " << player.getInventory().getNumGoldCoins()
               << "\n Health Potions: " << player.getInventory().getNumHealthPotions()
               << "\n";
@@ -155,7 +157,7 @@ void GameManager::renderGameOverUI() {
 
     std::cout << "\n\n";
 
-    std::cout << " Hard Luck! \nYou were killed by a monster!\n";
+    std::cout << "Hard Luck! \nYou were killed by a monster!\n";
     std::cout << "Better luck next time.\n\n";
     std::cout << "Check the GameSessionHistory.txt file for your game details.\n\n\n\n";
 }

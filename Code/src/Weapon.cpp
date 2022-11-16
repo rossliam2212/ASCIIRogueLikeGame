@@ -14,6 +14,14 @@ Weapon::Weapon(const Point& position)
     generateStats();
 }
 
+Weapon& Weapon::operator=(const Weapon &rhs) {
+    if (this != &rhs) {
+        Item::operator=(rhs);
+        damageAmount = rhs.damageAmount;
+    }
+    return *this;
+}
+
 int Weapon::attack() const { return damageAmount; }
 
 std::ostream& Weapon::write(std::ostream& os) const {

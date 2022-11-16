@@ -21,11 +21,12 @@ private:
 
 public:
     HistoryLogger();
-    HistoryLogger(const std::string& fileName);
-    HistoryLogger(const std::string&& fileName);
+    explicit HistoryLogger(const std::string& fileName);
+    explicit HistoryLogger(const std::string&& fileName);
 
     void logItemPickUp(Item* item);
     void logUsedItem(Item* item);
+    void logPlayerXPLevelUp(int xpLevel, int newMaxHealth, int newStrength);
 
     void logAttackStarted(Monster* monster);
     void logDamageDealtToMonster(Monster* monster, int damageAmount);

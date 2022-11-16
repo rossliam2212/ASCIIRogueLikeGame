@@ -49,6 +49,15 @@ void HistoryLogger::logItemPickUp(Item *item) {
     outputFile.close();
 }
 
+void HistoryLogger::logPlayerXPLevelUp(int xpLevel, int newMaxHealth, int newStrength) {
+    std::ofstream outputFile{fileName, std::ios::app};
+    if (!outputFile)
+        return;
+
+    outputFile << getDateTime() << "\t- Leveled Up! New Stats -> XP Level: " << xpLevel << ", Max Health: " << newMaxHealth << ", Strength: " << newStrength << "\n";
+    outputFile.close();
+}
+
 /**
  * Logs item used message to the output file.
  * @param item The item that was used.

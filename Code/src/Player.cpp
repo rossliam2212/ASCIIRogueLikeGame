@@ -10,7 +10,9 @@ Player::Player(const GameMap& map,
                const HistoryLogger& hl)
     : strength{defaultStrength},
       health{defaultHealth},
+      maxHealth{defaultMaxHealth},
       xp{defaultXP},
+      xpLevel{1},
       position{defaultStartPositionX, defaultStartPositionY},
       newPosition{defaultStartPositionX, defaultStartPositionY},
       map{map},
@@ -28,6 +30,7 @@ Player::Player(const GameMap& map,
     : strength{defaultStrength},
       health{defaultHealth},
       xp{defaultXP},
+      xpLevel{1},
       position{startPosition},
       newPosition{startPosition},
       map{map},
@@ -267,11 +270,26 @@ void Player::checkCollisions() {
     }
 }
 
+void Player::levelUp() {
+    xpLevel++;
+    maxHealth += 10;
+    strength += 10;
+
+    historyLogger.logPlayerXPLevelUp(xpLevel, maxHealth, strength);
+}
+
 /**
  * Increases the players XP.
  * @param amount The amount to increase the XP by.
  */
-void Player::increaseXP(int amount) { xp += amount; }
+void Player::increaseXP(int amount) {
+    xp += amount;
+
+    if (xp > 50) {
+        levelUp();
+        xp = 0;
+    }
+}
 
 /**
  * Deals damage to the player.
@@ -302,6 +320,12 @@ int Player::getHealth() const { return health; }
  * @return The players XP.
  */
 int Player::getXP() const { return xp; }
+
+/**
+ * Players XP level getter.
+ * @return The players xp level.
+ */
+int Player::getXPLevel() const { return xpLevel; }
 
 /**
  * Players attacking flag getter.
