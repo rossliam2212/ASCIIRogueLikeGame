@@ -5,7 +5,7 @@
 #include "GameManager.h"
 
 GameManager::GameManager()
-    : map{MAPSIZEX, MAPSIZEY},
+    : map{mapSizeX, mapSizeY},
       monsters{},
       mapItems{},
       historyLogger{},
@@ -30,7 +30,7 @@ GameManager::~GameManager() {
  * The game map is loaded and then the main game loop starts.
  */
 void GameManager::startGame() {
-    map.loadMap();
+    map.loadMap(level, levels);
     setUpGameItemsAndMonsters();
 
     // Main Game Loop
@@ -89,7 +89,7 @@ void GameManager::setUpGameItemsAndMonsters() {
  */
 void GameManager::renderUI() {
     // General UI
-    utility::gotoScreenPosition(0, MAPSIZEY + 1);
+    utility::gotoScreenPosition(0, mapSizeY + 1);
     std::cout << "Game Level: " << level << "\n";
 
     std::cout << "Strength: " << player.getStrength() << " "
@@ -98,12 +98,12 @@ void GameManager::renderUI() {
               << "| XP: " << player.getXP() << " \n";
 
     // Players Attacking State
-    utility::gotoScreenPosition(0, MAPSIZEY + 4);
+    utility::gotoScreenPosition(0, mapSizeY + 4);
     std::cout << "Attacking: " << (player.getAttacking() ? "Yes\n" : "No \n");
 
 
     // Inventory UI
-    utility::gotoScreenPosition(0, MAPSIZEY + 6);
+    utility::gotoScreenPosition(0, mapSizeY + 6);
     std::cout << "Inventory {\n Gold Coins: " << player.getInventory().getNumGoldCoins()
               << "\n Health Potions: " << player.getInventory().getNumHealthPotions()
               << "\n";

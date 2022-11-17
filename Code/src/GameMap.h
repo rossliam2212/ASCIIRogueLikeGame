@@ -8,6 +8,7 @@
 
 #include <fstream>
 #include <vector>
+#include <array>
 #include "utility.h"
 #include "Point.h"
 
@@ -46,7 +47,7 @@ public:
     GameMap(int mapWidth, int mapHeight);
     ~GameMap();
 
-    void loadMap();
+    void loadMap(int level, const std::array<std::string, 3> &levels);
     void printMap();
 
     char getXY(int x, int y);

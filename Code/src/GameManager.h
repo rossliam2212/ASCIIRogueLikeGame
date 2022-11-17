@@ -16,15 +16,24 @@
 #include "HealthPotion.h"
 
 class GameManager {
-    static constexpr int MAPSIZEX{83}; // 82 + 1 (WIDTH)
-    static constexpr int MAPSIZEY{26}; // 26 (Height)
-
 private:
+    static constexpr int mapSizeX{83}; // 82 + 1 (WIDTH)
+    static constexpr int mapSizeY{26}; // 26 (Height)
+
+    static constexpr int numberOfLevels{3};
+
     GameMap map;
     std::vector<Monster*> monsters;
     std::vector<Item*> mapItems;
     HistoryLogger historyLogger;
     Player player;
+
+    // CLion format for finding files
+    const std::array<std::string, numberOfLevels> levels {
+        "../levels/level1.txt",
+        "../levels/level2.txt",
+        "../levels/level3.txt"
+    };
 
     int level;
     bool stopGame{false};
