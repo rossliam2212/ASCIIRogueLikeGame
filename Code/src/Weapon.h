@@ -5,32 +5,32 @@
 #ifndef CODE_WEAPON_H
 #define CODE_WEAPON_H
 
-#include "Item.h"
 #include <iostream>
 #include <string>
 #include <random>
 #include <array>
 
+#include "Item.h"
+
 class Weapon : public Item {
+private:
     static constexpr int minWeaponDamage{10};
     static constexpr int maxWeaponDamage{30};
 
-private:
     int damageAmount;
     int price;
 
-    std::array<std::string, 11> meleeWeaponNames {
-        "Bayonet",
-        "Karambit",
+    const std::array<std::string, 10> meleeWeaponNames {
         "Club",
-        "Dagger",
-        "Halberd",
-        "Lance",
+        "Knuckleduster",
+        "Staff",
         "Pike",
-        "Quarterstaff",
-        "Sabre",
-        "Sword",
-        "Tomahawk"
+        "Mace"
+        "Tonfa",
+        "Stick",
+        "Pipe",
+        "Hammer",
+        "Baton"
     };
 
 public:

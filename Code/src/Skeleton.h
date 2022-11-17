@@ -8,6 +8,7 @@
 #include "Monster.h"
 
 class Skeleton : public Monster {
+private:
     static constexpr int skeletonStrength{20};
     static constexpr int skeletonHealth{100};
     static constexpr int skeletonDeathXP{15};
