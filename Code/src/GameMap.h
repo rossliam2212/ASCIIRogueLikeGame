@@ -23,6 +23,7 @@ public:
     static constexpr char floorChar = ' ';
     static constexpr char roofChar = '-';
     static constexpr char wallChar = '|';
+    static constexpr char nextLevelChar = '>';
 
     // Game Items
     static constexpr char healthPotionChar = '^';
@@ -55,6 +56,8 @@ public:
 
     void setXY(int x, int y, char value);
     void setXY(Point& position, char value);
+
+    void clearResourcesForLevelChange();
 
     std::vector<std::pair<char, Point>> getMonstersAndItems() const;
 };

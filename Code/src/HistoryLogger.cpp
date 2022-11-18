@@ -141,7 +141,17 @@ void HistoryLogger::logPlayerKilled(Monster* monster) {
 
     outputFile << "\n\t\t Player killed by " << monster->getName() << " (" << monster->getHealth() << "hp remaining)\n";
     outputFile.close();
+}
 
+void HistoryLogger::logLevelChange(int level) {
+    std::ofstream outputFile{fileName, std::ios::app};
+    if (!outputFile)
+        return;
+
+    outputFile << "\n====================================================\n";
+    outputFile << getDateTime() << "Moved to Level " << level << "\n";
+    outputFile << "====================================================\n";
+    outputFile.close();
 }
 
 /**

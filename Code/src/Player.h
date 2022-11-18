@@ -42,6 +42,8 @@ private:
     Point position;
     Point newPosition;
 
+    bool levelChange{false};
+
     bool attacking{false};
 
     bool removeItemPressed{false};
@@ -58,6 +60,7 @@ public:
     void increaseXP(int amount);
     void takeDamage(int amount);
     bool isDead() const;
+    void setPosition(const Point& newPos);
 
     int getStrength() const;
     int getHealth() const;
@@ -66,6 +69,9 @@ public:
     bool getAttacking() const;
     Point getPosition() const;
     Inventory getInventory() const;
+
+    bool getLevelChange() const;
+    void resetLevelChange();
 
     bool getNextWeaponPressed() const;
     void resetNextWeaponPressed();

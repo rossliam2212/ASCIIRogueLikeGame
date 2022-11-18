@@ -5,7 +5,7 @@
 #include "GameMap.h"
 
 GameMap::GameMap(int mapWidth, int mapHeight)
-    : mapWidth{mapWidth}, mapHeight{mapHeight}, monstersAndItems{} {
+    : map{nullptr}, mapWidth{mapWidth}, mapHeight{mapHeight}, monstersAndItems{} {
     map = new char[mapWidth * mapHeight];
 }
 
@@ -22,9 +22,9 @@ void GameMap::loadMap(int level, const std::array<std::string, 3>& levels) {
     utility::showConsoleCursor(FALSE);
 
 
-    // Read map from gameMap.txt
-//    std::ifstream gameMapFile{ "../levels/level1.txt", std::ios::in };
+    // Read level map from text files
     std::ifstream gameMapFile{levels[level-1], std::ios::in };
+//    std::ifstream gameMapFile{"../levels/level1.txt", std::ios::in };
 
     if (!gameMapFile) {
         std::cerr << "Error opening level file\n";
@@ -86,6 +86,14 @@ void GameMap::printMap() {
         }
         std::cout << "\n";
     }
+}
+
+/**
+ * This function is called when the player moves to a new level.
+ * The monsters and items vector is cleared, so it can be used for the new monsters and items in the next level.
+ */
+void GameMap::clearResourcesForLevelChange() {
+    monstersAndItems.clear();
 }
 
 /**

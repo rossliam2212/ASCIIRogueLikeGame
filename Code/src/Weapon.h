@@ -25,7 +25,7 @@ private:
         "Knuckleduster",
         "Staff",
         "Pike",
-        "Mace"
+        "Mace",
         "Tonfa",
         "Stick",
         "Pipe",

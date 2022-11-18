@@ -268,6 +268,7 @@ void Player::renderPlayer() {
 
 /**
  * Checks for collisions with all the different game items, such as gold coins, health potions, etc.
+ * Also checks for when the player collides with the character to move onto the next level.
  */
 void Player::checkCollisions() {
     if (map.getXY(position) == GameMap::goldCoinChar ||
@@ -277,8 +278,16 @@ void Player::checkCollisions() {
         // Setting the character at the position of the item back to the default map character '='
         map.setXY(position, GameMap::defaultChar);
     }
+
+    // Moving onto the next level
+    if (map.getXY(position) == GameMap::nextLevelChar) {
+        levelChange = true;
+    }
 }
 
+/**
+ * Levels up the player by increasing their max Health and strength.
+ */
 void Player::levelUp() {
     xpLevel++;
     maxHealth += 10;
@@ -298,6 +307,14 @@ void Player::increaseXP(int amount) {
         levelUp();
         xp = 0;
     }
+}
+
+/**
+ * Sets the players position.
+ * @param newPos The players new position.
+ */
+void Player::setPosition(const Point& newPos) {
+    position = newPos;
 }
 
 /**
@@ -354,6 +371,9 @@ Point Player::getPosition() const { return position; }
  */
 Inventory Player::getInventory() const { return inventory; }
 
+
+bool Player::getLevelChange() const { return levelChange; }
+void Player::resetLevelChange() { levelChange = false; }
 
 /**
  * Players next weapon pressed getter.

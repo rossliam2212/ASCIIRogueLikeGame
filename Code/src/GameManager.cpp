@@ -34,12 +34,39 @@ void GameManager::startGame() {
     setUpGameItemsAndMonsters();
 
     // Main Game Loop
-    while(!gameOver())
-        update();
+    while(!gameOver() && !levelsCompleted) {
+        if (player.getLevelChange()) {
+            nextLevel();
+            Sleep(5000);
+        } else {
+            update();
+        }
+    }
 
     // Called when game is over
-    renderGameOverUI();
+    if (levelsCompleted)
+        renderGameOverWinUI();
+    else
+        renderGameOverUI();
+
     historyLogger.logGameOver();
+}
+
+void GameManager::nextLevel() {
+    level++;
+    if (level >= 3) {
+        levelsCompleted = true;
+        return;
+    }
+
+//    cleanResourcesOnLevelChange();
+    map.loadMap(level, levels);
+    setUpGameItemsAndMonsters();
+    historyLogger.logLevelChange(level);
+
+    
+    player.setPosition(Point{2, 1});
+    player.resetLevelChange();
 }
 
 /**
@@ -140,6 +167,10 @@ void GameManager::renderUI() {
     std::cout << "}";
 }
 
+void GameManager::renderGameOverWinUI() {
+
+}
+
 /**
  *  Renders the Games game over UI elements.
  */
@@ -171,3 +202,16 @@ bool GameManager::gameOver() {
     return player.isDead();
 }
 
+void GameManager::cleanResourcesOnLevelChange() {
+    for (auto* m : monsters)
+        delete m;
+
+    monsters.clear();
+
+    for (auto* i : mapItems)
+        delete i;
+
+    mapItems.clear();
+
+    map.clearResourcesForLevelChange();
+}

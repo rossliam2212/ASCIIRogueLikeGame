@@ -36,19 +36,22 @@ private:
     };
 
     int level;
-    bool stopGame{false};
+    bool levelsCompleted{false};
 
 public:
     GameManager();
     ~GameManager();
     void startGame();
+    void nextLevel();
     bool gameOver();
 
 private:
     void update();
     void renderUI();
+    void renderGameOverWinUI();
     void renderGameOverUI();
     void setUpGameItemsAndMonsters();
+    void cleanResourcesOnLevelChange();
 };
 
 
