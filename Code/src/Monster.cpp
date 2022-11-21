@@ -3,9 +3,11 @@
 //
 
 #include "Monster.h"
+#include "Player.h"
 
-Monster::Monster(const GameMap& map, int strength, int health, int deathXP, int followDistance, Point startPosition)
-    : map{map},
+Monster::Monster(Player* player, const GameMap& map, int strength, int health, int deathXP, int followDistance, Point startPosition)
+    : player{player},
+      map{map},
       strength{strength},
       health{health},
       deathXP{deathXP},
@@ -15,61 +17,35 @@ Monster::Monster(const GameMap& map, int strength, int health, int deathXP, int 
 }
 
 bool Monster::operator==(const Monster& rhs) const {
-    return position == rhs.position;
+    return position == rhs.position && name == rhs.name;
 }
 
 void Monster::checkInFollowRange() {
-
-    if (map.getXY(position.getX(), position.getY() + 1) == GameMap::playerChar ||
-        map.getXY(position.getX(), position.getY() + 2) == GameMap::playerChar ||
-        map.getXY(position.getX(), position.getY() + 3) == GameMap::playerChar) {
-        utility::gotoScreenPosition(position);
-        std::cout << "Player in range \n";
-        move = Down;
-    } else
-        move = Idle;
-
-//    for (int i = 1; i <= followDistance; i++) {
-//        // Checking positions above
-//        if (map.getXY(positionX, positionY - i) == GameMap::playerChar) {
-//            move = Up;
-//            utility::gotoScreenPosition((short)positionX,(short)positionY);
-//            std::cout << "Player in range - " << i << "\n";
-//        }
-//
-//        // Checking positions below
-//        if (map.getXY(positionX, positionY + i) == GameMap::playerChar) {
-//            move = Down;
-//            utility::gotoScreenPosition((short)positionX,(short)positionY);
-//            std::cout << "Player in range - " << i << "\n";
-//        }
-//
-//        // Checking positions to the right
-//        if (map.getXY(positionX + i, positionY) == GameMap::playerChar) {
-//            move = Right;
-//            utility::gotoScreenPosition((short)positionX,(short)positionY);
-//            std::cout << "Player in range - " << i << "\n";
-//        }
-//
-//        // Checking positions left
-//        if (map.getXY(positionX - i, positionY) == GameMap::playerChar) {
-//            move = Left;
-//            utility::gotoScreenPosition((short)positionX,(short)positionY);
-//            std::cout << "Player in range - " << i << "\n";
-//        }
-//    }
-}
-
-bool Monster::inFollowRange() {
-    for (int i = 1; i <= followDistance; i++) {
-        if (map.getXY(position.getX(), position.getY() - i) == GameMap::playerChar ||
-            map.getXY(position.getX(), position.getY() + i) == GameMap::playerChar ||
-            map.getXY(position.getX() - i, position.getY()) == GameMap::playerChar ||
-            map.getXY(position.getX() + i, position.getY()) == GameMap::playerChar) {
-            return true;
+    if (!player->getAttacking()) {
+        // Up
+        if (position.getX() == player->getPosition().getX() && position.getY() - 3 == player->getPosition().getY()) {
+            move = Up;
+        }
+            // Down
+        else if (position.getX() == player->getPosition().getX() &&
+                 position.getY() + 3 == player->getPosition().getY()) {
+            move = Down;
+        }
+            // Right
+        else if (position.getX() + 3 == player->getPosition().getX() &&
+                 position.getY() == player->getPosition().getY()) {
+            move = Right;
+        }
+            // Left
+        else if (position.getX() - 3 == player->getPosition().getX() &&
+                 position.getY() == player->getPosition().getY()) {
+            move = Left;
+        }
+            // Idle
+        else {
+            move = Idle;
         }
     }
-    return false;
 }
 
 void Monster::takeDamage(int damageAmount) {

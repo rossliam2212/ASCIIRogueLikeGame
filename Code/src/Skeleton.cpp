@@ -4,9 +4,11 @@
 
 #include "Skeleton.h"
 
-Skeleton::Skeleton(const GameMap& map, Point position)
-    : Monster(map, skeletonStrength, skeletonHealth, skeletonDeathXP, skeletonFollowDistance, position) {
-    name = "Skeleton";
+const std::string Skeleton::skeletonName = "Skeleton";
+
+Skeleton::Skeleton(Player* player, const GameMap& map, const Point& position)
+    : Monster(player, map, skeletonStrength, skeletonHealth, skeletonDeathXP, skeletonFollowDistance, position) {
+    name = skeletonName;
 }
 
 void Skeleton::update() {

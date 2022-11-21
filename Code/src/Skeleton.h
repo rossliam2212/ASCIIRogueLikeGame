@@ -9,13 +9,14 @@
 
 class Skeleton : public Monster {
 private:
+    static const std::string skeletonName;
     static constexpr int skeletonStrength{20};
     static constexpr int skeletonHealth{100};
-    static constexpr int skeletonDeathXP{15};
+    static constexpr int skeletonDeathXP{20};
     static constexpr int skeletonFollowDistance{2};
 
 public:
-    Skeleton(const GameMap& map, Point position);
+    Skeleton(Player* player, const GameMap& map, const Point& position);
     ~Skeleton() override = default;
 
     void update() override;

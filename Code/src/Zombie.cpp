@@ -4,9 +4,11 @@
 
 #include "Zombie.h"
 
-Zombie::Zombie(const GameMap& map, Point position)
-    : Monster(map, zombieStrength, zombieHealth, zombieDeathXP, zombieFollowDistance, position) {
-    name = "Zombie";
+const std::string Zombie::zombieName = "Zombie";
+
+Zombie::Zombie(Player* player, const GameMap& map, const Point& position)
+    : Monster(player, map, zombieStrength, zombieHealth, zombieDeathXP, zombieFollowDistance, position) {
+    name = zombieName;
 }
 
 void Zombie::update() {
@@ -18,34 +20,31 @@ void Zombie::update() {
 
     checkInFollowRange();
 
-    utility::gotoScreenPosition(position);
-    switch(move) {
-        case Idle:
-//            std::cout << "Idle\n";
-            break;
-        case Down:
-            std::cout << "Down\n";
-            render();
-            break;
+//    utility::gotoScreenPosition(position);
+    if (move != Idle) {
+        switch (move) {
+            case Up:
+//                std::cout << "Up   \n";
+                newPosition.setXY(position.getX(), position.getY() - 1);
+                break;
+            case Down:
+//                std::cout << "Down \n";
+                newPosition.setXY(position.getX(), position.getY() + 1);
+                break;
+            case Right:
+//                std::cout << "Right\n";
+                newPosition.setXY(position.getX() + 1, position.getY());
+                break;
+            case Left:
+//                std::cout << "Left \n";
+                newPosition.setXY(position.getX() - 1, position.getY());
+                break;
+            default:
+//                std::cout << "Idle \n";
+                break;
+        }
+        render();
     }
-
-//    if (move != Idle) {
-//        switch (move) {
-//            case Up:
-//                newPosition.setXY(position.getX(), position.getY() - 1);
-//                break;
-//            case Down:
-//                newPosition.setXY(position.getX(), position.getY() + 1);
-//                break;
-//            case Right:
-//                newPosition.setXY(position.getX() + 1, position.getY());
-//                break;
-//            case Left:
-//                newPosition.setXY(position.getX() - 1, position.getY());
-//                break;
-//        }
-//        render();
-//    }
 }
 
 void Zombie::render() {
@@ -57,7 +56,7 @@ void Zombie::render() {
 
     position = newPosition;
 
-    Sleep(1000);
+    Sleep(120);
 }
 
 void Zombie::attack() {

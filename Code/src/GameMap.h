@@ -34,6 +34,8 @@ public:
     static constexpr char playerChar = '@';
     static constexpr char skeletonChar = 'S';
     static constexpr char zombieChar = 'Z';
+    static constexpr char goblinChar = 'G';
+    static constexpr char ogreChar = 'O';
 
 
 private:

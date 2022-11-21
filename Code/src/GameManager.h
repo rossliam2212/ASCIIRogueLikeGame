@@ -11,6 +11,8 @@
 #include "Monster.h"
 #include "Skeleton.h"
 #include "Zombie.h"
+#include "Goblin.h"
+#include "Ogre.h"
 #include "HistoryLogger.h"
 #include "GoldCoin.h"
 #include "HealthPotion.h"

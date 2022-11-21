@@ -64,7 +64,7 @@ void GameManager::nextLevel() {
     setUpGameItemsAndMonsters();
     historyLogger.logLevelChange(level);
 
-    
+
     player.setPosition(Point{2, 1});
     player.resetLevelChange();
 }
@@ -93,11 +93,17 @@ void GameManager::setUpGameItemsAndMonsters() {
     auto monstersAndItems = map.getMonstersAndItems();
 
     for (auto& monstersAndItem : monstersAndItems) {
-        if (monstersAndItem.first == GameMap::skeletonChar)
-            monsters.emplace_back(new Skeleton(map, monstersAndItem.second));
-
+        if (monstersAndItem.first == GameMap::skeletonChar){
+            monsters.emplace_back(new Skeleton(&player, map, monstersAndItem.second));
+        }
         else if (monstersAndItem.first == GameMap::zombieChar) {
-            monsters.emplace_back(new Zombie(map, monstersAndItem.second));
+            monsters.emplace_back(new Zombie(&player, map, monstersAndItem.second));
+        }
+        else if (monstersAndItem.first == GameMap::goblinChar) {
+            monsters.emplace_back(new Goblin(&player, map, monstersAndItem.second));
+        }
+        else if (monstersAndItem.first == GameMap::ogreChar) {
+            monsters.emplace_back(new Ogre(&player, map, monstersAndItem.second));
         }
         else if (monstersAndItem.first == GameMap::goldCoinChar) {
             mapItems.emplace_back(new GoldCoin{monstersAndItem.second});

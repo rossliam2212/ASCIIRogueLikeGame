@@ -34,6 +34,10 @@ set(SOURCE_FILES
         src/HealthPotion.cpp
         src/HealthPotion.h
         src/BuyMenu.cpp
-        src/BuyMenu.h)
+        src/BuyMenu.h
+        src/Goblin.cpp
+        src/Goblin.h
+        src/Ogre.cpp
+        src/Ogre.h)
 
 add_executable(Code ${SOURCE_FILES})

@@ -8,6 +8,8 @@
 #include <string>
 #include "GameMap.h"
 
+class Player;
+
 enum MoveState {
     Idle,
     Up,
@@ -20,6 +22,7 @@ class Monster {
 protected:
     std::string name;
     GameMap map;
+    Player* player;
 
     int strength;
     int health;
@@ -33,7 +36,7 @@ protected:
     Point newPosition;
 
 public:
-    Monster(const GameMap& map, int strength, int health, int deathXP, int followDistance, Point startPosition);
+    Monster(Player* player, const GameMap& map, int strength, int health, int deathXP, int followDistance, Point startPosition);
     virtual ~Monster() = default;
 
     bool operator==(const Monster& rhs) const;
@@ -43,7 +46,6 @@ public:
     virtual void attack() = 0;
 
     void checkInFollowRange();
-    bool inFollowRange();
     void takeDamage(int damageAmount);
     bool isDead() const;
 

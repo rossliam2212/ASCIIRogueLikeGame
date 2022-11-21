@@ -9,13 +9,14 @@
 
 class Zombie : public Monster {
 private:
+    static const std::string zombieName;
     static constexpr int zombieStrength{15};
     static constexpr int zombieHealth{100};
-    static constexpr int zombieDeathXP{10};
-    static constexpr int zombieFollowDistance{5};
+    static constexpr int zombieDeathXP{15};
+    static constexpr int zombieFollowDistance{3};
 
 public:
-    Zombie(const GameMap& map, Point position);
+    Zombie(Player* player, const GameMap& map, const Point& position);
     ~Zombie() override = default;
 
     void update() override;

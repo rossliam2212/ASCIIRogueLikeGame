@@ -1,50 +1,8 @@
-Game Session Started @ Thu Nov 17 23:47:37 2022
+Game Session Started @ Sun Nov 20 23:59:06 2022
 
-Thu Nov 17 23:47:45 2022
-	- Picked Up Weapon -> Mace(21 damage) @ position (42, 7)
-Thu Nov 17 23:47:55 2022
-	- Picked Up Item -> Health Potion @ position (72, 17)
-
-====================================================
-Thu Nov 17 23:48:01 2022
-Moved to Level 2
-====================================================
-Thu Nov 17 23:48:17 2022
-	- Picked Up Weapon -> Pike(30 damage) @ position (7, 16)
-
-Thu Nov 17 23:48:21 2022
-	- Attack Started -> Attacking Zombie (100hp) @ position (1, 6)
-
-		- Dealt 30 damage to Zombie (70hp remaining)
-		- Zombie dealt 15 damage to You (35hp remaining)
-		- Dealt 30 damage to Zombie (40hp remaining)
-		- Zombie dealt 15 damage to You (20hp remaining)
-		- Dealt 30 damage to Zombie (10hp remaining)
-		- Zombie dealt 15 damage to You (5hp remaining)
-		- Dealt 30 damage to Zombie (-20hp remaining)
-
-		- Killed Monster -> Zombie(+10xp) w/ Pike @ position (1, 6)
-Thu Nov 17 23:48:33 2022
+Sun Nov 20 23:59:13 2022
+	- Picked Up Weapon -> Tonfa(24 damage) @ position (42, 7)
+Sun Nov 20 23:59:17 2022
+	- Picked Up Item -> Health Potion @ position (62, 4)
+Sun Nov 20 23:59:18 2022
 	- Used Item -> Health Potion
-Thu Nov 17 23:48:35 2022
-	- Picked Up Item -> Gold Coin @ position (15, 8)
-
-Thu Nov 17 23:48:36 2022
-	- Attack Started -> Attacking Zombie (100hp) @ position (15, 4)
-
-		- Dealt 30 damage to Zombie (70hp remaining)
-		- Zombie dealt 15 damage to You (85hp remaining)
-		- Dealt 30 damage to Zombie (40hp remaining)
-		- Zombie dealt 15 damage to You (70hp remaining)
-		- Dealt 30 damage to Zombie (10hp remaining)
-		- Zombie dealt 15 damage to You (55hp remaining)
-		- Dealt 30 damage to Zombie (-20hp remaining)
-
-		- Killed Monster -> Zombie(+10xp) w/ Pike @ position (15, 4)
-Thu Nov 17 23:48:42 2022
-	- Picked Up Item -> Health Potion @ position (15, 1)
-Thu Nov 17 23:48:44 2022
-	- Used Item -> Health Potion
-
-Game Over @ Thu Nov 17 23:48:53 2022
-

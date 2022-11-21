@@ -48,12 +48,18 @@ void GameMap::loadMap(int level, const std::array<std::string, 3>& levels) {
     for (int y = 0; y < mapHeight; y++) {
         for (int x = 0; x < mapWidth; x++) {
             char currentChar = map[y * mapWidth + x];
-
+            
             if (currentChar == skeletonChar) {
                 monstersAndItems.emplace_back(std::make_pair(skeletonChar, Point{x,y}));
             }
             else if (currentChar == zombieChar) {
                 monstersAndItems.emplace_back(std::make_pair(zombieChar, Point{x,y}));
+            }
+            else if (currentChar == goblinChar) {
+                monstersAndItems.emplace_back(std::make_pair(goblinChar, Point{x,y}));
+            }
+            else if (currentChar == ogreChar) {
+                monstersAndItems.emplace_back(std::make_pair(ogreChar, Point{x,y}));
             }
             else if (currentChar == goldCoinChar) {
                 monstersAndItems.emplace_back(std::make_pair(goldCoinChar, Point{x, y}));

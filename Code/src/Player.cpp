@@ -61,13 +61,17 @@ void Player::handleInput() {
             if(map.getXY(position.getX(), position.getY() - 1) != GameMap::roofChar &&
                map.getXY(position.getX(), position.getY() - 1) != GameMap::wallChar &&
                map.getXY(position.getX(), position.getY() - 1) != GameMap::skeletonChar &&
-               map.getXY(position.getX(), position.getY() - 1) != GameMap::zombieChar) {
+               map.getXY(position.getX(), position.getY() - 1) != GameMap::zombieChar &&
+               map.getXY(position.getX(), position.getY() - 1) != GameMap::goblinChar &&
+               map.getXY(position.getX(), position.getY() - 1) != GameMap::ogreChar) {
                 newPosition.setXY(position.getX(), position.getY() - 1);
             }
 
             // Checking for enemies
             if(map.getXY(position.getX(), position.getY() - 1) == GameMap::skeletonChar ||
-               map.getXY(position.getX(), position.getY() - 1) == GameMap::zombieChar) {
+               map.getXY(position.getX(), position.getY() - 1) == GameMap::zombieChar ||
+               map.getXY(position.getX(), position.getY() - 1) == GameMap::goblinChar ||
+               map.getXY(position.getX(), position.getY() - 1) == GameMap::ogreChar) {
                 checkMonster(position.getX(), position.getY() - 1);
             }
         }
@@ -78,13 +82,17 @@ void Player::handleInput() {
             if(map.getXY(position.getX(), position.getY() + 1) != GameMap::roofChar &&
                map.getXY(position.getX(), position.getY() + 1) != GameMap::wallChar &&
                map.getXY(position.getX(), position.getY() + 1) != GameMap::skeletonChar &&
-               map.getXY(position.getX(), position.getY() + 1) != GameMap::zombieChar) {
+               map.getXY(position.getX(), position.getY() + 1) != GameMap::zombieChar &&
+               map.getXY(position.getX(), position.getY() + 1) != GameMap::goblinChar &&
+               map.getXY(position.getX(), position.getY() + 1) != GameMap::ogreChar) {
                 newPosition.setXY(position.getX(), position.getY() + 1);
             }
 
             // Checking for enemies
             if(map.getXY(position.getX(), position.getY() + 1) == GameMap::skeletonChar ||
-               map.getXY(position.getX(), position.getY() + 1) == GameMap::zombieChar) {
+               map.getXY(position.getX(), position.getY() + 1) == GameMap::zombieChar ||
+               map.getXY(position.getX(), position.getY() + 1) == GameMap::goblinChar ||
+               map.getXY(position.getX(), position.getY() + 1) == GameMap::ogreChar) {
                 checkMonster(position.getX(), position.getY() + 1);
             }
         }
@@ -95,13 +103,17 @@ void Player::handleInput() {
             if(map.getXY(position.getX() + 1, position.getY()) != GameMap::wallChar &&
                map.getXY(position.getX() + 1, position.getY()) != GameMap::roofChar &&
                map.getXY(position.getX() + 1, position.getY()) != GameMap::skeletonChar &&
-               map.getXY(position.getX() + 1, position.getY()) != GameMap::zombieChar) {
+               map.getXY(position.getX() + 1, position.getY()) != GameMap::zombieChar &&
+               map.getXY(position.getX() + 1, position.getY()) != GameMap::goblinChar &&
+               map.getXY(position.getX() + 1, position.getY()) != GameMap::ogreChar) {
                 newPosition.setXY(position.getX() + 1, position.getY());
             }
 
             // Checking for enemies
             if(map.getXY(position.getX() + 1, position.getY()) == GameMap::skeletonChar ||
-               map.getXY(position.getX() + 1, position.getY()) == GameMap::zombieChar) {
+               map.getXY(position.getX() + 1, position.getY()) == GameMap::zombieChar ||
+               map.getXY(position.getX() + 1, position.getY()) == GameMap::goblinChar ||
+               map.getXY(position.getX() + 1, position.getY()) == GameMap::ogreChar) {
                 checkMonster(position.getX() + 1, position.getY());
             }
         }
@@ -112,13 +124,17 @@ void Player::handleInput() {
             if(map.getXY(position.getX() - 1, position.getY()) != GameMap::wallChar &&
                map.getXY(position.getX() - 1, position.getY()) != GameMap::roofChar &&
                map.getXY(position.getX() - 1, position.getY()) != GameMap::skeletonChar &&
-               map.getXY(position.getX() - 1, position.getY()) != GameMap::zombieChar) {
+               map.getXY(position.getX() - 1, position.getY()) != GameMap::zombieChar &&
+               map.getXY(position.getX() - 1, position.getY()) != GameMap::goblinChar &&
+               map.getXY(position.getX() - 1, position.getY()) != GameMap::ogreChar) {
                 newPosition.setXY(position.getX() - 1, position.getY());
             }
 
             // Checking for enemies
             if(map.getXY(position.getX() - 1, position.getY()) == GameMap::skeletonChar ||
-               map.getXY(position.getX() - 1, position.getY()) == GameMap::zombieChar) {
+               map.getXY(position.getX() - 1, position.getY()) == GameMap::zombieChar ||
+               map.getXY(position.getX() - 1, position.getY()) == GameMap::goblinChar ||
+               map.getXY(position.getX() - 1, position.getY()) == GameMap::ogreChar) {
                 checkMonster(position.getX() - 1, position.getY());
             }
         }
@@ -181,18 +197,21 @@ void Player::attack(Monster* monster) {
     while (attacking) {
         if (!isDead()) {
 
+            // Players Turn
             int damageAmount;
-            Weapon w{Point{}}; // Temp Weapon variable
+            Weapon w{}; // Temp Weapon variable
+            w = inventory.getCurrentWeapon();
 
             // If the player does not have a weapon, use their strength to attack the enemy
             if (!inventory.getWeapons().empty()) {
-                w = dynamic_cast<Weapon&&>(inventory.getCurrentWeapon());
                 damageAmount = w.attack();
             } else {
                 damageAmount = strength;
             }
+
             monster->takeDamage(damageAmount);
             historyLogger.logDamageDealtToMonster(monster, damageAmount);
+
 
             if (monster->isDead()) {
                 attacking = false;
@@ -206,7 +225,9 @@ void Player::attack(Monster* monster) {
 
                 auto p = monster->getPosition();
                 map.setXY(p, GameMap::defaultChar);
-            } else {
+            }
+            else {
+                // Monsters Turn
                 Sleep(1000); // One-second delay
                 takeDamage(monster->getStrength());
                 historyLogger.logDamageDealtToPlayer(monster, health, monster->getStrength());
