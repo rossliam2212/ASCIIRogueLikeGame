@@ -46,7 +46,6 @@ public:
     virtual void render() = 0;
     virtual void attack() = 0;
 
-    void checkInFollowRange();
     void takeDamage(int damageAmount);
     bool isDead();
     void setIsDead();
@@ -59,6 +58,10 @@ public:
 
     bool getIsAttacking() const;
     void setAttacking();
+
+protected:
+    void checkInFollowRange();
+
 };
 
 
