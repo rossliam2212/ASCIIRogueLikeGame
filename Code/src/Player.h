@@ -13,6 +13,7 @@
 #include "Skeleton.h"
 #include "Zombie.h"
 #include "HistoryLogger.h"
+#include "BuyMenu.h"
 
 class Player {
 public:
@@ -42,9 +43,9 @@ private:
     Point position;
     Point newPosition;
 
-    bool levelChange{false};
-
     bool attacking{false};
+    bool levelChange{false};
+    bool buyMenu{false};
 
     bool removeItemPressed{false};
     bool nextWeaponPressed{false};
@@ -67,6 +68,7 @@ public:
     int getXP() const;
     int getXPLevel() const;
     bool getAttacking() const;
+    bool getBuyMenu() const;
     Point getPosition() const;
     Inventory getInventory() const;
 

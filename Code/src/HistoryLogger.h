@@ -25,6 +25,7 @@ public:
     explicit HistoryLogger(const std::string&& fileName);
 
     void logItemPickUp(Item* item);
+    void logWeaponBought(Item* weapon);
     void logUsedItem(Item* item);
     void logPlayerXPLevelUp(int xpLevel, int newMaxHealth, int newStrength);
 

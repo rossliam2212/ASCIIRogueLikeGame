@@ -21,29 +21,34 @@ bool Monster::operator==(const Monster& rhs) const {
 }
 
 void Monster::checkInFollowRange() {
-    if (!player->getAttacking()) {
-        // Up
-        if (position.getX() == player->getPosition().getX() && position.getY() - 3 == player->getPosition().getY()) {
-            move = Up;
-        }
+    if (!player->getAttacking() && !attacking) {
+        auto playerX = player->getPosition().getX();
+        auto playerY = player->getPosition().getY();
+
+        for (int i = 0; i < followDistance; i++) {
+            // Up
+            if (position.getX() == playerX && position.getY() - i == playerY) {
+                move = Up;
+                break;
+            }
             // Down
-        else if (position.getX() == player->getPosition().getX() &&
-                 position.getY() + 3 == player->getPosition().getY()) {
-            move = Down;
-        }
+            else if (position.getX() == playerX && position.getY() + i == playerY) {
+                move = Down;
+                break;
+            }
             // Right
-        else if (position.getX() + 3 == player->getPosition().getX() &&
-                 position.getY() == player->getPosition().getY()) {
-            move = Right;
-        }
+            else if (position.getX() + i == playerX && position.getY() == playerY) {
+                move = Right;
+                break;
+            }
             // Left
-        else if (position.getX() - 3 == player->getPosition().getX() &&
-                 position.getY() == player->getPosition().getY()) {
-            move = Left;
-        }
+            else if (position.getX() - i == playerX && position.getY() == playerY) {
+                move = Left;
+                break;
+            }
             // Idle
-        else {
-            move = Idle;
+            else
+                move = Idle;
         }
     }
 }
@@ -61,3 +66,6 @@ int Monster::getStrength() const { return strength; }
 int Monster::getHealth() const { return health; }
 int Monster::getDeathXP() const { return deathXP; }
 Point Monster::getPosition() const { return position; }
+
+bool Monster::getIsAttacking() const { return attacking; }
+void Monster::setAttacking() { attacking = true; }

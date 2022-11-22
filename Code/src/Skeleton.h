@@ -13,7 +13,7 @@ private:
     static constexpr int skeletonStrength{20};
     static constexpr int skeletonHealth{100};
     static constexpr int skeletonDeathXP{20};
-    static constexpr int skeletonFollowDistance{2};
+    static constexpr int skeletonFollowDistance{3};
 
 public:
     Skeleton(Player* player, const GameMap& map, const Point& position);

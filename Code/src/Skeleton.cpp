@@ -12,26 +12,41 @@ Skeleton::Skeleton(Player* player, const GameMap& map, const Point& position)
 }
 
 void Skeleton::update() {
-//    render();
+    checkInFollowRange();
 
-
-    // Check if the player is near
-    // If he is
-    //  Then move towards the player
-    // Else
-    //  Skeleton stays still
+    if (move != Idle) {
+        switch (move) {
+            case Up:
+                newPosition.setXY(position.getX(), position.getY() - 1);
+                break;
+            case Down:
+                newPosition.setXY(position.getX(), position.getY() + 1);
+                break;
+            case Right:
+                newPosition.setXY(position.getX() + 1, position.getY());
+                break;
+            case Left:
+                newPosition.setXY(position.getX() - 1, position.getY());
+                break;
+            default:
+                break;
+        }
+        render();
+    }
 }
 
 void Skeleton::render() {
     utility::gotoScreenPosition(position);
     std::cout << " ";
+    map.setXY(position, GameMap::defaultChar);
 
     utility::gotoScreenPosition(newPosition);
     std::cout << GameMap::skeletonChar;
+    map.setXY(newPosition, GameMap::skeletonChar);
 
     position = newPosition;
 
-    Sleep(1000);
+    Sleep(120);
 }
 
 void Skeleton::attack() {

@@ -15,7 +15,7 @@
 class Weapon : public Item {
 private:
     static constexpr int minWeaponDamage{10};
-    static constexpr int maxWeaponDamage{30};
+    static constexpr int maxWeaponDamage{25};
 
     int damageAmount;
     int price;
@@ -47,10 +47,10 @@ public:
 
     bool isEqual(const Item& item) const override;
     int getPrice() const;
+    static int randomNum(int min, int max);
 
 private:
     void generateStats();
-    static int randomNum(int min, int max);
 };
 
 

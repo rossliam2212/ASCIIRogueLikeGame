@@ -132,7 +132,7 @@ void GameManager::renderUI() {
 
     // Players Attacking State
     utility::gotoScreenPosition(0, mapSizeY + 4);
-    std::cout << "Attacking: " << (player.getAttacking() ? "Yes\n" : "No \n");
+    std::cout << "Buy Menu Available: " << (player.getBuyMenu() ? "Yes\n" : "No \n");
 
 
     // Inventory UI
@@ -145,7 +145,7 @@ void GameManager::renderUI() {
 
     if (!player.getInventory().getWeapons().empty()) {
         if (player.getNextWeaponPressed()) {
-            std::cout << "                                                     \n\n";
+            std::cout << "                                                                              \n\n";
             player.resetNextWeaponPressed();
         }
         else

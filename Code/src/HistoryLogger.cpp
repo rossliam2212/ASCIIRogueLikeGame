@@ -49,6 +49,16 @@ void HistoryLogger::logItemPickUp(Item *item) {
     outputFile.close();
 }
 
+void HistoryLogger::logWeaponBought(Item* weapon) {
+    std::ofstream outputFile{fileName, std::ios::app};
+    if (!outputFile)
+        return;
+
+    auto w = dynamic_cast<Weapon&>(*weapon);
+    outputFile << getDateTime() << "\t- Bought Weapon for " << w.getPrice() << " gold coins -> " << w.getName() << "(" << w.attack() << " damage)" << "\n";
+    outputFile.close();
+}
+
 void HistoryLogger::logPlayerXPLevelUp(int xpLevel, int newMaxHealth, int newStrength) {
     std::ofstream outputFile{fileName, std::ios::app};
     if (!outputFile)
@@ -139,7 +149,7 @@ void HistoryLogger::logPlayerKilled(Monster* monster) {
     if (!outputFile)
         return;
 
-    outputFile << "\n\t\t Player killed by " << monster->getName() << " (" << monster->getHealth() << "hp remaining)\n";
+    outputFile << "\n\t\t You were killed by " << monster->getName() << " (" << monster->getHealth() << "hp remaining)\n";
     outputFile.close();
 }
 

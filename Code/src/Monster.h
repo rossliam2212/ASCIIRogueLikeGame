@@ -27,13 +27,13 @@ protected:
     int strength;
     int health;
     int deathXP;
-
     int followDistance;
-    bool followingPLayer{false};
-    MoveState move{Idle};
+
+    bool attacking{false};
 
     Point position;
     Point newPosition;
+    MoveState move{Idle};
 
 public:
     Monster(Player* player, const GameMap& map, int strength, int health, int deathXP, int followDistance, Point startPosition);
@@ -54,6 +54,9 @@ public:
     int getHealth() const;
     int getDeathXP() const;
     Point getPosition() const;
+
+    bool getIsAttacking() const;
+    void setAttacking();
 };
 
 

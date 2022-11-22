@@ -12,6 +12,15 @@ class BuyMenu {
 private:
     static constexpr int numberOfWeapons{3};
 
+    static constexpr int level1WeaponStrengthMin{15};
+    static constexpr int level1WeaponStrengthMax{35};
+
+    static constexpr int level2WeaponStrengthMin{30};
+    static constexpr int level2WeaponStrengthMax{45};
+
+    static constexpr int level3WeaponStrengthMin{40};
+    static constexpr int level3WeaponStrengthMax{60};
+
     int currentLevel;
     int playersXPLevel;
     std::vector<Weapon*> weapons;
@@ -28,10 +37,13 @@ private:
 
 public:
     BuyMenu(int currentLevel, int playersXPLevel);
+    ~BuyMenu();
+    void displayWeapons();
+    Weapon* pickWeapon(int choice);
 
 private:
     void createWeapons();
-    void displayWeapons();
+    int getWeaponCost(int weaponStrength) const;
 };
 
 

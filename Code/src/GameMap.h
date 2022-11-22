@@ -29,6 +29,7 @@ public:
     static constexpr char healthPotionChar = '^';
     static constexpr char goldCoinChar = '*';
     static constexpr char weaponChar = '?';
+    static constexpr char buyMenuChar = '$';
 
     // Characters
     static constexpr char playerChar = '@';

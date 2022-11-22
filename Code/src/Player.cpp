@@ -174,8 +174,37 @@ void Player::handleInput() {
         }
 
         // ==== Opening Buy Menu - B (66) ====
-        if(GetKeyState(66) & 0x8000) {
+        if(GetKeyState(66) & 0x8000 && buyMenu) {
+            auto bm = new BuyMenu{1, xpLevel};
+            Item* w = nullptr;
 
+            utility::gotoScreenPosition(0, 40);
+            bm->displayWeapons();
+
+            while (buyMenu) {
+                // Selecting first weapon - 1 (49)
+                if (GetKeyState(49) & 0x8000) {
+                    w = bm->pickWeapon(1);
+                    break;
+                }
+                // Selecting second weapon - 2 (50)
+                else if (GetKeyState(50) & 0x8000) {
+                    w = bm->pickWeapon(2);
+                    break;
+                }
+                // Selecting third weapon - 3 (51)
+                else if (GetKeyState(51) & 0x8000) {
+                    w = bm->pickWeapon(3);
+                    break;
+                }
+            }
+            Sleep(500); // Half second delay
+
+            // TODO Clear buy menu ui text & delete buy menu pointer
+            buyMenu = false;
+            inventory.addItem(w);
+            historyLogger.logWeaponBought(w);
+//            delete bm;
         }
 
         // ==== FOR TESTING - Removing Players Health - X (88) ====
@@ -250,6 +279,7 @@ void Player::checkMonster(int x, int y) {
         if (m->getPosition().getX() == x && m->getPosition().getY() == y) {
             attacking = true;
             historyLogger.logAttackStarted(m);
+            m->setAttacking();
             attack(m);
             break;
         }
@@ -300,6 +330,12 @@ void Player::checkCollisions() {
         map.setXY(position, GameMap::defaultChar);
     }
 
+    // Buy Menu
+    if (map.getXY(position) == GameMap::buyMenuChar) {
+        buyMenu = true;
+        map.setXY(position, GameMap::defaultChar);
+    }
+
     // Moving onto the next level
     if (map.getXY(position) == GameMap::nextLevelChar) {
         levelChange = true;
@@ -324,7 +360,7 @@ void Player::levelUp() {
 void Player::increaseXP(int amount) {
     xp += amount;
 
-    if (xp > 50) {
+    if (xp > 30) {
         levelUp();
         xp = 0;
     }
@@ -379,6 +415,12 @@ int Player::getXPLevel() const { return xpLevel; }
  * @return The players attacking flag.
  */
 bool Player::getAttacking() const { return attacking; }
+
+/**
+ * Players buy menu flag getter.
+ * @return The players buy menu flag.
+ */
+bool Player::getBuyMenu() const { return buyMenu; }
 
 /**
  * Player position getter.

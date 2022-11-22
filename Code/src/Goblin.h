@@ -13,7 +13,7 @@ private:
     static constexpr int goblinStrength{10};
     static constexpr int goblinHealth{100};
     static constexpr int goblinDeathXP{10};
-    static constexpr int goblinFollowDistance{4};
+    static constexpr int goblinFollowDistance{5};
 
 public:
     Goblin(Player* player, const GameMap& map, const Point& position);
