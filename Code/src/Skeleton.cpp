@@ -3,6 +3,7 @@
 //
 
 #include "Skeleton.h"
+#include "Player.h"
 
 const std::string Skeleton::skeletonName = "Skeleton";
 
@@ -38,16 +39,22 @@ void Skeleton::update() {
 }
 
 void Skeleton::render() {
-    utility::gotoScreenPosition(position);
-    std::cout << " ";
-    map.setXY(position, GameMap::defaultChar);
+    if (newPosition == player->getPosition()) {
+        utility::gotoScreenPosition(position);
+        std::cout << GameMap::skeletonChar;
+        map.setXY(position, GameMap::skeletonChar);
+    }
+    else {
+        utility::gotoScreenPosition(position);
+        std::cout << " ";
+        map.setXY(position, GameMap::defaultChar);
 
-    utility::gotoScreenPosition(newPosition);
-    std::cout << GameMap::skeletonChar;
-    map.setXY(newPosition, GameMap::skeletonChar);
+        utility::gotoScreenPosition(newPosition);
+        std::cout << GameMap::skeletonChar;
+        map.setXY(newPosition, GameMap::skeletonChar);
 
-    position = newPosition;
-
+        position = newPosition;
+    }
     Sleep(120);
 }
 

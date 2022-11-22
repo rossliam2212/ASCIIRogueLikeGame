@@ -51,7 +51,7 @@ public:
     GameMap(int mapWidth, int mapHeight);
     ~GameMap();
 
-    void loadMap(int level, const std::array<std::string, 3> &levels);
+    void loadMap(int level, const std::array<std::string, 5> &levels);
     void printMap();
 
     char getXY(int x, int y);

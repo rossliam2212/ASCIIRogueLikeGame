@@ -6,6 +6,7 @@
 #define CODE_WEAPON_H
 
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <random>
 #include <array>
@@ -14,11 +15,13 @@
 
 class Weapon : public Item {
 private:
+    static constexpr int defaultNumberOfAttacks{3};
     static constexpr int minWeaponDamage{10};
-    static constexpr int maxWeaponDamage{25};
+    static constexpr int maxWeaponDamage{20};
 
     int damageAmount;
     int price;
+    int numberOfAttacks;
 
     const std::array<std::string, 10> meleeWeaponNames {
         "Club",
@@ -36,12 +39,14 @@ private:
 public:
     Weapon();
     explicit Weapon(const Point& position);
-    Weapon(const std::string &name, int damageAmount, int price);
+    Weapon(const std::string &name, int damageAmount, int price, int numberOfAttacks);
     ~Weapon() override = default;
 
     Weapon& operator=(const Weapon& rhs);
 
-    int attack() const;
+    int attack();
+    bool isBroken() const;
+    int getAttacksRemaining() const;
 
     std::ostream& write(std::ostream& os) const override;
 

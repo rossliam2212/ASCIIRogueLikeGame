@@ -22,7 +22,7 @@ private:
     static constexpr int mapSizeX{83}; // 82 + 1 (WIDTH)
     static constexpr int mapSizeY{26}; // 26 (Height)
 
-    static constexpr int numberOfLevels{3};
+    static constexpr int numberOfLevels{5};
 
     int level;
     bool levelsCompleted{false};
@@ -37,7 +37,9 @@ private:
     const std::array<std::string, numberOfLevels> levels {
         "../levels/level1.txt",
         "../levels/level2.txt",
-        "../levels/level3.txt"
+        "../levels/level3.txt",
+        "../levels/level4.txt",
+        "../levels/level5.txt"
     };
 
 

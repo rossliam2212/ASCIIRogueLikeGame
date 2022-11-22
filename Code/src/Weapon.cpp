@@ -11,14 +11,16 @@ Weapon::Weapon()
 Weapon::Weapon(const Point& position)
     : Item{"DefaultItemName", position},
       damageAmount{},
-      price{} {
+      price{},
+      numberOfAttacks{defaultNumberOfAttacks} {
     generateStats();
 }
 
-Weapon::Weapon(const std::string &name, int damageAmount, int price)
+Weapon::Weapon(const std::string &name, int damageAmount, int price, int numberOfAttacks)
     : Item{name, Point{}},
       damageAmount{damageAmount},
-      price{price} {
+      price{price},
+      numberOfAttacks{numberOfAttacks} {
 }
 
 Weapon& Weapon::operator=(const Weapon &rhs) {
@@ -29,10 +31,21 @@ Weapon& Weapon::operator=(const Weapon &rhs) {
     return *this;
 }
 
-int Weapon::attack() const { return damageAmount; }
+int Weapon::attack() {
+    numberOfAttacks--;
+    return damageAmount;
+}
+
+bool Weapon::isBroken() const {
+    return numberOfAttacks <= 0;
+}
+
+int Weapon::getAttacksRemaining() const {
+    return numberOfAttacks;
+}
 
 std::ostream& Weapon::write(std::ostream& os) const {
-    os << name << ": " << damageAmount << " damage";
+    os << std::left << std::setw(10) << name << ": " << damageAmount << " damage (" << numberOfAttacks << " attacks)";
     return os;
 }
 

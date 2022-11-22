@@ -13,14 +13,23 @@ class BuyMenu {
 private:
     static constexpr int numberOfWeapons{3};
 
-    static constexpr int level1WeaponStrengthMin{15};
-    static constexpr int level1WeaponStrengthMax{35};
+    static constexpr int level1WeaponStrengthMin{20};
+    static constexpr int level1WeaponStrengthMax{29};
 
     static constexpr int level2WeaponStrengthMin{30};
-    static constexpr int level2WeaponStrengthMax{45};
+    static constexpr int level2WeaponStrengthMax{39};
 
     static constexpr int level3WeaponStrengthMin{40};
-    static constexpr int level3WeaponStrengthMax{60};
+    static constexpr int level3WeaponStrengthMax{49};
+
+    static constexpr int level4WeaponStrengthMin{50};
+    static constexpr int level4WeaponStrengthMax{59};
+
+    static constexpr int level5WeaponStrengthMin{60};
+    static constexpr int level5WeaponStrengthMax{70};
+
+    static constexpr int discountXPLevel{3}; // The XP level the player needs to be to get a discount on weapons
+    static constexpr int discount{5}; // The discount the players gets on weapons
 
     int currentLevel;
     int playersXPLevel;

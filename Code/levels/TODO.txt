@@ -3,6 +3,6 @@ TODO:
 - Go through each level and add more coins - to be able to purchase weapons
 - Create new levels - maybe 5 in total
 
-- Fix enemies - Problem with them stacking on top of the player
-
 - Comment all code
+
+- Fix attacks by being subtracted on weapons

@@ -13,7 +13,7 @@ GameMap::~GameMap() {
     delete[] map;
 }
 
-void GameMap::loadMap(int level, const std::array<std::string, 3>& levels) {
+void GameMap::loadMap(int level, const std::array<std::string, 5>& levels) {
     HWND console = GetConsoleWindow();
     RECT r;
     GetWindowRect(console, &r);
@@ -22,9 +22,8 @@ void GameMap::loadMap(int level, const std::array<std::string, 3>& levels) {
     utility::showConsoleCursor(FALSE);
 
 
-    // Read level map from text files
+    // Read level maps from text files
     std::ifstream gameMapFile{levels[level-1], std::ios::in };
-//    std::ifstream gameMapFile{"../levels/level1.txt", std::ios::in };
 
     if (!gameMapFile) {
         std::cerr << "Error opening level file\n";

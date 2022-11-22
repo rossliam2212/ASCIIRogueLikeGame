@@ -3,6 +3,7 @@
 //
 
 #include "Ogre.h"
+#include "Player.h"
 
 const std::string Ogre::ogreName = "Ogre";
 
@@ -36,16 +37,22 @@ void Ogre::update() {
 }
 
 void Ogre::render() {
-    utility::gotoScreenPosition(position);
-    std::cout << " ";
-    map.setXY(position, GameMap::defaultChar);
+    if (newPosition == player->getPosition()) {
+        utility::gotoScreenPosition(position);
+        std::cout << GameMap::ogreChar;
+        map.setXY(position, GameMap::ogreChar);
+    }
+    else {
+        utility::gotoScreenPosition(position);
+        std::cout << " ";
+        map.setXY(position, GameMap::defaultChar);
 
-    utility::gotoScreenPosition(newPosition);
-    std::cout << GameMap::ogreChar;
-    map.setXY(newPosition, GameMap::ogreChar);
+        utility::gotoScreenPosition(newPosition);
+        std::cout << GameMap::ogreChar;
+        map.setXY(newPosition, GameMap::ogreChar);
 
-    position = newPosition;
-
+        position = newPosition;
+    }
     Sleep(120);
 }
 

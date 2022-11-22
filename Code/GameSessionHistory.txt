@@ -1,25 +1,17 @@
-Game Session Started @ Tue Nov 22 14:50:00 2022
+Game Session Started @ Tue Nov 22 16:28:30 2022
 
-Tue Nov 22 14:50:08 2022
-	- Picked Up Weapon -> Pike(20 damage) @ position (42, 7)
-Tue Nov 22 14:50:18 2022
-	- Picked Up Item -> Health Potion @ position (72, 17)
+Tue Nov 22 16:28:55 2022
+	- Bought Weapon for 12 gold coins -> Karambit(29 damage)
 
-====================================================
-Tue Nov 22 14:50:23 2022
-Moved to Level 2
-====================================================
-Tue Nov 22 14:50:35 2022
-	- Picked Up Weapon -> Tonfa(16 damage) @ position (7, 16)
-Tue Nov 22 14:50:37 2022
-	- Dropped Weapon -> Pike
-Tue Nov 22 14:50:42 2022
-	- Dropped Weapon -> Tonfa
-Tue Nov 22 14:50:51 2022
-	- Picked Up Item -> Gold Coin @ position (7, 22)
-Tue Nov 22 14:50:51 2022
-	- Picked Up Item -> Gold Coin @ position (7, 24)
-Tue Nov 22 14:50:54 2022
-	- Picked Up Item -> Health Potion @ position (30, 24)
-Tue Nov 22 14:50:59 2022
-	- Picked Up Weapon -> Hammer(11 damage) @ position (57, 18)
+Tue Nov 22 16:28:58 2022
+	- Attack Started -> Attacking Goblin (100hp) @ position (15, 6)
+
+		- Dealt 29 damage to Goblin (71hp remaining)
+		- Goblin dealt 10 damage to You (40hp remaining)
+		- Dealt 29 damage to Goblin (42hp remaining)
+		- Goblin dealt 10 damage to You (30hp remaining)
+		- Dealt 29 damage to Goblin (13hp remaining)
+		- Goblin dealt 10 damage to You (20hp remaining)
+		- Dealt 29 damage to Goblin (-16hp remaining)
+
+		- Killed Monster -> Goblin(+10xp) w/ Karambit(2 attacks remaining) @ position (15, 6)

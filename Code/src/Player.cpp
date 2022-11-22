@@ -195,7 +195,7 @@ void Player::openBuyMenu() {
     Weapon* w;
     int weaponPrice;
 //    int goldCoins{inventory.getNumGoldCoins()};
-    int goldCoins{50};
+    int goldCoins{50}; // TODO Change this -> Used for testing
 
     bm->displayWeapons();
 
@@ -223,6 +223,8 @@ void Player::openBuyMenu() {
 
     buyMenu = false;
 
+    // If the player does not have enough gold to buy the weapon, nothing will happen and the buy menu
+    // will close
     if (goldCoins >= weaponPrice) {
         inventory.addItem(w);
         historyLogger.logWeaponBought(w);
@@ -247,11 +249,22 @@ void Player::attack(Monster* monster) {
             // Players Turn
             int damageAmount;
             Weapon w{}; // Temp Weapon variable
-            w = inventory.getCurrentWeapon();
 
             // If the player does not have a weapon, use their strength to attack the enemy
             if (!inventory.getWeapons().empty()) {
-                damageAmount = w.attack();
+
+                w = inventory.getCurrentWeapon();
+
+                // If the player does have a weapon, check the weapon to make sure it has attacks remaining.
+                if (!w.isBroken()) {
+                    // Use the weapon if it does have attacks remaining
+                    damageAmount = w.attack();
+                }
+                else {
+                    // Use the players strength if it does not have attacks remaining
+                    damageAmount = strength;
+                    inventory.removeCurrentWeapon();
+                }
             } else {
                 damageAmount = strength;
             }
@@ -284,6 +297,10 @@ void Player::attack(Monster* monster) {
             historyLogger.logPlayerKilled(monster);
         }
     }
+}
+
+bool Player::checkWeapon(Weapon* w) {
+    return w->isBroken();
 }
 
 /**
@@ -404,52 +421,15 @@ void Player::takeDamage(int amount) { health -= amount; }
  */
 bool Player::isDead() const { return health <= 0; }
 
-/**
- * Players strength getter.
- * @return The players strength.
- */
+
+// Getters & Setters
 int Player::getStrength() const { return  strength; }
-
-/**
- * Players health getter.
- * @return The players health.
- */
 int Player::getHealth() const { return health; }
-
-/**
- * Players XP getter.
- * @return The players XP.
- */
 int Player::getXP() const { return xp; }
-
-/**
- * Players XP level getter.
- * @return The players xp level.
- */
 int Player::getXPLevel() const { return xpLevel; }
-
-/**
- * Players attacking flag getter.
- * @return The players attacking flag.
- */
 bool Player::getAttacking() const { return attacking; }
-
-/**
- * Players buy menu flag getter.
- * @return The players buy menu flag.
- */
 bool Player::getBuyMenu() const { return buyMenu; }
-
-/**
- * Player position getter.
- * @return The players position.
- */
 Point Player::getPosition() const { return position; }
-
-/**
- * Players inventory getter.
- * @return The players inventory.
- */
 Inventory Player::getInventory() const { return inventory; }
 
 

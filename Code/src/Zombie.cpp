@@ -39,16 +39,22 @@ void Zombie::update() {
 }
 
 void Zombie::render() {
-    utility::gotoScreenPosition(position);
-    std::cout << " ";
-    map.setXY(position, GameMap::defaultChar);
+    if (newPosition == player->getPosition()) {
+        utility::gotoScreenPosition(position);
+        std::cout << GameMap::zombieChar;
+        map.setXY(position, GameMap::zombieChar);
+    }
+    else {
+        utility::gotoScreenPosition(position);
+        std::cout << " ";
+        map.setXY(position, GameMap::defaultChar);
 
-    utility::gotoScreenPosition(newPosition);
-    std::cout << GameMap::zombieChar;
-    map.setXY(newPosition, GameMap::zombieChar);
+        utility::gotoScreenPosition(newPosition);
+        std::cout << GameMap::zombieChar;
+        map.setXY(newPosition, GameMap::zombieChar);
 
-    position = newPosition;
-
+        position = newPosition;
+    }
     Sleep(120);
 }
 

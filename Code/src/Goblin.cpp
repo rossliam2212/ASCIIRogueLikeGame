@@ -3,6 +3,7 @@
 //
 
 #include "Goblin.h"
+#include "Player.h"
 
 const std::string Goblin::goblinName = "Goblin";
 
@@ -36,16 +37,22 @@ void Goblin::update() {
 }
 
 void Goblin::render() {
-    utility::gotoScreenPosition(position);
-    std::cout << " ";
-    map.setXY(position, GameMap::defaultChar);
+    if (newPosition == player->getPosition()) {
+        utility::gotoScreenPosition(position);
+        std::cout << GameMap::goblinChar;
+        map.setXY(position, GameMap::goblinChar);
+    }
+    else {
+        utility::gotoScreenPosition(position);
+        std::cout << " ";
+        map.setXY(position, GameMap::defaultChar);
 
-    utility::gotoScreenPosition(newPosition);
-    std::cout << GameMap::goblinChar;
-    map.setXY(newPosition, GameMap::goblinChar);
+        utility::gotoScreenPosition(newPosition);
+        std::cout << GameMap::goblinChar;
+        map.setXY(newPosition, GameMap::goblinChar);
 
-    position = newPosition;
-
+        position = newPosition;
+    }
     Sleep(120);
 }
 

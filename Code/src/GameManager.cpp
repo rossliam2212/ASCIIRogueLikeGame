@@ -151,7 +151,7 @@ void GameManager::renderUI() {
         else
             std::cout << player.getInventory().getCurrentWeapon() << "\n\n";
     } else {
-        std::cout << "No Weapons                                                 \n\n";
+        std::cout << "No Weapons                                                                        \n\n";
     }
 
     std::cout << " Weapons: \n";
@@ -159,7 +159,7 @@ void GameManager::renderUI() {
     if (!player.getInventory().getWeapons().empty()) {
         if (player.getRemoveCurrentWeaponPressed()) {
             for (int i = 0; i < player.getInventory().getWeapons().size()+3; i++) {
-                std::cout << "                                                     \n";
+                std::cout << "                                                                              \n";
             }
             player.resetRemoveCurrentWeaponPressed();
         }

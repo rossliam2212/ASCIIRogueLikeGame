@@ -38,6 +38,14 @@ void BuyMenu::createWeapons() {
             minStrength = level3WeaponStrengthMin;
             maxStrength = level3WeaponStrengthMax;
             break;
+        case 4:
+            minStrength = level4WeaponStrengthMin;
+            maxStrength = level4WeaponStrengthMax;
+            break;
+        case 5:
+            minStrength = level5WeaponStrengthMin;
+            maxStrength = level5WeaponStrengthMax;
+            break;
     }
 
     for (int i = 0; i < numberOfWeapons; i++) {
@@ -45,7 +53,7 @@ void BuyMenu::createWeapons() {
         auto strength = Weapon::randomNum(minStrength, maxStrength);
         auto cost = getWeaponCost(strength);
 
-        weapons.emplace_back(new Weapon{name, strength, cost});
+        weapons.emplace_back(new Weapon{name, strength, cost, 3});
     }
 }
 
@@ -54,7 +62,7 @@ void BuyMenu::createWeapons() {
  */
 void BuyMenu::displayWeapons() {
     utility::gotoScreenPosition(0, 40);
-    std::cout << "Buy Menu: " << currentLevel << "\n";
+    std::cout << "Buy Menu: (Level - " << currentLevel << ")\n";
     for (int i = 0; i < numberOfWeapons; i++) {
         std::cout << "\t" << (i+1) << " - " << *weapons[i] << " - " << weapons[i]->getPrice() << " gold coins\n";
     }
@@ -65,11 +73,10 @@ void BuyMenu::displayWeapons() {
  */
 void BuyMenu::clearBuyMenu() {
     utility::gotoScreenPosition(0, 40);
-    std::cout << "                                                   \n";
-    std::cout << "                                                   \n";
-    std::cout << "                                                   \n";
-    std::cout << "                                                   \n";
-    std::cout << "                                                   \n";
+    std::cout << "                                                                             \n";
+    std::cout << "                                                                             \n";
+    std::cout << "                                                                             \n";
+    std::cout << "                                                                             \n";
 }
 
 /**
@@ -91,23 +98,25 @@ int BuyMenu::getWeaponCost(int weaponStrength) const {
 
     switch(currentLevel) {
         case 1:
-            if (weaponStrength <= 25)
-                cost = 10;
-            else
-                cost = 15;
+            if (weaponStrength <= 25) cost = 10;
+            else cost = 12;
             break;
         case 2:
-            if (weaponStrength <= 40)
-                cost = 20;
-            else
-                cost = 25;
+            if (weaponStrength <= 35) cost = 15;
+            else cost = 18;
             break;
         case 3:
-            if (weaponStrength <= 55)
-                cost = 30;
-            else
-                cost = 35;
+            if (weaponStrength <= 45) cost = 21;
+            else cost = 24;
+            break;
+        case 4:
+            if (weaponStrength <= 55) cost = 28;
+            else cost = 32;
+            break;
+        case 5:
+            if (weaponStrength <= 65) cost = 35;
+            else cost = 40;
             break;
     }
-    return playersXPLevel >= 3 ? cost - 5 : cost; // 5 coin discount if players xp level is 3 or above
+    return playersXPLevel >= discountXPLevel ? cost - discount : cost; // 5 coin discount if players xp level is 3 or above
 }

@@ -17,8 +17,8 @@ Monster::Monster(Player* player, const GameMap& map, int strength, int health, i
 }
 
 /**
- * Overloaded Equality operator.
- * @param rhs The object to compare tyo.
+ * Overloaded == operator.
+ * @param rhs The object to compare to.
  * @return True if the objects are equal, False otherwise.
  */
 bool Monster::operator==(const Monster& rhs) const {
@@ -80,6 +80,11 @@ bool Monster::isDead() {
     return dead;
 }
 
+/**
+ * Sets the monsters dead flag to true - indicating that the monster is dead and wont be used anymore.
+ * Used when a monster is either killed or on monsters that are still alive after the player moves to
+ * the next level.
+ */
 void Monster::setIsDead() {
     dead = true;
 }

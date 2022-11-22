@@ -39,7 +39,7 @@ private:
     int maxHealth;
     int xpLevel;
     int xp;
-    int& gameLevel;
+    int& gameLevel; // Reference to game level from GameManager
 
     Point position;
     Point newPosition;
@@ -90,6 +90,7 @@ private:
     void attack(Monster* monster);
     void checkMonster(int x, int y);
     void checkItem(int x, int y);
+    bool checkWeapon(Weapon* w);
     void openBuyMenu();
 };
 
