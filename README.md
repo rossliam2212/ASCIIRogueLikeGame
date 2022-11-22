@@ -94,6 +94,6 @@ found [here](https://github.com/rossliam2212/ASCIIRogueLikeGame/tree/main/Code/l
 
 Here is an example of how the level 1 looks when playing the game.
 
-*Insert Image of Level 1*
+![1](https://user-images.githubusercontent.com/73957889/203439973-41bdd2e2-830e-4bb4-b654-c86a336b2ae8.png)
 
 ## UML Class Diagram
