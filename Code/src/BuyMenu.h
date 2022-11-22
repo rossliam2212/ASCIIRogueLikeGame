@@ -6,6 +6,7 @@
 #define CODE_BUYMENU_H
 
 #include <vector>
+#include "utility.h"
 #include "Weapon.h"
 
 class BuyMenu {
@@ -39,6 +40,7 @@ public:
     BuyMenu(int currentLevel, int playersXPLevel);
     ~BuyMenu();
     void displayWeapons();
+    void clearBuyMenu();
     Weapon* pickWeapon(int choice);
 
 private:

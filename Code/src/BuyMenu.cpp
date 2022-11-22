@@ -3,6 +3,7 @@
 //
 
 #include "BuyMenu.h"
+#include "utility.h"
 
 BuyMenu::BuyMenu(int currentLevel, int playersXPLevel)
     : currentLevel{currentLevel},
@@ -16,6 +17,10 @@ BuyMenu::~BuyMenu() {
     }
 }
 
+/**
+ * Creates the purchasable weapons depending on the current level of the game
+ * and players xp level.
+ */
 void BuyMenu::createWeapons() {
     int minStrength;
     int maxStrength;
@@ -44,17 +49,43 @@ void BuyMenu::createWeapons() {
     }
 }
 
+/**
+ * Displays the weapons that the player can purchase.
+ */
 void BuyMenu::displayWeapons() {
-    std::cout << "Buy Menu:\n";
+    utility::gotoScreenPosition(0, 40);
+    std::cout << "Buy Menu: " << currentLevel << "\n";
     for (int i = 0; i < numberOfWeapons; i++) {
-        std::cout << "\t" << (i+1) << " - " << *weapons[i] << "\n";
+        std::cout << "\t" << (i+1) << " - " << *weapons[i] << " - " << weapons[i]->getPrice() << " gold coins\n";
     }
 }
 
+/*
+ * Clears the buy menu ui from the screen.
+ */
+void BuyMenu::clearBuyMenu() {
+    utility::gotoScreenPosition(0, 40);
+    std::cout << "                                                   \n";
+    std::cout << "                                                   \n";
+    std::cout << "                                                   \n";
+    std::cout << "                                                   \n";
+    std::cout << "                                                   \n";
+}
+
+/**
+ *
+ * @param choice The weapon chosen by the player
+ * @return The weapon at the given index.
+ */
 Weapon* BuyMenu::pickWeapon(int choice) {
     return weapons[choice-1];
 }
 
+/**
+ * Sets the price of the created weapon depending on its strength and the current level
+ * @param weaponStrength The strength of the weapon.
+ * @return The price for the created weapon.
+ */
 int BuyMenu::getWeaponCost(int weaponStrength) const {
     int cost;
 

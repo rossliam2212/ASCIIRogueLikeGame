@@ -49,6 +49,10 @@ void HistoryLogger::logItemPickUp(Item *item) {
     outputFile.close();
 }
 
+/**
+ * Logs weapon bought message to the output file.
+ * @param weapon The weapon that was used.
+ */
 void HistoryLogger::logWeaponBought(Item* weapon) {
     std::ofstream outputFile{fileName, std::ios::app};
     if (!outputFile)
@@ -153,6 +157,10 @@ void HistoryLogger::logPlayerKilled(Monster* monster) {
     outputFile.close();
 }
 
+/**
+ * Logs level change message to the output file.
+ * @param level The current level.
+ */
 void HistoryLogger::logLevelChange(int level) {
     std::ofstream outputFile{fileName, std::ios::app};
     if (!outputFile)

@@ -46,7 +46,7 @@ void Zombie::render() {
 
     position = newPosition;
 
-    Sleep(120);
+    Sleep(200);
 }
 
 void Zombie::attack() {

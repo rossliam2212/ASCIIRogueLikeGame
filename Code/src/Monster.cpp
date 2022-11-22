@@ -16,16 +16,24 @@ Monster::Monster(Player* player, const GameMap& map, int strength, int health, i
       newPosition{startPosition}{
 }
 
+/**
+ * Overloaded Equality operator.
+ * @param rhs The object to compare tyo.
+ * @return True if the objects are equal, False otherwise.
+ */
 bool Monster::operator==(const Monster& rhs) const {
     return position == rhs.position && name == rhs.name;
 }
 
+/**
+ * Checks if the monster is within follow range to the player.
+ */
 void Monster::checkInFollowRange() {
     if (!player->getAttacking() && !attacking) {
         auto playerX = player->getPosition().getX();
         auto playerY = player->getPosition().getY();
 
-        for (int i = 0; i < followDistance; i++) {
+        for (int i = 1; i < followDistance; i++) {
             // Up
             if (position.getX() == playerX && position.getY() - i == playerY) {
                 move = Up;
@@ -53,14 +61,23 @@ void Monster::checkInFollowRange() {
     }
 }
 
+/**
+ * Deals damage to to monster.
+ * @param damageAmount The damage to deal.
+ */
 void Monster::takeDamage(int damageAmount) {
     health -= damageAmount;
 }
 
+/**
+ * Checks if the monster is dead.
+ * @return True if the monster is dea, false otherwise.
+ */
 bool Monster::isDead() const {
     return health <= 0;
 }
 
+// Getters & Setters
 std::string Monster::getName() const { return name; }
 int Monster::getStrength() const { return strength; }
 int Monster::getHealth() const { return health; }

@@ -9,7 +9,7 @@ GameManager::GameManager()
       monsters{},
       mapItems{},
       historyLogger{},
-      player{map, monsters, mapItems, historyLogger},
+      player{map, monsters, mapItems, historyLogger, level},
       level{1} {
 }
 
@@ -59,7 +59,7 @@ void GameManager::nextLevel() {
         return;
     }
 
-//    cleanResourcesOnLevelChange();
+    cleanResourcesOnLevelChange();
     map.loadMap(level, levels);
     setUpGameItemsAndMonsters();
     historyLogger.logLevelChange(level);
@@ -151,7 +151,7 @@ void GameManager::renderUI() {
         else
             std::cout << player.getInventory().getCurrentWeapon() << "\n\n";
     } else {
-        std::cout << "No Weapons\n\n";
+        std::cout << "No Weapons                                                 \n\n";
     }
 
     std::cout << " Weapons: \n";
@@ -209,15 +209,15 @@ bool GameManager::gameOver() {
 }
 
 void GameManager::cleanResourcesOnLevelChange() {
-    for (auto* m : monsters)
-        delete m;
+//    for (auto* m : monsters)
+//        delete m;
 
-    monsters.clear();
+//    monsters.clear();
 
-    for (auto* i : mapItems)
-        delete i;
+//    for (auto* i : mapItems)
+//        delete i;
 
-    mapItems.clear();
+//    mapItems.clear();
 
     map.clearResourcesForLevelChange();
 }

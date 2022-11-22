@@ -7,12 +7,14 @@
 Player::Player(const GameMap& map,
                std::vector<Monster*>& monsters,
                std::vector<Item*>& items,
-               const HistoryLogger& hl)
+               const HistoryLogger& hl,
+               int& gameLevel)
     : strength{defaultStrength},
       health{defaultHealth},
       maxHealth{defaultMaxHealth},
       xp{defaultXP},
       xpLevel{1},
+      gameLevel{gameLevel},
       position{defaultStartPositionX, defaultStartPositionY},
       newPosition{defaultStartPositionX, defaultStartPositionY},
       map{map},
@@ -26,11 +28,14 @@ Player::Player(const GameMap& map,
                Point& startPosition,
                std::vector<Monster*>& monsters,
                std::vector<Item*>& items,
-               const HistoryLogger& hl)
+               const HistoryLogger& hl,
+               int& gameLevel)
     : strength{defaultStrength},
       health{defaultHealth},
+      maxHealth{defaultMaxHealth},
       xp{defaultXP},
       xpLevel{1},
+      gameLevel{gameLevel},
       position{startPosition},
       newPosition{startPosition},
       map{map},
@@ -175,36 +180,7 @@ void Player::handleInput() {
 
         // ==== Opening Buy Menu - B (66) ====
         if(GetKeyState(66) & 0x8000 && buyMenu) {
-            auto bm = new BuyMenu{1, xpLevel};
-            Item* w = nullptr;
-
-            utility::gotoScreenPosition(0, 40);
-            bm->displayWeapons();
-
-            while (buyMenu) {
-                // Selecting first weapon - 1 (49)
-                if (GetKeyState(49) & 0x8000) {
-                    w = bm->pickWeapon(1);
-                    break;
-                }
-                // Selecting second weapon - 2 (50)
-                else if (GetKeyState(50) & 0x8000) {
-                    w = bm->pickWeapon(2);
-                    break;
-                }
-                // Selecting third weapon - 3 (51)
-                else if (GetKeyState(51) & 0x8000) {
-                    w = bm->pickWeapon(3);
-                    break;
-                }
-            }
-            Sleep(500); // Half second delay
-
-            // TODO Clear buy menu ui text & delete buy menu pointer
-            buyMenu = false;
-            inventory.addItem(w);
-            historyLogger.logWeaponBought(w);
-//            delete bm;
+            openBuyMenu();
         }
 
         // ==== FOR TESTING - Removing Players Health - X (88) ====
@@ -212,6 +188,48 @@ void Player::handleInput() {
             health -= 10;
         }
     }
+}
+
+void Player::openBuyMenu() {
+    auto bm = new BuyMenu{gameLevel, xpLevel};
+    Weapon* w;
+    int weaponPrice;
+//    int goldCoins{inventory.getNumGoldCoins()};
+    int goldCoins{50};
+
+    bm->displayWeapons();
+
+    while (buyMenu) {
+        // Selecting first weapon - 1 (49)
+        if (GetKeyState(49) & 0x8000) {
+            w = bm->pickWeapon(1);
+            weaponPrice = w->getPrice();
+            break;
+        }
+            // Selecting second weapon - 2 (50)
+        else if (GetKeyState(50) & 0x8000) {
+            w = bm->pickWeapon(2);
+            weaponPrice = w->getPrice();
+            break;
+        }
+            // Selecting third weapon - 3 (51)
+        else if (GetKeyState(51) & 0x8000) {
+            w = bm->pickWeapon(3);
+            weaponPrice = w->getPrice();
+            break;
+        }
+    }
+    Sleep(500); // Half second delay
+
+    buyMenu = false;
+
+    if (goldCoins >= weaponPrice) {
+        inventory.addItem(w);
+        historyLogger.logWeaponBought(w);
+    }
+
+    bm->clearBuyMenu();
+//            delete bm;
 }
 
 
@@ -462,9 +480,3 @@ bool Player::getRemoveCurrentWeaponPressed() const { return removeCurrentWeaponP
  * Called from the GameManager to render the current weapon UI correctly.
  */
 void Player::resetRemoveCurrentWeaponPressed() { removeCurrentWeaponPressed = false; }
-
-
-
-
-
-

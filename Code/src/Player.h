@@ -39,6 +39,7 @@ private:
     int maxHealth;
     int xpLevel;
     int xp;
+    int& gameLevel;
 
     Point position;
     Point newPosition;
@@ -52,8 +53,8 @@ private:
     bool removeCurrentWeaponPressed{false};
 
 public:
-    Player(const GameMap& map, std::vector<Monster*>& monsters, std::vector<Item*>& items, const HistoryLogger& hl);
-    Player(const GameMap& map, Point& startPosition, std::vector<Monster*>& monsters, std::vector<Item*>& items, const HistoryLogger& hl);
+    Player(const GameMap& map, std::vector<Monster*>& monsters, std::vector<Item*>& items, const HistoryLogger& hl, int& gameLevel);
+    Player(const GameMap& map, Point& startPosition, std::vector<Monster*>& monsters, std::vector<Item*>& items, const HistoryLogger& hl, int& gameLevel);
 
     void update();
 
@@ -89,6 +90,7 @@ private:
     void attack(Monster* monster);
     void checkMonster(int x, int y);
     void checkItem(int x, int y);
+    void openBuyMenu();
 };
 
 

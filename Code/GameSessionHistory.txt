@@ -1,51 +1,30 @@
-Game Session Started @ Tue Nov 22 00:14:02 2022
+Game Session Started @ Tue Nov 22 10:37:55 2022
 
-Tue Nov 22 00:14:12 2022
-	- Bought Weapon for 15 gold coins -> Karambit(28 damage)
-Tue Nov 22 00:14:15 2022
-	- Picked Up Item -> Gold Coin @ position (4, 8)
-Tue Nov 22 00:14:16 2022
-	- Picked Up Item -> Health Potion @ position (3, 2)
-Tue Nov 22 00:14:17 2022
-	- Used Item -> Health Potion
-Tue Nov 22 00:14:20 2022
+Tue Nov 22 10:37:59 2022
 	- Picked Up Item -> Health Potion @ position (13, 1)
-
-Tue Nov 22 00:14:26 2022
-	- Attack Started -> Attacking Goblin (100hp) @ position (17, 6)
-
-		- Dealt 28 damage to Goblin (72hp remaining)
-		- Goblin dealt 10 damage to You (90hp remaining)
-		- Dealt 28 damage to Goblin (44hp remaining)
-		- Goblin dealt 10 damage to You (80hp remaining)
-		- Dealt 28 damage to Goblin (16hp remaining)
-		- Goblin dealt 10 damage to You (70hp remaining)
-		- Dealt 28 damage to Goblin (-12hp remaining)
-
-		- Killed Monster -> Goblin(+10xp) w/ Karambit @ position (17, 6)
-Tue Nov 22 00:14:34 2022
+Tue Nov 22 10:38:01 2022
+	- Picked Up Item -> Health Potion @ position (3, 2)
+Tue Nov 22 10:38:02 2022
+	- Picked Up Item -> Gold Coin @ position (4, 8)
+Tue Nov 22 10:38:05 2022
 	- Picked Up Item -> Gold Coin @ position (21, 9)
-Tue Nov 22 00:14:38 2022
-	- Picked Up Weapon -> Baton(15 damage) @ position (42, 7)
+Tue Nov 22 10:38:11 2022
+	- Picked Up Weapon -> Stick(12 damage) @ position (42, 7)
+Tue Nov 22 10:38:21 2022
+	- Picked Up Item -> Health Potion @ position (72, 17)
+Tue Nov 22 10:38:22 2022
+	- Picked Up Item -> Gold Coin @ position (65, 19)
 
-Tue Nov 22 00:14:41 2022
-	- Attack Started -> Attacking Skeleton (100hp) @ position (62, 8)
+====================================================
+Tue Nov 22 10:38:28 2022
+Moved to Level 2
+====================================================
+Tue Nov 22 10:38:38 2022
+	- Picked Up Item -> Gold Coin @ position (15, 8)
+Tue Nov 22 10:38:54 2022
+	- Picked Up Weapon -> Knuckleduster(16 damage) @ position (7, 16)
+Tue Nov 22 10:38:56 2022
+	- Dropped Weapon -> Stick
 
-		- Dealt 28 damage to Skeleton (72hp remaining)
-		- Skeleton dealt 20 damage to You (50hp remaining)
-		- Dealt 28 damage to Skeleton (44hp remaining)
-		- Skeleton dealt 20 damage to You (30hp remaining)
-		- Dealt 28 damage to Skeleton (16hp remaining)
-		- Skeleton dealt 20 damage to You (10hp remaining)
-		- Dealt 28 damage to Skeleton (-12hp remaining)
-
-		- Killed Monster -> Skeleton(+20xp) w/ Karambit @ position (62, 8)
-Tue Nov 22 00:14:46 2022
-	- Used Item -> Health Potion
-Tue Nov 22 00:14:48 2022
-	- Picked Up Item -> Health Potion @ position (62, 4)
-Tue Nov 22 00:15:08 2022
-	- Picked Up Weapon -> Club(15 damage) @ position (70, 2)
-
-Game Over @ Tue Nov 22 00:15:21 2022
+Game Over @ Tue Nov 22 10:39:05 2022
 

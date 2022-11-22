@@ -24,6 +24,9 @@ private:
 
     static constexpr int numberOfLevels{3};
 
+    int level;
+    bool levelsCompleted{false};
+
     GameMap map;
     std::vector<Monster*> monsters;
     std::vector<Item*> mapItems;
@@ -37,8 +40,6 @@ private:
         "../levels/level3.txt"
     };
 
-    int level;
-    bool levelsCompleted{false};
 
 public:
     GameManager();
