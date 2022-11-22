@@ -137,7 +137,7 @@ void GameManager::renderUI() {
 
     // Inventory UI
     utility::gotoScreenPosition(0, mapSizeY + 6);
-    std::cout << "Inventory {\n Gold Coins: " << player.getInventory().getNumGoldCoins()
+    std::cout << "Inventory: \n Gold Coins: " << player.getInventory().getNumGoldCoins()
               << "\n Health Potions: " << player.getInventory().getNumHealthPotions()
               << "\n";
 
@@ -170,27 +170,50 @@ void GameManager::renderUI() {
         }
     }
 
-    std::cout << "}";
-}
-
-void GameManager::renderGameOverWinUI() {
-
+//    std::cout << "}";
 }
 
 /**
- *  Renders the Games game over UI elements.
+ * Renders the game over win ui - When the player beats the game.
+ */
+void GameManager::renderGameOverWinUI() {
+    system("cls");
+
+    utility::gotoScreenPosition(0, 0);
+    std::cout << R"(
+   ____                            _         _       _   _                 _
+  / ___|___  _ __   __ _ _ __ __ _| |_ _   _| | __ _| |_(_) ___  _ __  ___| |
+ | |   / _ \| '_ \ / _` | '__/ _` | __| | | | |/ _` | __| |/ _ \| '_ \/ __| |
+ | |__| (_) | | | | (_| | | | (_| | |_| |_| | | (_| | |_| | (_) | | | \__ \_|
+  \____\___/|_| |_|\__, |_|  \__,_|\__|\__,_|_|\__,_|\__|_|\___/|_| |_|___(_)
+                   |___/                                                    )";
+
+    std::cout << R"(
+ __   _____  _   _  __        _____ _   _ _ _
+ \ \ / / _ \| | | | \ \      / /_ _| \ | | | |
+  \ V / | | | | | |  \ \ /\ / / | ||  \| | | |
+   | || |_| | |_| |   \ V  V /  | || |\  |_|_|
+   |_| \___/ \___/     \_/\_/  |___|_| \_(_|_)
+                                             )";
+
+    std::cout << "\n\n";
+    std::cout << "You have successfully beaten the game!\n";
+    std::cout << "Check the GameSessionHistory.txt file for your game details.\n\n\n\n";
+}
+
+/**
+ *  Renders the Games game over ui elements.
  */
 void GameManager::renderGameOverUI() {
     system("cls");
 
     utility::gotoScreenPosition(0, 0);
     std::cout << R"(
- _____   ___  ___  ___ _____   _____  _   _  _____ ______
-|  __ \ / _ \ |  \/  ||  ___| |  _  || | | ||  ___|| ___ \
-| |  \// /_\ \| .  . || |__   | | | || | | || |__  | |_/ /
-| | __ |  _  || |\/| ||  __|  | | | || | | ||  __| |    /
-| |_\ \| | | || |  | || |___  \ \_/ /\ \_/ /| |___ | |\ \
- \____/\_| |_/\_|  |_/\____/   \___/  \___/ \____/ \_| \_|)";
+   ____                         ___                 _
+  / ___| __ _ _ __ ___   ___   / _ \__   _____ _ __| |
+ | |  _ / _` | '_ ` _ \ / _ \ | | | \ \ / / _ \ '__| |
+ | |_| | (_| | | | | | |  __/ | |_| |\ V /  __/ |  |_|
+  \____|\__,_|_| |_| |_|\___|  \___/  \_/ \___|_|  (_))";
 
     std::cout << "\n\n";
 
@@ -208,9 +231,14 @@ bool GameManager::gameOver() {
     return player.isDead();
 }
 
+/**
+ * Cleans up some resources from the previous level when the player moves onto the next level.
+ */
 void GameManager::cleanResourcesOnLevelChange() {
-//    for (auto* m : monsters)
-//        delete m;
+    for (auto* m : monsters) {
+        if (!m->isDead())
+            m->setIsDead();
+    }
 
 //    monsters.clear();
 

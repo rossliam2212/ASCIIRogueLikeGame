@@ -73,8 +73,15 @@ void Monster::takeDamage(int damageAmount) {
  * Checks if the monster is dead.
  * @return True if the monster is dea, false otherwise.
  */
-bool Monster::isDead() const {
-    return health <= 0;
+bool Monster::isDead() {
+    if (health <= 0) {
+        dead = true;
+    }
+    return dead;
+}
+
+void Monster::setIsDead() {
+    dead = true;
 }
 
 // Getters & Setters

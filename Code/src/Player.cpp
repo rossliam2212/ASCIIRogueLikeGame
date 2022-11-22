@@ -265,7 +265,7 @@ void Player::attack(Monster* monster) {
 
                 // Testing
                 utility::gotoScreenPosition(monster->getPosition());
-                std::cout << monster->getName() << " KILLED!\n";
+                std::cout << " DEAD!\n";
 
                 increaseXP(monster->getDeathXP());
                 historyLogger.logMonsterKilled(monster, &w);

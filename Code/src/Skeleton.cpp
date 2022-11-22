@@ -12,26 +12,28 @@ Skeleton::Skeleton(Player* player, const GameMap& map, const Point& position)
 }
 
 void Skeleton::update() {
-    checkInFollowRange();
+    if (!isDead()) {
+        checkInFollowRange();
 
-    if (move != Idle) {
-        switch (move) {
-            case Up:
-                newPosition.setXY(position.getX(), position.getY() - 1);
-                break;
-            case Down:
-                newPosition.setXY(position.getX(), position.getY() + 1);
-                break;
-            case Right:
-                newPosition.setXY(position.getX() + 1, position.getY());
-                break;
-            case Left:
-                newPosition.setXY(position.getX() - 1, position.getY());
-                break;
-            default:
-                break;
+        if(move != Idle) {
+            switch(move) {
+                case Up:
+                    newPosition.setXY(position.getX(), position.getY() - 1);
+                    break;
+                case Down:
+                    newPosition.setXY(position.getX(), position.getY() + 1);
+                    break;
+                case Right:
+                    newPosition.setXY(position.getX() + 1, position.getY());
+                    break;
+                case Left:
+                    newPosition.setXY(position.getX() - 1, position.getY());
+                    break;
+                default:
+                    break;
+            }
+            render();
         }
-        render();
     }
 }
 

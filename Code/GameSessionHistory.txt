@@ -1,30 +1,25 @@
-Game Session Started @ Tue Nov 22 10:37:55 2022
+Game Session Started @ Tue Nov 22 14:50:00 2022
 
-Tue Nov 22 10:37:59 2022
-	- Picked Up Item -> Health Potion @ position (13, 1)
-Tue Nov 22 10:38:01 2022
-	- Picked Up Item -> Health Potion @ position (3, 2)
-Tue Nov 22 10:38:02 2022
-	- Picked Up Item -> Gold Coin @ position (4, 8)
-Tue Nov 22 10:38:05 2022
-	- Picked Up Item -> Gold Coin @ position (21, 9)
-Tue Nov 22 10:38:11 2022
-	- Picked Up Weapon -> Stick(12 damage) @ position (42, 7)
-Tue Nov 22 10:38:21 2022
+Tue Nov 22 14:50:08 2022
+	- Picked Up Weapon -> Pike(20 damage) @ position (42, 7)
+Tue Nov 22 14:50:18 2022
 	- Picked Up Item -> Health Potion @ position (72, 17)
-Tue Nov 22 10:38:22 2022
-	- Picked Up Item -> Gold Coin @ position (65, 19)
 
 ====================================================
-Tue Nov 22 10:38:28 2022
+Tue Nov 22 14:50:23 2022
 Moved to Level 2
 ====================================================
-Tue Nov 22 10:38:38 2022
-	- Picked Up Item -> Gold Coin @ position (15, 8)
-Tue Nov 22 10:38:54 2022
-	- Picked Up Weapon -> Knuckleduster(16 damage) @ position (7, 16)
-Tue Nov 22 10:38:56 2022
-	- Dropped Weapon -> Stick
-
-Game Over @ Tue Nov 22 10:39:05 2022
-
+Tue Nov 22 14:50:35 2022
+	- Picked Up Weapon -> Tonfa(16 damage) @ position (7, 16)
+Tue Nov 22 14:50:37 2022
+	- Dropped Weapon -> Pike
+Tue Nov 22 14:50:42 2022
+	- Dropped Weapon -> Tonfa
+Tue Nov 22 14:50:51 2022
+	- Picked Up Item -> Gold Coin @ position (7, 22)
+Tue Nov 22 14:50:51 2022
+	- Picked Up Item -> Gold Coin @ position (7, 24)
+Tue Nov 22 14:50:54 2022
+	- Picked Up Item -> Health Potion @ position (30, 24)
+Tue Nov 22 14:50:59 2022
+	- Picked Up Weapon -> Hammer(11 damage) @ position (57, 18)

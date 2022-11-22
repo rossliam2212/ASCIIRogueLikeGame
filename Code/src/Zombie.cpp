@@ -3,6 +3,7 @@
 //
 
 #include "Zombie.h"
+#include "Player.h"
 
 const std::string Zombie::zombieName = "Zombie";
 
@@ -12,26 +13,28 @@ Zombie::Zombie(Player* player, const GameMap& map, const Point& position)
 }
 
 void Zombie::update() {
-    checkInFollowRange();
+    if (!isDead()) {
+        checkInFollowRange();
 
-    if (move != Idle) {
-        switch (move) {
-            case Up:
-                newPosition.setXY(position.getX(), position.getY() - 1);
-                break;
-            case Down:
-                newPosition.setXY(position.getX(), position.getY() + 1);
-                break;
-            case Right:
-                newPosition.setXY(position.getX() + 1, position.getY());
-                break;
-            case Left:
-                newPosition.setXY(position.getX() - 1, position.getY());
-                break;
-            default:
-                break;
+        if (move != Idle) {
+            switch (move) {
+                case Up:
+                    newPosition.setXY(position.getX(), position.getY() - 1);
+                    break;
+                case Down:
+                    newPosition.setXY(position.getX(), position.getY() + 1);
+                    break;
+                case Right:
+                    newPosition.setXY(position.getX() + 1, position.getY());
+                    break;
+                case Left:
+                    newPosition.setXY(position.getX() - 1, position.getY());
+                    break;
+                default:
+                    break;
+            }
+            render();
         }
-        render();
     }
 }
 
@@ -46,7 +49,7 @@ void Zombie::render() {
 
     position = newPosition;
 
-    Sleep(200);
+    Sleep(120);
 }
 
 void Zombie::attack() {

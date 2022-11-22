@@ -30,6 +30,7 @@ protected:
     int followDistance;
 
     bool attacking{false};
+    bool dead{false};
 
     Point position;
     Point newPosition;
@@ -47,7 +48,8 @@ public:
 
     void checkInFollowRange();
     void takeDamage(int damageAmount);
-    bool isDead() const;
+    bool isDead();
+    void setIsDead();
 
     std::string getName() const;
     int getStrength() const;
