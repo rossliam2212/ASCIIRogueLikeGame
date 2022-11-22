@@ -16,11 +16,12 @@ Project for my 3rd Software Development for Gaming Module - [Project Brief](http
 | #               | Path      | Indicates a path that the player can travel along to move between rooms. |
 | -               | Roof      | The roof of a room. The player **CANNOT** pass through this character.   |
 | &#124;          | Wall      | The wall of a room. The player **CANNOT** pass through this character.   |
+| >               | Next Level| Indicates the entry point for the next level.                            |
 
 #### Game Items
 | **Symbol** | **Name**      | **Description**                                                                              |
 |:-----------|:--------------|:---------------------------------------------------------------------------------------------|
-| *          | Gold Coin     | Gold Coins can are used to buy weapons from the buy menu                                     |
+| *          | Gold Coin     | Gold Coins can are used to buy weapons from the buy menu,                                    |
 | ^          | Health Potion | Health Potions are used to restore health back to the max.                                   |
 | ?          | Weapon        | Weapons are used to attack monsters. Each weapon picked up has randomly generated stats.     |
 | $          | Buy Menu      | Gives the player an opportunity to buy stronger weapons with gold coins they have collected. |
