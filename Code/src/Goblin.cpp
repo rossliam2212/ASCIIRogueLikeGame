@@ -9,9 +9,12 @@ const std::string Goblin::goblinName = "Goblin";
 
 Goblin::Goblin(Player* player, const GameMap& map, const Point& position)
     : Monster{player, map, goblinStrength, goblinHealth, goblinDeathXP, goblinFollowDistance, position} {
-    name = goblinName;;
+    name = goblinName;
 }
 
+/**
+ * Update - called continuously until the Goblin is dead.
+ */
 void Goblin::update() {
     checkInFollowRange();
 
@@ -36,6 +39,9 @@ void Goblin::update() {
     }
 }
 
+/**
+ * Renders the Goblin in the correct xy position whenever he moves.
+ */
 void Goblin::render() {
     if (newPosition == player->getPosition()) {
         utility::gotoScreenPosition(position);
@@ -56,6 +62,9 @@ void Goblin::render() {
     Sleep(120);
 }
 
-void Goblin::attack() {
-    std::cout << "Goblin Attack\n";
+/**
+ * @return The Goblins strength when he is attacking.
+ */
+int Goblin::attack() {
+    return strength;
 }

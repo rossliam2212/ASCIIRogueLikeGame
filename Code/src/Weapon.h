@@ -23,9 +23,8 @@ private:
     int price;
     int numberOfAttacks;
 
-    const std::array<std::string, 10> meleeWeaponNames {
+    const std::array<std::string, 9> meleeWeaponNames {
         "Club",
-        "Knuckleduster",
         "Staff",
         "Pike",
         "Mace",
@@ -44,11 +43,11 @@ public:
 
     Weapon& operator=(const Weapon& rhs);
 
+    std::ostream& write(std::ostream& os) const override;
+
     int attack();
     bool isBroken() const;
     int getAttacksRemaining() const;
-
-    std::ostream& write(std::ostream& os) const override;
 
     bool isEqual(const Item& item) const override;
     int getPrice() const;
@@ -57,6 +56,5 @@ public:
 private:
     void generateStats();
 };
-
 
 #endif //CODE_WEAPON_H

@@ -12,6 +12,9 @@ Ogre::Ogre(Player* player, const GameMap& map, const Point& position)
     name = ogreName;
 }
 
+/**
+ * Update - called continuously until the Ogre is dead.
+ */
 void Ogre::update() {
     checkInFollowRange();
 
@@ -36,6 +39,9 @@ void Ogre::update() {
     }
 }
 
+/**
+ * Renders the Ogre in the correct xy position whenever he moves.
+ */
 void Ogre::render() {
     if (newPosition == player->getPosition()) {
         utility::gotoScreenPosition(position);
@@ -56,6 +62,9 @@ void Ogre::render() {
     Sleep(120);
 }
 
-void Ogre::attack() {
-    std::cout << "Skeleton Attack\n";
+/**
+ * @return The Ogres strength when he is attacking.
+ */
+int Ogre::attack() {
+    return strength;
 }

@@ -21,8 +21,12 @@ public:
     static constexpr int defaultStrength{10};
     static constexpr int defaultHealth{50};
 
+    static constexpr int xpLevelUpValue{70};
     static constexpr int maxXPLevel{5};
     static constexpr int defaultXP{0};
+
+    static constexpr int xpLevelUpHealthIncrease{10}; // Amount the health increases when the player levels up their xp
+    static constexpr int xpLevelUpStrengthIncrease{5}; // Amount the strength increases when the player levels up their xp
 
     static constexpr int defaultStartPositionX{5};
     static constexpr int defaultStartPositionY{5};
@@ -47,6 +51,7 @@ private:
     bool attacking{false};
     bool levelChange{false};
     bool buyMenu{false};
+    bool boughtWeapon{false};
 
     bool removeItemPressed{false};
     bool nextWeaponPressed{false};
@@ -81,6 +86,9 @@ public:
 
     bool getRemoveCurrentWeaponPressed() const;
     void resetRemoveCurrentWeaponPressed();
+
+    bool getBoughtWeapon() const;
+    void resetBoughtWeapon();
 
 
 private:

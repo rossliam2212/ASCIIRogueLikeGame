@@ -12,6 +12,9 @@ Skeleton::Skeleton(Player* player, const GameMap& map, const Point& position)
     name = skeletonName;
 }
 
+/**
+ * Update - called continuously until the Skeleton is dead.
+ */
 void Skeleton::update() {
     if (!isDead()) {
         checkInFollowRange();
@@ -38,6 +41,9 @@ void Skeleton::update() {
     }
 }
 
+/**
+ * Renders the Skeleton in the correct xy position whenever he moves.
+ */
 void Skeleton::render() {
     if (newPosition == player->getPosition()) {
         utility::gotoScreenPosition(position);
@@ -58,7 +64,10 @@ void Skeleton::render() {
     Sleep(120);
 }
 
-void Skeleton::attack() {
-    std::cout << "Skeleton Attack\n";
+/**
+ * @return The Skeletons strength when he is attacking.
+ */
+int Skeleton::attack() {
+    return strength;
 }
 

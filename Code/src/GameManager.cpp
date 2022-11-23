@@ -128,7 +128,7 @@ void GameManager::renderUI() {
     std::cout << "Strength: " << player.getStrength() << " "
               << "| HP: " << player.getHealth() << " "
               << "| XP-Level: " << player.getXPLevel() << "/" << Player::maxXPLevel << " "
-              << "| XP: " << player.getXP() << " \n";
+              << "| XP: " << player.getXP() << "/" << Player::xpLevelUpValue << " \n";
 
     // Players Attacking State
     utility::gotoScreenPosition(0, mapSizeY + 4);
@@ -137,11 +137,19 @@ void GameManager::renderUI() {
 
     // Inventory UI
     utility::gotoScreenPosition(0, mapSizeY + 6);
-    std::cout << "Inventory: \n Gold Coins: " << player.getInventory().getNumGoldCoins()
-              << "\n Health Potions: " << player.getInventory().getNumHealthPotions()
-              << "\n";
+    std::cout << "Inventory: ";
 
-    std::cout << " Current Weapon: ";
+    std::cout << "\n Gold Coins: ";
+    if (player.getBoughtWeapon()) {
+        std::cout << "              ";
+        player.resetBoughtWeapon();
+    } else {
+        std::cout << player.getInventory().getNumGoldCoins();
+    }
+
+    std::cout << "\n Health Potions: " << player.getInventory().getNumHealthPotions() << "\n";
+
+    std::cout << " Current Weapon: (" << player.getInventory().getCurrentWeaponIndex() << ") ";
 
     if (!player.getInventory().getWeapons().empty()) {
         if (player.getNextWeaponPressed()) {

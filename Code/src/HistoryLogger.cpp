@@ -63,6 +63,12 @@ void HistoryLogger::logWeaponBought(Item* weapon) {
     outputFile.close();
 }
 
+/**
+ * Logs player xp level up message to the output file.
+ * @param xpLevel The players new xp level.
+ * @param newMaxHealth The players new max health.
+ * @param newStrength The players new strength.
+ */
 void HistoryLogger::logPlayerXPLevelUp(int xpLevel, int newMaxHealth, int newStrength) {
     std::ofstream outputFile{fileName, std::ios::app};
     if (!outputFile)
@@ -102,7 +108,7 @@ void HistoryLogger::logMonsterKilled(Monster* monster, Weapon* weaponUsed) {
         return;
 
     outputFile << "\n\t\t- Killed Monster -> " << monster->getName() << "(+" << monster->getDeathXP() << "xp) w/ " << weaponUsed->getName()
-                                               << "(" << weaponUsed->getAttacksRemaining() << " attacks remaining) @ position " << monster->getPosition() << "\n";
+                                               << "(" << weaponUsed->getAttacksRemaining() << " attacks remaining) @ position " << monster->getPosition() << "\n\n";
     outputFile.close();
 }
 
@@ -148,6 +154,10 @@ void HistoryLogger::logDamageDealtToPlayer(Monster* monster, int hp, int damageA
     outputFile.close();
 }
 
+/**
+ * Logs player killed message to the output file when the player is killed.
+ * @param monster The monster that killed the player.
+ */
 void HistoryLogger::logPlayerKilled(Monster* monster) {
     std::ofstream outputFile{fileName, std::ios::app};
     if (!outputFile)
@@ -159,7 +169,7 @@ void HistoryLogger::logPlayerKilled(Monster* monster) {
 
 /**
  * Logs level change message to the output file.
- * @param level The current level.
+ * @param level The new level.
  */
 void HistoryLogger::logLevelChange(int level) {
     std::ofstream outputFile{fileName, std::ios::app};
@@ -167,7 +177,7 @@ void HistoryLogger::logLevelChange(int level) {
         return;
 
     outputFile << "\n====================================================\n";
-    outputFile << getDateTime() << "Moved to Level " << level << "\n";
+    outputFile << getDateTime() << "\t Moved to Level " << level << "\n";
     outputFile << "====================================================\n";
     outputFile.close();
 }

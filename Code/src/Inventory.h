@@ -37,6 +37,7 @@ public:
 
     void nextWeapon();
     Weapon getCurrentWeapon();
+    int getCurrentWeaponIndex() const;
 
     bool weaponSlotsFull();
 

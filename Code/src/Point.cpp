@@ -22,6 +22,11 @@ bool Point::operator==(const Point& rhs) const {
     return x == rhs.x && y == rhs.y;
 }
 
+/**
+ * Sets
+ * @param newX
+ * @param newY
+ */
 void Point::setXY(int newX, int newY) {
     x = newX;
     y = newY;
@@ -30,6 +35,7 @@ void Point::setXY(int newX, int newY) {
 int Point::getX() const { return x; }
 int Point::getY() const { return y; }
 
+// Overloaded << operator
 std::ostream& operator<<(std::ostream& os, const Point& point) {
     os << "(" << point.x << ", " << point.y << ")";
     return os;

@@ -19,6 +19,7 @@
 
 class GameManager {
 private:
+    // Same for all levels
     static constexpr int mapSizeX{83}; // 82 + 1 (WIDTH)
     static constexpr int mapSizeY{26}; // 26 (Height)
 

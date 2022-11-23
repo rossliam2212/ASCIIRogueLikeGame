@@ -62,10 +62,11 @@ void BuyMenu::createWeapons() {
  */
 void BuyMenu::displayWeapons() {
     utility::gotoScreenPosition(0, 40);
-    std::cout << "Buy Menu: (Level - " << currentLevel << ")\n";
+    std::cout << "Buy Menu: (Level - " << currentLevel << ") {\n";
     for (int i = 0; i < numberOfWeapons; i++) {
         std::cout << "\t" << (i+1) << " - " << *weapons[i] << " - " << weapons[i]->getPrice() << " gold coins\n";
     }
+    std::cout << "}";
 }
 
 /*

@@ -72,7 +72,7 @@ void Player::handleInput() {
                 newPosition.setXY(position.getX(), position.getY() - 1);
             }
 
-            // Checking for enemies
+            // Checking for enemies when moving Up
             if(map.getXY(position.getX(), position.getY() - 1) == GameMap::skeletonChar ||
                map.getXY(position.getX(), position.getY() - 1) == GameMap::zombieChar ||
                map.getXY(position.getX(), position.getY() - 1) == GameMap::goblinChar ||
@@ -93,7 +93,7 @@ void Player::handleInput() {
                 newPosition.setXY(position.getX(), position.getY() + 1);
             }
 
-            // Checking for enemies
+            // Checking for enemies when moving Down
             if(map.getXY(position.getX(), position.getY() + 1) == GameMap::skeletonChar ||
                map.getXY(position.getX(), position.getY() + 1) == GameMap::zombieChar ||
                map.getXY(position.getX(), position.getY() + 1) == GameMap::goblinChar ||
@@ -114,7 +114,7 @@ void Player::handleInput() {
                 newPosition.setXY(position.getX() + 1, position.getY());
             }
 
-            // Checking for enemies
+            // Checking for enemies when moving Right
             if(map.getXY(position.getX() + 1, position.getY()) == GameMap::skeletonChar ||
                map.getXY(position.getX() + 1, position.getY()) == GameMap::zombieChar ||
                map.getXY(position.getX() + 1, position.getY()) == GameMap::goblinChar ||
@@ -135,7 +135,7 @@ void Player::handleInput() {
                 newPosition.setXY(position.getX() - 1, position.getY());
             }
 
-            // Checking for enemies
+            // Checking for enemies when moving Left
             if(map.getXY(position.getX() - 1, position.getY()) == GameMap::skeletonChar ||
                map.getXY(position.getX() - 1, position.getY()) == GameMap::zombieChar ||
                map.getXY(position.getX() - 1, position.getY()) == GameMap::goblinChar ||
@@ -190,12 +190,20 @@ void Player::handleInput() {
     }
 }
 
+/**
+ * Creates a new BuyMenu object prints the weapons that the player can buy.
+ * Thee game stops and waits for the player to make a decision on which weapon
+ * to buy. Once the player makes their decision and they have enough gold coins,
+ * then the weapon is added to their inventory. If thy don't have enough gold coins,
+ * the buy menu closes and nothing happens.
+ * Called when the player presses 'B' to open the buy menu.
+ */
 void Player::openBuyMenu() {
     auto bm = new BuyMenu{gameLevel, xpLevel};
     Weapon* w;
     int weaponPrice;
-//    int goldCoins{inventory.getNumGoldCoins()};
-    int goldCoins{50}; // TODO Change this -> Used for testing
+    int goldCoins{inventory.getNumGoldCoins()};
+//    int goldCoins{50}; // TODO Change this -> Used for testing
 
     bm->displayWeapons();
 
@@ -206,13 +214,13 @@ void Player::openBuyMenu() {
             weaponPrice = w->getPrice();
             break;
         }
-            // Selecting second weapon - 2 (50)
+        // Selecting second weapon - 2 (50)
         else if (GetKeyState(50) & 0x8000) {
             w = bm->pickWeapon(2);
             weaponPrice = w->getPrice();
             break;
         }
-            // Selecting third weapon - 3 (51)
+        // Selecting third weapon - 3 (51)
         else if (GetKeyState(51) & 0x8000) {
             w = bm->pickWeapon(3);
             weaponPrice = w->getPrice();
@@ -223,15 +231,21 @@ void Player::openBuyMenu() {
 
     buyMenu = false;
 
-    // If the player does not have enough gold to buy the weapon, nothing will happen and the buy menu
-    // will close
+    // If the player does not have enough gold to buy the weapon, nothing will happen and
+    // the buy menu will close.
     if (goldCoins >= weaponPrice) {
         inventory.addItem(w);
+        boughtWeapon = true; // Used to update the number of gold coins in the ui
+
+        // Removing the gold coins from the players inventory
+        for (int i = 0; i < weaponPrice; i++)
+            inventory.removeGoldCoin();
+
         historyLogger.logWeaponBought(w);
     }
 
     bm->clearBuyMenu();
-//            delete bm;
+//            delete bm; // Breaking game
 }
 
 
@@ -249,6 +263,8 @@ void Player::attack(Monster* monster) {
             // Players Turn
             int damageAmount;
             Weapon w{}; // Temp Weapon variable
+
+            // TODO Fixed the weapon attacks not decreasing
 
             // If the player does not have a weapon, use their strength to attack the enemy
             if (!inventory.getWeapons().empty()) {
@@ -273,6 +289,7 @@ void Player::attack(Monster* monster) {
             historyLogger.logDamageDealtToMonster(monster, damageAmount);
 
 
+            // If the monster is dead...
             if (monster->isDead()) {
                 attacking = false;
 
@@ -289,7 +306,7 @@ void Player::attack(Monster* monster) {
             else {
                 // Monsters Turn
                 Sleep(1000); // One-second delay
-                takeDamage(monster->getStrength());
+                takeDamage(monster->attack());
                 historyLogger.logDamageDealtToPlayer(monster, health, monster->getStrength());
             }
         } else {
@@ -382,8 +399,8 @@ void Player::checkCollisions() {
  */
 void Player::levelUp() {
     xpLevel++;
-    maxHealth += 10;
-    strength += 10;
+    maxHealth += xpLevelUpHealthIncrease;
+    strength += xpLevelUpStrengthIncrease;
 
     historyLogger.logPlayerXPLevelUp(xpLevel, maxHealth, strength);
 }
@@ -395,9 +412,9 @@ void Player::levelUp() {
 void Player::increaseXP(int amount) {
     xp += amount;
 
-    if (xp > 30) {
+    if (xp > xpLevelUpValue) {
         levelUp();
-        xp = 0;
+        xp = defaultXP;
     }
 }
 
@@ -460,3 +477,6 @@ bool Player::getRemoveCurrentWeaponPressed() const { return removeCurrentWeaponP
  * Called from the GameManager to render the current weapon UI correctly.
  */
 void Player::resetRemoveCurrentWeaponPressed() { removeCurrentWeaponPressed = false; }
+
+bool Player::getBoughtWeapon() const { return boughtWeapon; }
+void Player::resetBoughtWeapon() { boughtWeapon = false; }

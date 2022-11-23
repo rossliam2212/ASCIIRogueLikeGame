@@ -33,9 +33,11 @@ void GameMap::loadMap(int level, const std::array<std::string, 5>& levels) {
     char c;
     int counter{};
     while (gameMapFile >> c) {
+        // Ignoring the ruler at the bottom of the level txt files.
         if (std::isdigit(c))
             continue;
 
+        // Replace the '=' characters with ' '
         if (c == defaultChar)
             c = floorChar;
 

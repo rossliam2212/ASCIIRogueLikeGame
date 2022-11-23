@@ -21,7 +21,7 @@ public:
 
     void update() override;
     void render() override;
-    void attack() override;
+    int attack() override;
 };
 
 

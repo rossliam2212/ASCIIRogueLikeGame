@@ -12,6 +12,9 @@ Zombie::Zombie(Player* player, const GameMap& map, const Point& position)
     name = zombieName;
 }
 
+/**
+ * Update - called continuously until the Zombie is dead.
+ */
 void Zombie::update() {
     if (!isDead()) {
         checkInFollowRange();
@@ -38,6 +41,9 @@ void Zombie::update() {
     }
 }
 
+/**
+ * Renders the Zombie in the correct xy position whenever he moves.
+ */
 void Zombie::render() {
     if (newPosition == player->getPosition()) {
         utility::gotoScreenPosition(position);
@@ -58,6 +64,9 @@ void Zombie::render() {
     Sleep(120);
 }
 
-void Zombie::attack() {
-    std::cout << "Zombie Attack\n";
+/**
+ * @return The Zombies strength when he is attacking.
+ */
+int Zombie::attack() {
+    return strength;
 }
