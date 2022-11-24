@@ -9,7 +9,7 @@
 
 class GoldCoin : public Item {
 public:
-    static const std::string goldCoinName;
+    static constexpr const char* goldCoinName = "Gold Coin";
 
     explicit GoldCoin(const Point& position);
     ~GoldCoin() override = default;

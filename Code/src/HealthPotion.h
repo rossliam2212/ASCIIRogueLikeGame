@@ -9,7 +9,7 @@
 
 class HealthPotion : public Item {
 public:
-    static const std::string healthPotionName;
+    static constexpr const char* healthPotionName = "Health Potion";
 
     explicit HealthPotion(const Point& position);
     ~HealthPotion() override = default;

@@ -5,8 +5,6 @@
 #include "Skeleton.h"
 #include "Player.h"
 
-const std::string Skeleton::skeletonName = "Skeleton";
-
 Skeleton::Skeleton(Player* player, const GameMap& map, const Point& position)
     : Monster(player, map, skeletonStrength, skeletonHealth, skeletonDeathXP, skeletonFollowDistance, position) {
     name = skeletonName;

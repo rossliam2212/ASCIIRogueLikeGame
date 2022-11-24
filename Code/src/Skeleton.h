@@ -9,7 +9,7 @@
 
 class Skeleton : public Monster {
 private:
-    static const std::string skeletonName;
+    static constexpr const char* skeletonName = "Skeleton";
     static constexpr int skeletonStrength{20};
     static constexpr int skeletonHealth{100};
     static constexpr int skeletonDeathXP{20};

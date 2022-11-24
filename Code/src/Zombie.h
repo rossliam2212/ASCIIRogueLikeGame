@@ -9,7 +9,7 @@
 
 class Zombie : public Monster {
 private:
-    static const std::string zombieName;
+    static constexpr const char* zombieName = "Zombie";
     static constexpr int zombieStrength{15};
     static constexpr int zombieHealth{100};
     static constexpr int zombieDeathXP{15};

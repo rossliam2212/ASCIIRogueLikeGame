@@ -270,14 +270,16 @@ void Player::attack(Monster* monster) {
             if (!inventory.getWeapons().empty()) {
 
                 w = inventory.getCurrentWeapon();
+                int attacks{w.getAttacksRemaining()};
 
                 // If the player does have a weapon, check the weapon to make sure it has attacks remaining.
-                if (!w.isBroken()) {
+                if (attacks > 0) {
                     // Use the weapon if it does have attacks remaining
+                    w.useWeapon();
                     damageAmount = w.attack();
                 }
                 else {
-                    // Use the players strength if it does not have attacks remaining
+                    // Use the player's strength if it does not have attacks remaining
                     damageAmount = strength;
                     inventory.removeCurrentWeapon();
                 }

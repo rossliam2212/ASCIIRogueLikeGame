@@ -25,7 +25,8 @@ void Inventory::addItem(Item* item) {
     else if (item->getName() == HealthPotion::healthPotionName)
         healthPotions++;
     else {
-        weapons.emplace_back(item);
+        if (!weaponSlotsFull())
+            weapons.emplace_back(item);
         return;
     }
     items.emplace_back(item);
@@ -106,7 +107,7 @@ void Inventory::removeHealthPotion() {
  */
 void Inventory::removeCurrentWeapon() {
     auto weapon = weapons[currentWeapon];
-    currentWeapon--;
+    currentWeapon = 0;
     historyLogger.logUsedItem(weapon);
     removeItem(weapon, true);
 }

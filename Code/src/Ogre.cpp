@@ -5,8 +5,6 @@
 #include "Ogre.h"
 #include "Player.h"
 
-const std::string Ogre::ogreName = "Ogre";
-
 Ogre::Ogre(Player* player, const GameMap& map, const Point& position)
     : Monster{player, map, ogreStrength, ogreHealth, ogreDeathXP, ogreFollowDistance, position} {
     name = ogreName;

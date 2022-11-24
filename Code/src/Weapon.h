@@ -46,6 +46,7 @@ public:
     std::ostream& write(std::ostream& os) const override;
 
     int attack();
+    void useWeapon();
     bool isBroken() const;
     int getAttacksRemaining() const;
 

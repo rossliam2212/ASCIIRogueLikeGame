@@ -5,8 +5,6 @@
 #include "Zombie.h"
 #include "Player.h"
 
-const std::string Zombie::zombieName = "Zombie";
-
 Zombie::Zombie(Player* player, const GameMap& map, const Point& position)
     : Monster(player, map, zombieStrength, zombieHealth, zombieDeathXP, zombieFollowDistance, position) {
     name = zombieName;

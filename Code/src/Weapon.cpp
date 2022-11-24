@@ -42,14 +42,17 @@ Weapon& Weapon::operator=(const Weapon &rhs) {
  * @return The damageAmount of the weapon.
  */
 int Weapon::attack() {
-    numberOfAttacks--;
     return damageAmount;
+}
+
+void Weapon::useWeapon() {
+    numberOfAttacks--;
 }
 
 /**
  * Checks if the weapon is broken or not.
- * A weapon os considered broken if it has no attacks remaining.
- * @return
+ * A weapon is considered broken if it has no attacks remaining.
+ * @return True if the weapon is broken, False otherwise.
  */
 bool Weapon::isBroken() const {
     return numberOfAttacks <= 0;

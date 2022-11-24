@@ -130,7 +130,7 @@ void GameManager::renderUI() {
               << "| XP-Level: " << player.getXPLevel() << "/" << Player::maxXPLevel << " "
               << "| XP: " << player.getXP() << "/" << Player::xpLevelUpValue << " \n";
 
-    // Players Attacking State
+    // Buy Menu Availability
     utility::gotoScreenPosition(0, mapSizeY + 4);
     std::cout << "Buy Menu Available: " << (player.getBuyMenu() ? "Yes\n" : "No \n");
 
@@ -146,9 +146,9 @@ void GameManager::renderUI() {
     } else {
         std::cout << player.getInventory().getNumGoldCoins();
     }
-
     std::cout << "\n Health Potions: " << player.getInventory().getNumHealthPotions() << "\n";
 
+    // Weapons
     std::cout << " Current Weapon: (" << player.getInventory().getCurrentWeaponIndex() << ") ";
 
     if (!player.getInventory().getWeapons().empty()) {

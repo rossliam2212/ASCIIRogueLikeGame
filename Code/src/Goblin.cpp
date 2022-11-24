@@ -5,8 +5,6 @@
 #include "Goblin.h"
 #include "Player.h"
 
-const std::string Goblin::goblinName = "Goblin";
-
 Goblin::Goblin(Player* player, const GameMap& map, const Point& position)
     : Monster{player, map, goblinStrength, goblinHealth, goblinDeathXP, goblinFollowDistance, position} {
     name = goblinName;
