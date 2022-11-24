@@ -87,16 +87,16 @@ coins are removed.
 
 #### Attacking
 The player can attack a monster by trying to move into the same position as the monster. Once the player has done this, the
-attack loop automatically starts and both the player and the monster will have a chance to make their attack. The player
-gets the first chance to attack and then the monster gets their chance. This will continue until either the player of monster
-is killed.
+attack loop automatically starts and both the player and the monster will have a chance to make their attack. Neither the player
+or monster will be able to move once a attack has started. The player gets the first chance to attack and then the monster gets their 
+chance. This will continue until either the player of monster is killed.
 
 ### Monster Behaviour
 There are a few types of monsters, which are shown in the [character table](#player-and-monster-characters) above. Monsters have
 similar attributes to the player. They have a strength, health points and a death xp. They also have a follow distance.
 This is the amount of spaces that can be between them and the player before they start to follow the player. All monsters
 work in the same way but have different stats for each of their attributes. Therefore, some monsters are stronger and more
-dangerous than others, so the player must choose their weapons and attacks wisely.
+dangerous than others, so the player must choose their weapons and attacks and use their health potions wisely.
 
 ### Game History
 All the events that occur while playing the game are logged to the [GameSessionHistory txt file](https://github.com/rossliam2212/ASCIIRogueLikeGame/blob/main/Code/GameSessionHistory.txt)
@@ -297,7 +297,9 @@ Game Over @ Wed Nov 23 14:36:20 2022
 
 ## Game Levels
 There are 5 different levels that the player must make their way through. The levels are all in basic txt files can be
-found [here](https://github.com/rossliam2212/ASCIIRogueLikeGame/tree/main/Code/levels).
+found [here](https://github.com/rossliam2212/ASCIIRogueLikeGame/tree/main/Code/levels). The '=' characters that are in the
+level txt files represent spaces in the level. They do not appear while playing the game, they are replayed with
+spaces when the level txt file is read in during the game.
 
 Here is an example of how the level 1 looks when playing the game:
 ![1](https://user-images.githubusercontent.com/73957889/203439973-41bdd2e2-830e-4bb4-b654-c86a336b2ae8.png)
