@@ -98,7 +98,6 @@ private:
     void attack(Monster* monster);
     void checkMonster(int x, int y);
     void checkItem(int x, int y);
-    bool checkWeapon(Weapon* w);
     void openBuyMenu();
 };
 

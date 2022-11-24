@@ -98,6 +98,19 @@ void HistoryLogger::logUsedItem(Item* item) {
 }
 
 /**
+ * Logs weapon broke message to the output file.
+ * @param weapon The weapon that has broken.
+ */
+void HistoryLogger::logWeaponBroke(Item* weapon) {
+    std::ofstream outputFile{fileName, std::ios::app};
+    if (!outputFile)
+        return;
+
+    outputFile << getDateTime() << "\t- Weapon broken & Removed from inventory -> " << weapon->getName() << "\n";
+    outputFile.close();
+}
+
+/**
  * Logs monster killed message to the output file.
  * @param monster The monster that was killed.
  * @param weaponUsed The weapon used to kill the monster.
@@ -179,6 +192,18 @@ void HistoryLogger::logLevelChange(int level) {
     outputFile << "\n====================================================\n";
     outputFile << getDateTime() << "\t Moved to Level " << level << "\n";
     outputFile << "====================================================\n";
+    outputFile.close();
+}
+
+/**
+ * Logs congratulations message to the output file when the player beats the game.
+ */
+void HistoryLogger::logPlayerWinsGame() {
+    std::ofstream outputFile{fileName, std::ios::app};
+    if (!outputFile)
+        return;
+
+    outputFile << "\n\nCongratulations! You have beaten the game!\n";
     outputFile.close();
 }
 

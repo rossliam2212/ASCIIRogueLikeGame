@@ -50,8 +50,8 @@ void Inventory::nextWeapon() {
  * Getter for he players current weapon.
  * @return The players current weapon.
  */
-Weapon Inventory::getCurrentWeapon() {
-    auto cw = dynamic_cast<Weapon&>(*(weapons[currentWeapon]));
+Weapon* Inventory::getCurrentWeapon() {
+    auto cw = dynamic_cast<Weapon*>((weapons[currentWeapon]));
     return cw;
 }
 
@@ -105,10 +105,15 @@ void Inventory::removeHealthPotion() {
  * Removes the players current weapon from their inventory.
  * Called when the player presses 'Q' to drop their current weapon.
  */
-void Inventory::removeCurrentWeapon() {
+void Inventory::removeCurrentWeapon(bool weaponBroken) {
     auto weapon = weapons[currentWeapon];
     currentWeapon = 0;
-    historyLogger.logUsedItem(weapon);
+
+    if (!weaponBroken)
+        historyLogger.logUsedItem(weapon);
+    else
+        historyLogger.logWeaponBroke(weapon);
+
     removeItem(weapon, true);
 }
 

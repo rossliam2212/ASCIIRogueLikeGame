@@ -12,6 +12,8 @@
 class BuyMenu {
 private:
     static constexpr int numberOfWeapons{3};
+    static constexpr int minNumberOfAttacks{1};
+    static constexpr int maxNumberOfAttacks{4};
 
     static constexpr int level1WeaponStrengthMin{20};
     static constexpr int level1WeaponStrengthMax{29};
@@ -35,15 +37,7 @@ private:
     int playersXPLevel;
     std::vector<Weapon*> weapons;
 
-    const std::array<std::string, 7> buyMenuWeaponNames {
-        "Machete",
-        "Stiletto",
-        "Katana",
-        "Karambit",
-        "Bayonet",
-        "Tomahawk",
-        "Balisong"
-    };
+    static const std::array<std::string, 7> buyMenuWeaponNames;
 
 public:
     BuyMenu(int currentLevel, int playersXPLevel);

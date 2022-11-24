@@ -36,14 +36,14 @@ public:
     void addItem(Item* item);
 
     void nextWeapon();
-    Weapon getCurrentWeapon();
+    Weapon* getCurrentWeapon();
     int getCurrentWeaponIndex() const;
 
     bool weaponSlotsFull();
 
     void removeGoldCoin();
     void removeHealthPotion();
-    void removeCurrentWeapon();
+    void removeCurrentWeapon(bool weaponBroken);
 
     int getNumGoldCoins() const;
     int getNumHealthPotions() const;

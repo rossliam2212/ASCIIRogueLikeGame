@@ -4,6 +4,18 @@
 
 #include "Weapon.h"
 
+const std::array<std::string, 9> Weapon::meleeWeaponNames {
+        "Club",
+        "Staff",
+        "Pike",
+        "Mace",
+        "Tonfa",
+        "Stick",
+        "Pipe",
+        "Hammer",
+        "Baton"
+};
+
 Weapon::Weapon()
     : Weapon{Point{}} {
 }

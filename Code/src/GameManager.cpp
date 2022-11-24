@@ -44,8 +44,10 @@ void GameManager::startGame() {
     }
 
     // Called when game is over
-    if (levelsCompleted)
+    if (levelsCompleted) {
         renderGameOverWinUI();
+        historyLogger.logPlayerWinsGame();
+    }
     else
         renderGameOverUI();
 
@@ -54,7 +56,7 @@ void GameManager::startGame() {
 
 void GameManager::nextLevel() {
     level++;
-    if (level >= 3) {
+    if (level >= numberOfLevels) {
         levelsCompleted = true;
         return;
     }
@@ -128,7 +130,7 @@ void GameManager::renderUI() {
     std::cout << "Strength: " << player.getStrength() << " "
               << "| HP: " << player.getHealth() << " "
               << "| XP-Level: " << player.getXPLevel() << "/" << Player::maxXPLevel << " "
-              << "| XP: " << player.getXP() << "/" << Player::xpLevelUpValue << " \n";
+              << "| XP: " << player.getXP() << "/" << Player::xpLevelUpValue << "            \n";
 
     // Buy Menu Availability
     utility::gotoScreenPosition(0, mapSizeY + 4);
@@ -149,7 +151,8 @@ void GameManager::renderUI() {
     std::cout << "\n Health Potions: " << player.getInventory().getNumHealthPotions() << "\n";
 
     // Weapons
-    std::cout << " Current Weapon: (" << player.getInventory().getCurrentWeaponIndex() << ") ";
+    std::cout << " Current Weapon: ";
+//    std::cout << " Current Weapon: (" << player.getInventory().getCurrentWeaponIndex() << ") ";
 
     if (!player.getInventory().getWeapons().empty()) {
         if (player.getNextWeaponPressed()) {
@@ -157,7 +160,7 @@ void GameManager::renderUI() {
             player.resetNextWeaponPressed();
         }
         else
-            std::cout << player.getInventory().getCurrentWeapon() << "\n\n";
+            std::cout << *(player.getInventory().getCurrentWeapon()) << "\n\n";
     } else {
         std::cout << "No Weapons                                                                        \n\n";
     }
@@ -204,7 +207,7 @@ void GameManager::renderGameOverWinUI() {
    |_| \___/ \___/     \_/\_/  |___|_| \_(_|_)
                                              )";
 
-    std::cout << "\n\n";
+    std::cout << "\n\n\n";
     std::cout << "You have successfully beaten the game!\n";
     std::cout << "Check the GameSessionHistory.txt file for your game details.\n\n\n\n";
 }

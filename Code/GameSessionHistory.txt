@@ -1,41 +1,98 @@
-Game Session Started @ Thu Nov 24 13:47:51 2022
+Game Session Started @ Thu Nov 24 23:51:48 2022
 
-Thu Nov 24 13:47:54 2022
+Thu Nov 24 23:51:50 2022
 	- Picked Up Item -> Gold Coin @ position (4, 8)
-Thu Nov 24 13:47:56 2022
+Thu Nov 24 23:51:51 2022
 	- Picked Up Item -> Health Potion @ position (3, 2)
-Thu Nov 24 13:47:59 2022
+Thu Nov 24 23:51:53 2022
 	- Picked Up Item -> Gold Coin @ position (22, 1)
-Thu Nov 24 13:47:59 2022
+Thu Nov 24 23:51:54 2022
 	- Picked Up Item -> Gold Coin @ position (22, 3)
-Thu Nov 24 13:47:59 2022
+Thu Nov 24 23:51:57 2022
+	- Picked Up Item -> Gold Coin @ position (20, 8)
+Thu Nov 24 23:51:57 2022
+	- Picked Up Item -> Gold Coin @ position (21, 9)
+Thu Nov 24 23:52:12 2022
+	- Picked Up Weapon -> Baton(11 damage) @ position (42, 7)
+Thu Nov 24 23:52:13 2022
+	- Picked Up Item -> Gold Coin @ position (53, 8)
+Thu Nov 24 23:52:16 2022
+	- Picked Up Item -> Gold Coin @ position (72, 9)
+Thu Nov 24 23:52:17 2022
+	- Picked Up Item -> Gold Coin @ position (76, 8)
+Thu Nov 24 23:52:18 2022
+	- Picked Up Item -> Gold Coin @ position (81, 9)
+Thu Nov 24 23:52:19 2022
+	- Picked Up Item -> Gold Coin @ position (78, 6)
+Thu Nov 24 23:52:19 2022
+	- Picked Up Item -> Gold Coin @ position (78, 2)
+Thu Nov 24 23:52:21 2022
+	- Picked Up Weapon -> Mace(14 damage) @ position (70, 2)
+Thu Nov 24 23:52:27 2022
+	- Used Item -> Health Potion
+Thu Nov 24 23:52:29 2022
+	- Picked Up Item -> Health Potion @ position (62, 4)
+Thu Nov 24 23:52:35 2022
+	- Picked Up Item -> Health Potion @ position (72, 17)
+Thu Nov 24 23:52:35 2022
+	- Picked Up Weapon -> Club(19 damage) @ position (72, 19)
+Thu Nov 24 23:52:36 2022
+	- Picked Up Item -> Gold Coin @ position (65, 19)
+Thu Nov 24 23:52:37 2022
+	- Picked Up Item -> Gold Coin @ position (65, 16)
+Thu Nov 24 23:52:42 2022
+	- Picked Up Item -> Gold Coin @ position (79, 16)
+Thu Nov 24 23:52:43 2022
+	- Picked Up Item -> Gold Coin @ position (79, 19)
+Thu Nov 24 23:52:49 2022
+	- Picked Up Item -> Gold Coin @ position (43, 19)
+
+Thu Nov 24 23:52:50 2022
+	- Attack Started -> Attacking Goblin (100hp) @ position (35, 20)
+
+		- Dealt 19 damage to Goblin (81hp remaining)
+		- Goblin dealt 10 damage to You (90hp remaining)
+		- Dealt 19 damage to Goblin (62hp remaining)
+		- Goblin dealt 10 damage to You (80hp remaining)
+		- Dealt 19 damage to Goblin (43hp remaining)
+		- Goblin dealt 10 damage to You (70hp remaining)
+		- Dealt 19 damage to Goblin (24hp remaining)
+		- Goblin dealt 10 damage to You (60hp remaining)
+		- Dealt 19 damage to Goblin (5hp remaining)
+		- Goblin dealt 10 damage to You (50hp remaining)
+		- Dealt 19 damage to Goblin (0hp remaining)
+
+		- Killed Monster -> Goblin(+10xp) w/ Club(2 attacks remaining) @ position (35, 20)
+
+Thu Nov 24 23:52:58 2022
+	- Picked Up Item -> Gold Coin @ position (31, 19)
+Thu Nov 24 23:52:59 2022
+	- Picked Up Item -> Health Potion @ position (28, 22)
+Thu Nov 24 23:52:59 2022
 	- Used Item -> Health Potion
 
-Thu Nov 24 13:48:01 2022
-	- Attack Started -> Attacking Goblin (100hp) @ position (20, 6)
+Thu Nov 24 23:53:03 2022
+	- Attack Started -> Attacking Goblin (100hp) @ position (37, 23)
 
-		- Dealt 10 damage to Goblin (90hp remaining)
+		- Dealt 19 damage to Goblin (81hp remaining)
 		- Goblin dealt 10 damage to You (90hp remaining)
-		- Dealt 10 damage to Goblin (80hp remaining)
+		- Dealt 19 damage to Goblin (62hp remaining)
 		- Goblin dealt 10 damage to You (80hp remaining)
-		- Dealt 10 damage to Goblin (70hp remaining)
+		- Dealt 19 damage to Goblin (43hp remaining)
 		- Goblin dealt 10 damage to You (70hp remaining)
-		- Dealt 10 damage to Goblin (60hp remaining)
+		- Dealt 19 damage to Goblin (24hp remaining)
 		- Goblin dealt 10 damage to You (60hp remaining)
-		- Dealt 10 damage to Goblin (50hp remaining)
+		- Dealt 19 damage to Goblin (5hp remaining)
 		- Goblin dealt 10 damage to You (50hp remaining)
-		- Dealt 10 damage to Goblin (40hp remaining)
-		- Goblin dealt 10 damage to You (40hp remaining)
-		- Dealt 10 damage to Goblin (30hp remaining)
-		- Goblin dealt 10 damage to You (30hp remaining)
-		- Dealt 10 damage to Goblin (20hp remaining)
-		- Goblin dealt 10 damage to You (20hp remaining)
-		- Dealt 10 damage to Goblin (10hp remaining)
-		- Goblin dealt 10 damage to You (10hp remaining)
-		- Dealt 10 damage to Goblin (0hp remaining)
+		- Dealt 19 damage to Goblin (0hp remaining)
 
-		- Killed Monster -> Goblin(+10xp) w/ Mace(3 attacks remaining) @ position (20, 6)
+		- Killed Monster -> Goblin(+10xp) w/ Club(1 attacks remaining) @ position (37, 23)
 
 
-Game Over @ Thu Nov 24 13:48:13 2022
+====================================================
+Thu Nov 24 23:53:18 2022
+	 Moved to Level 2
+====================================================
+
+Game Over @ Thu Nov 24 23:53:28 2022
 

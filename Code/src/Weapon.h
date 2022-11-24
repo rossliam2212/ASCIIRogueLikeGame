@@ -23,17 +23,7 @@ private:
     int price;
     int numberOfAttacks;
 
-    const std::array<std::string, 9> meleeWeaponNames {
-        "Club",
-        "Staff",
-        "Pike",
-        "Mace",
-        "Tonfa",
-        "Stick",
-        "Pipe",
-        "Hammer",
-        "Baton"
-    };
+    static const std::array<std::string, 9> meleeWeaponNames;
 
 public:
     Weapon();

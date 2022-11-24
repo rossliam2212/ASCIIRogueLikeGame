@@ -172,7 +172,7 @@ void Player::handleInput() {
         if(GetKeyState(81) & 0x8000) {
             if(!inventory.getWeapons().empty()) {
                 removeCurrentWeaponPressed = true;
-                inventory.removeCurrentWeapon();
+                inventory.removeCurrentWeapon(false);
             }
 
             Sleep(500); // Half second delay
@@ -257,70 +257,63 @@ void Player::openBuyMenu() {
  * @param monster The monster that the player is attacking.
  */
 void Player::attack(Monster* monster) {
+    int damageAmount;
+    Weapon* w{nullptr};
+
+    // If the player doesn't have a weapon, then use their strength to attack
+    if (!inventory.getWeapons().empty()) {
+        w = inventory.getCurrentWeapon();
+
+        // If the player's weapon is not broken, use the weapon
+        // else if the weapon is broken. then use their strength
+        if (!w->isBroken()) {
+            w->useWeapon();
+            damageAmount = w->attack();
+        }
+        else
+            damageAmount = strength;
+    } else
+        damageAmount = strength;
+
+
     while (attacking) {
         if (!isDead()) {
-
-            // Players Turn
-            int damageAmount;
-            Weapon w{}; // Temp Weapon variable
-
-            // TODO Fixed the weapon attacks not decreasing
-
-            // If the player does not have a weapon, use their strength to attack the enemy
-            if (!inventory.getWeapons().empty()) {
-
-                w = inventory.getCurrentWeapon();
-                int attacks{w.getAttacksRemaining()};
-
-                // If the player does have a weapon, check the weapon to make sure it has attacks remaining.
-                if (attacks > 0) {
-                    // Use the weapon if it does have attacks remaining
-                    w.useWeapon();
-                    damageAmount = w.attack();
-                }
-                else {
-                    // Use the player's strength if it does not have attacks remaining
-                    damageAmount = strength;
-                    inventory.removeCurrentWeapon();
-                }
-            } else {
-                damageAmount = strength;
-            }
-
+            // Players turn
             monster->takeDamage(damageAmount);
             historyLogger.logDamageDealtToMonster(monster, damageAmount);
-
 
             // If the monster is dead...
             if (monster->isDead()) {
                 attacking = false;
 
-                // Testing
                 utility::gotoScreenPosition(monster->getPosition());
                 std::cout << " DEAD!\n";
 
                 increaseXP(monster->getDeathXP());
-                historyLogger.logMonsterKilled(monster, &w);
+                historyLogger.logMonsterKilled(monster, w);
 
                 auto p = monster->getPosition();
                 map.setXY(p, GameMap::defaultChar);
             }
             else {
                 // Monsters Turn
-                Sleep(1000); // One-second delay
+                Sleep(1000); // One second delay
                 takeDamage(monster->attack());
-                historyLogger.logDamageDealtToPlayer(monster, health, monster->getStrength());
+                historyLogger.logDamageDealtToPlayer(monster, health, monster->attack());
             }
         } else {
             attacking = false;
             historyLogger.logPlayerKilled(monster);
         }
     }
+
+    if (w->isBroken()) {
+        removeCurrentWeaponPressed = true;
+        inventory.removeCurrentWeapon(true);
+        Sleep(500); // Half second delay
+    }
 }
 
-bool Player::checkWeapon(Weapon* w) {
-    return w->isBroken();
-}
 
 /**
  * Called when the player is within one space from a monster. This function finds the monster at the given
@@ -391,9 +384,8 @@ void Player::checkCollisions() {
     }
 
     // Moving onto the next level
-    if (map.getXY(position) == GameMap::nextLevelChar) {
+    if (map.getXY(position) == GameMap::nextLevelChar)
         levelChange = true;
-    }
 }
 
 /**

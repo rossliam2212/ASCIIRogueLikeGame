@@ -5,6 +5,16 @@
 #include "BuyMenu.h"
 #include "utility.h"
 
+const std::array<std::string, 7> BuyMenu::buyMenuWeaponNames {
+        "Machete",
+        "Stiletto",
+        "Katana",
+        "Karambit",
+        "Bayonet",
+        "Tomahawk",
+        "Balisong"
+};
+
 BuyMenu::BuyMenu(int currentLevel, int playersXPLevel)
     : currentLevel{currentLevel},
       playersXPLevel{playersXPLevel} {
@@ -52,8 +62,9 @@ void BuyMenu::createWeapons() {
         auto name = buyMenuWeaponNames[Weapon::randomNum(0, (int)buyMenuWeaponNames.size() - 1)];
         auto strength = Weapon::randomNum(minStrength, maxStrength);
         auto cost = getWeaponCost(strength);
+        auto attacks = Weapon::randomNum(minNumberOfAttacks, maxNumberOfAttacks);
 
-        weapons.emplace_back(new Weapon{name, strength, cost, 3});
+        weapons.emplace_back(new Weapon{name, strength, cost, attacks});
     }
 }
 
@@ -62,11 +73,10 @@ void BuyMenu::createWeapons() {
  */
 void BuyMenu::displayWeapons() {
     utility::gotoScreenPosition(0, 40);
-    std::cout << "Buy Menu: (Level - " << currentLevel << ") {\n";
+    std::cout << "Buy Menu: (Level - " << currentLevel << ") \n";
     for (int i = 0; i < numberOfWeapons; i++) {
         std::cout << "\t" << (i+1) << " - " << *weapons[i] << " - " << weapons[i]->getPrice() << " gold coins\n";
     }
-    std::cout << "}";
 }
 
 /*
@@ -121,3 +131,4 @@ int BuyMenu::getWeaponCost(int weaponStrength) const {
     }
     return playersXPLevel >= discountXPLevel ? cost - discount : cost; // 5 coin discount if players xp level is 3 or above
 }
+

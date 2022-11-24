@@ -27,6 +27,7 @@ public:
     void logItemPickUp(Item* item);
     void logWeaponBought(Item* weapon);
     void logUsedItem(Item* item);
+    void logWeaponBroke(Item* weapon);
     void logPlayerXPLevelUp(int xpLevel, int newMaxHealth, int newStrength);
 
     void logAttackStarted(Monster* monster);
@@ -36,6 +37,7 @@ public:
     void logMonsterKilled(Monster* monster, Weapon* weaponUsed);
     void logLevelChange(int level);
     void logGameOver();
+    void logPlayerWinsGame();
 
 private:
     void setUpFile();
