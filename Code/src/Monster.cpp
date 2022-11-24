@@ -67,6 +67,11 @@ void Monster::checkInFollowRange() {
  */
 void Monster::takeDamage(int damageAmount) {
     health -= damageAmount;
+
+    if (health <= 0) {
+        health = 0;
+        dead = true;
+    }
 }
 
 /**
@@ -74,9 +79,6 @@ void Monster::takeDamage(int damageAmount) {
  * @return True if the monster is dea, false otherwise.
  */
 bool Monster::isDead() {
-    if (health <= 0) {
-        dead = true;
-    }
     return dead;
 }
 

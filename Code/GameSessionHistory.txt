@@ -1,194 +1,41 @@
-Game Session Started @ Thu Nov 24 00:17:17 2022
+Game Session Started @ Thu Nov 24 13:47:51 2022
 
-Thu Nov 24 00:17:27 2022
+Thu Nov 24 13:47:54 2022
 	- Picked Up Item -> Gold Coin @ position (4, 8)
-Thu Nov 24 00:17:29 2022
+Thu Nov 24 13:47:56 2022
 	- Picked Up Item -> Health Potion @ position (3, 2)
-Thu Nov 24 00:17:33 2022
+Thu Nov 24 13:47:59 2022
 	- Picked Up Item -> Gold Coin @ position (22, 1)
-Thu Nov 24 00:17:34 2022
+Thu Nov 24 13:47:59 2022
 	- Picked Up Item -> Gold Coin @ position (22, 3)
-Thu Nov 24 00:17:36 2022
-	- Picked Up Item -> Gold Coin @ position (21, 9)
-Thu Nov 24 00:17:37 2022
-	- Picked Up Item -> Gold Coin @ position (20, 8)
-Thu Nov 24 00:17:43 2022
-	- Picked Up Weapon -> Pike(20 damage) @ position (42, 7)
-Thu Nov 24 00:17:46 2022
-	- Picked Up Item -> Gold Coin @ position (53, 8)
-Thu Nov 24 00:17:50 2022
-	- Picked Up Item -> Gold Coin @ position (72, 9)
-Thu Nov 24 00:17:51 2022
-	- Picked Up Item -> Gold Coin @ position (76, 8)
-Thu Nov 24 00:17:52 2022
-	- Picked Up Item -> Gold Coin @ position (81, 9)
-Thu Nov 24 00:17:53 2022
-	- Picked Up Item -> Gold Coin @ position (78, 6)
-Thu Nov 24 00:17:54 2022
-	- Picked Up Item -> Gold Coin @ position (78, 2)
-Thu Nov 24 00:17:57 2022
-	- Picked Up Weapon -> Baton(16 damage) @ position (70, 2)
-Thu Nov 24 00:17:59 2022
-	- Picked Up Item -> Health Potion @ position (62, 4)
-Thu Nov 24 00:17:59 2022
+Thu Nov 24 13:47:59 2022
 	- Used Item -> Health Potion
 
-Thu Nov 24 00:18:03 2022
-	- Attack Started -> Attacking Zombie (100hp) @ position (69, 3)
+Thu Nov 24 13:48:01 2022
+	- Attack Started -> Attacking Goblin (100hp) @ position (20, 6)
 
-		- Dealt 20 damage to Zombie (80hp remaining)
-		- Zombie dealt 15 damage to You (85hp remaining)
-		- Dealt 20 damage to Zombie (60hp remaining)
-		- Zombie dealt 15 damage to You (70hp remaining)
-		- Dealt 20 damage to Zombie (40hp remaining)
-		- Zombie dealt 15 damage to You (55hp remaining)
-		- Dealt 20 damage to Zombie (20hp remaining)
-		- Zombie dealt 15 damage to You (40hp remaining)
-		- Dealt 20 damage to Zombie (0hp remaining)
-
-		- Killed Monster -> Zombie(+15xp) w/ Pike(2 attacks remaining) @ position (69, 3)
-
-Thu Nov 24 00:18:20 2022
-	- Picked Up Item -> Health Potion @ position (72, 17)
-Thu Nov 24 00:18:21 2022
-	- Picked Up Item -> Gold Coin @ position (65, 16)
-Thu Nov 24 00:18:21 2022
-	- Picked Up Item -> Gold Coin @ position (65, 19)
-Thu Nov 24 00:18:24 2022
-	- Picked Up Item -> Gold Coin @ position (79, 19)
-Thu Nov 24 00:18:24 2022
-	- Picked Up Item -> Gold Coin @ position (79, 16)
-Thu Nov 24 00:18:26 2022
-	- Used Item -> Health Potion
-Thu Nov 24 00:18:34 2022
-	- Used Item -> Gold Coin
-Thu Nov 24 00:18:34 2022
-	- Used Item -> Gold Coin
-Thu Nov 24 00:18:34 2022
-	- Used Item -> Gold Coin
-Thu Nov 24 00:18:34 2022
-	- Used Item -> Gold Coin
-Thu Nov 24 00:18:34 2022
-	- Used Item -> Gold Coin
-Thu Nov 24 00:18:34 2022
-	- Used Item -> Gold Coin
-Thu Nov 24 00:18:34 2022
-	- Used Item -> Gold Coin
-Thu Nov 24 00:18:34 2022
-	- Used Item -> Gold Coin
-Thu Nov 24 00:18:34 2022
-	- Used Item -> Gold Coin
-Thu Nov 24 00:18:34 2022
-	- Used Item -> Gold Coin
-Thu Nov 24 00:18:34 2022
-	- Used Item -> Gold Coin
-Thu Nov 24 00:18:34 2022
-	- Used Item -> Gold Coin
-Thu Nov 24 00:18:34 2022
-	- Bought Weapon for 12 gold coins -> Stiletto(27 damage)
-Thu Nov 24 00:19:08 2022
-	- Picked Up Item -> Gold Coin @ position (43, 19)
-
-Thu Nov 24 00:19:09 2022
-	- Attack Started -> Attacking Goblin (100hp) @ position (37, 20)
-
-		- Dealt 27 damage to Goblin (73hp remaining)
+		- Dealt 10 damage to Goblin (90hp remaining)
 		- Goblin dealt 10 damage to You (90hp remaining)
-		- Dealt 27 damage to Goblin (46hp remaining)
+		- Dealt 10 damage to Goblin (80hp remaining)
 		- Goblin dealt 10 damage to You (80hp remaining)
-		- Dealt 27 damage to Goblin (19hp remaining)
+		- Dealt 10 damage to Goblin (70hp remaining)
 		- Goblin dealt 10 damage to You (70hp remaining)
-		- Dealt 27 damage to Goblin (-8hp remaining)
-
-		- Killed Monster -> Goblin(+10xp) w/ Stiletto(2 attacks remaining) @ position (37, 20)
-
-
-Thu Nov 24 00:19:14 2022
-	- Attack Started -> Attacking Goblin (100hp) @ position (39, 21)
-
-		- Dealt 27 damage to Goblin (73hp remaining)
+		- Dealt 10 damage to Goblin (60hp remaining)
 		- Goblin dealt 10 damage to You (60hp remaining)
-		- Dealt 27 damage to Goblin (46hp remaining)
+		- Dealt 10 damage to Goblin (50hp remaining)
 		- Goblin dealt 10 damage to You (50hp remaining)
-		- Dealt 27 damage to Goblin (19hp remaining)
+		- Dealt 10 damage to Goblin (40hp remaining)
 		- Goblin dealt 10 damage to You (40hp remaining)
-		- Dealt 27 damage to Goblin (-8hp remaining)
+		- Dealt 10 damage to Goblin (30hp remaining)
+		- Goblin dealt 10 damage to You (30hp remaining)
+		- Dealt 10 damage to Goblin (20hp remaining)
+		- Goblin dealt 10 damage to You (20hp remaining)
+		- Dealt 10 damage to Goblin (10hp remaining)
+		- Goblin dealt 10 damage to You (10hp remaining)
+		- Dealt 10 damage to Goblin (0hp remaining)
 
-		- Killed Monster -> Goblin(+10xp) w/ Stiletto(2 attacks remaining) @ position (39, 21)
-
-Thu Nov 24 00:19:18 2022
-	- Used Item -> Health Potion
-
-Thu Nov 24 00:19:22 2022
-	- Attack Started -> Attacking Skeleton (100hp) @ position (43, 22)
-
-		- Dealt 27 damage to Skeleton (73hp remaining)
-		- Skeleton dealt 20 damage to You (80hp remaining)
-		- Dealt 27 damage to Skeleton (46hp remaining)
-		- Skeleton dealt 20 damage to You (60hp remaining)
-		- Dealt 27 damage to Skeleton (19hp remaining)
-		- Skeleton dealt 20 damage to You (40hp remaining)
-		- Dealt 27 damage to Skeleton (-8hp remaining)
-
-		- Killed Monster -> Skeleton(+20xp) w/ Stiletto(2 attacks remaining) @ position (43, 22)
-
-Thu Nov 24 00:19:28 2022
-	- Picked Up Item -> Gold Coin @ position (31, 19)
-Thu Nov 24 00:19:29 2022
-	- Picked Up Item -> Health Potion @ position (28, 22)
-Thu Nov 24 00:19:32 2022
-	- Used Item -> Health Potion
-
-====================================================
-Thu Nov 24 00:19:34 2022
-	 Moved to Level 2
-====================================================
-
-Thu Nov 24 00:19:42 2022
-	- Attack Started -> Attacking Zombie (100hp) @ position (1, 5)
-
-		- Dealt 27 damage to Zombie (73hp remaining)
-		- Zombie dealt 15 damage to You (85hp remaining)
-		- Dealt 27 damage to Zombie (46hp remaining)
-		- Zombie dealt 15 damage to You (70hp remaining)
-		- Dealt 27 damage to Zombie (19hp remaining)
-		- Zombie dealt 15 damage to You (55hp remaining)
-		- Dealt 27 damage to Zombie (-8hp remaining)
-
-		- Killed Monster -> Zombie(+15xp) w/ Stiletto(2 attacks remaining) @ position (1, 5)
+		- Killed Monster -> Goblin(+10xp) w/ Mace(3 attacks remaining) @ position (20, 6)
 
 
-Thu Nov 24 00:19:49 2022
-	- Attack Started -> Attacking Zombie (100hp) @ position (15, 4)
-
-		- Dealt 27 damage to Zombie (73hp remaining)
-		- Zombie dealt 15 damage to You (40hp remaining)
-		- Dealt 27 damage to Zombie (46hp remaining)
-		- Zombie dealt 15 damage to You (25hp remaining)
-		- Dealt 27 damage to Zombie (19hp remaining)
-		- Zombie dealt 15 damage to You (10hp remaining)
-		- Dealt 27 damage to Zombie (-8hp remaining)
-Thu Nov 24 00:19:52 2022
-	- Leveled Up! New Stats -> XP Level: 2, Max Health: 110, Strength: 15
-
-		- Killed Monster -> Zombie(+15xp) w/ Stiletto(2 attacks remaining) @ position (15, 4)
-
-Thu Nov 24 00:19:53 2022
-	- Picked Up Item -> Health Potion @ position (15, 1)
-Thu Nov 24 00:19:54 2022
-	- Picked Up Item -> Gold Coin @ position (15, 8)
-Thu Nov 24 00:19:57 2022
-	- Picked Up Weapon -> Tonfa(20 damage) @ position (7, 16)
-Thu Nov 24 00:20:07 2022
-	- Dropped Weapon -> Baton
-
-Thu Nov 24 00:20:11 2022
-	- Attack Started -> Attacking Skeleton (100hp) @ position (42, 6)
-
-		- Dealt 20 damage to Skeleton (80hp remaining)
-		- Skeleton dealt 20 damage to You (-10hp remaining)
-
-		 You were killed by Skeleton (80hp remaining)
-
-Game Over @ Thu Nov 24 00:20:12 2022
+Game Over @ Thu Nov 24 13:48:13 2022
 

@@ -40,7 +40,7 @@ void GameMap::loadMap(int level, const std::array<std::string, 5>& levels) {
         // Replace the '=' characters with ' '
         if (c == defaultChar)
             c = floorChar;
-
+        
         map[counter] = c;
         counter++;
     }
