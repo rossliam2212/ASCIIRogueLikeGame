@@ -3,22 +3,31 @@ Project for my 3rd Software Development for Gaming Module - [Project Brief](http
 
 ## QuickLinks
 - [ASCII Character Tables](#ascii-character-tables)
+  - [Environment Characters](#environment-characters)
+  - [Game Items Characters](#game-item-characters)
+  - [Player and Monster Characters](#player-and-monster-characters)
 - [Gameplay](#gameplay)
+  - [Player](#player)
+    - [Controls](#controls)
+    - [Game Items](#game-items)
+    - [Attacking](#attacking)
+  - [Monster Behaviour](#monster-behaviour)
+  - [Game History](#game-history)
 - [Game Levels](#game-levels)
 - [UML Class Diagram](#uml-class-diagram)
 
 ## ASCII Character Tables
 
-#### Environment
-| **Symbol**      | **Name**  | **Description**                                                          |
-|:----------------|:----------|:-------------------------------------------------------------------------|
-| +               | Door      | Indicates a door that can be entered to travel to another room.          |
-| #               | Path      | Indicates a path that the player can travel along to move between rooms. |
-| -               | Roof      | The roof of a room. The player **CANNOT** pass through this character.   |
-| &#124;          | Wall      | The wall of a room. The player **CANNOT** pass through this character.   |
-| >               | Next Level| Indicates the entry point for the next level.                            |
+#### Environment Characters
+| **Symbol**      | **Name**    | **Description**                                                           |
+|:----------------|:------------|:--------------------------------------------------------------------------|
+| +               | Door        | Indicates a door that can be entered to travel to another room.           |
+| #               | Path        | Indicates a path that the player can travel along to move between rooms.  |
+| -               | Roof        | The roof of a room. The player **CANNOT** pass through this character.    |
+| &#124;          | Wall        | The wall of a room. The player **CANNOT** pass through this character.    |
+| >               | Next Level  | Indicates the entry point for the next level.                             |
 
-#### Game Items
+#### Game Item Characters
 | **Symbol** | **Name**      | **Description**                                                                              |
 |:-----------|:--------------|:---------------------------------------------------------------------------------------------|
 | *          | Gold Coin     | Gold Coins can are used to buy weapons from the buy menu,                                    |
@@ -26,7 +35,7 @@ Project for my 3rd Software Development for Gaming Module - [Project Brief](http
 | ?          | Weapon        | Weapons are used to attack monsters. Each weapon picked up has randomly generated stats.     |
 | $          | Buy Menu      | Gives the player an opportunity to buy stronger weapons with gold coins they have collected. |
 
-#### Characters
+#### Player and Monster Characters
 | **Symbol** | **Name** | **Description**       |
 |:-----------|:---------|:----------------------|
 | @          | Player   | The Player Character. |
@@ -62,33 +71,44 @@ health points, experience points level and experience points. These stats are di
 
 #### Game Items
 There are four different game items scattered throughout each level that the player must use to their advantage.These
-items are gold coins, health potions, weapons and the buy menu. Each item that the player picks up, aside from the buy 
-menu gets added to their inventory and can then be used. The players inventory is displayed at the bottom of the screen 
-and it shows how many gold coins, health potion and what weapons the player has and is currently using. The strength of 
-each weapon and the number of attacks remaining on each weapon is also displayed so the player can use their strongest 
+items are gold coins, health potions, weapons and the buy menu. Each item that the player picks up, aside from the buy
+menu gets added to their inventory and can then be used. The players inventory is displayed at the bottom of the screen,
+and it shows how many gold coins, health potion and what weapons the player has and is currently using. The strength of
+each weapon and the number of attacks remaining on each weapon is also displayed so the player can use their strongest
 weapons.
 
-The buy menu game item gives the player a single opportunity to buy stronger weapons. Once picked up, the buy menu can be 
-activated by pressing 'B'. This will display three weapons at the bottom of the screen that the player can buy using the 
-gold coins that they have collected. The stats for these weapons are calculated based on the players current xp level and also the 
-level that the buy menu is activated in. Once a weapon is purchased, it is added to the players inventory and the gold 
+The buy menu game item gives the player a single opportunity to buy stronger weapons. Once picked up, the buy menu can be
+activated by pressing 'B'. This will display three weapons at the bottom of the screen that the player can buy using the
+gold coins that they have collected. The stats for these weapons are calculated based on the players current xp level and also the
+level that the buy menu is activated in. Once a weapon is purchased, it is added to the players inventory and the gold
 coins are removed.
 
+![Buy Menu](https://user-images.githubusercontent.com/73957889/203667829-aab46500-2e64-40b1-9f10-5c5ebe5be22f.png)
+
 #### Attacking
-The player can attack a monster by trying to move into the same position as the monster. Once the player has done this, the 
+The player can attack a monster by trying to move into the same position as the monster. Once the player has done this, the
 attack loop automatically starts and both the player and the monster will have a chance to make their attack. The player
 gets the first chance to attack and then the monster gets their chance. This will continue until either the player of monster
 is killed.
 
-#### Game History
-All of the events that occur while playing the game are logged to the [GameSessionHistory txt file](https://github.com/rossliam2212/ASCIIRogueLikeGame/blob/main/Code/GameSessionHistory.txt). 
+### Monster Behaviour
+There are a few types of monsters, which are shown in the [character table](#player-and-monster-characters) above. Monsters have
+similar attributes to the player. They have a strength, health points and a death xp. They also have a follow distance.
+This is the amount of spaces that can be between them and the player before they start to follow the player. All monsters
+work in the same way but have different stats for each of their attributes. Therefore, some monsters are stronger and more
+dangerous than others, so the player must choose their weapons and attacks wisely.
+
+### Game History
+All the events that occur while playing the game are logged to the [GameSessionHistory txt file](https://github.com/rossliam2212/ASCIIRogueLikeGame/blob/main/Code/GameSessionHistory.txt)
+along with the time and date that they occurred on.
 
 List of events that get logged:
+- When the game starts.
 - When the player picks up an item.
 - When the player buys a weapon from the buy menu.
-- When the player uses an item (Gold Coin/Heath Potion).
+- When the player uses an item (Gold Coin/Heath Potion or Drops Weapon).
 - When the player xp is leveled up.
-- When the playe rmoves to a new level.
+- When the player moves to a new level.
 - When the player starts an attack on a monster.
 - When the player deals damage to a monster.
 - When the monster deals damage to the player.
@@ -96,7 +116,7 @@ List of events that get logged:
 - When the player is killed.
 - When the game is over.
 
-Here is an sample GameSessionHistory txt file:
+Here is an example GameSessionHistory txt file:
 ```
 Game Session Started @ Wed Nov 23 14:33:20 2022
 
@@ -275,19 +295,11 @@ Wed Nov 23 14:36:16 2022
 Game Over @ Wed Nov 23 14:36:20 2022
 ```
 
-### Monster Behaviour
-There are a few types of monsters, which are shown in the [character table](#ascii-character-tables) above. Monsters have
-similar attributes to the player. They have a strength, health points and a death xp. They also have a follow distance.
-This is the amount of spaces that can be between them and the player before they start to follow the player. All monsters
-work in the same way but have different stats for each of their attributes. Therefore, some monsters are stronger and more
-dangerous than others, so the player must choose their weapons and attacks wisely.
-
 ## Game Levels
-There are 5 different levels that the player must make their way through. The levels are all in basic txt files can be 
-found [here](https://github.com/rossliam2212/ASCIIRogueLikeGame/tree/main/Code/levels). 
+There are 5 different levels that the player must make their way through. The levels are all in basic txt files can be
+found [here](https://github.com/rossliam2212/ASCIIRogueLikeGame/tree/main/Code/levels).
 
-Here is an example of how the level 1 looks when playing the game.
-
+Here is an example of how the level 1 looks when playing the game:
 ![1](https://user-images.githubusercontent.com/73957889/203439973-41bdd2e2-830e-4bb4-b654-c86a336b2ae8.png)
 
 ## UML Class Diagram
