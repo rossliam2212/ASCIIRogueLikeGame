@@ -56,7 +56,7 @@ void GameManager::startGame() {
 
 void GameManager::nextLevel() {
     level++;
-    if (level >= numberOfLevels) {
+    if (level >= 5) {
         levelsCompleted = true;
         return;
     }

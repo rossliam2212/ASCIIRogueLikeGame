@@ -1,98 +1,347 @@
-Game Session Started @ Thu Nov 24 23:51:48 2022
+Game Session Started @ Fri Nov 25 10:55:57 2022
 
-Thu Nov 24 23:51:50 2022
+Fri Nov 25 10:56:00 2022
 	- Picked Up Item -> Gold Coin @ position (4, 8)
-Thu Nov 24 23:51:51 2022
+Fri Nov 25 10:56:01 2022
 	- Picked Up Item -> Health Potion @ position (3, 2)
-Thu Nov 24 23:51:53 2022
+Fri Nov 25 10:56:04 2022
 	- Picked Up Item -> Gold Coin @ position (22, 1)
-Thu Nov 24 23:51:54 2022
+Fri Nov 25 10:56:04 2022
 	- Picked Up Item -> Gold Coin @ position (22, 3)
-Thu Nov 24 23:51:57 2022
+Fri Nov 25 10:56:07 2022
 	- Picked Up Item -> Gold Coin @ position (20, 8)
-Thu Nov 24 23:51:57 2022
+Fri Nov 25 10:56:07 2022
 	- Picked Up Item -> Gold Coin @ position (21, 9)
-Thu Nov 24 23:52:12 2022
-	- Picked Up Weapon -> Baton(11 damage) @ position (42, 7)
-Thu Nov 24 23:52:13 2022
-	- Picked Up Item -> Gold Coin @ position (53, 8)
-Thu Nov 24 23:52:16 2022
-	- Picked Up Item -> Gold Coin @ position (72, 9)
-Thu Nov 24 23:52:17 2022
-	- Picked Up Item -> Gold Coin @ position (76, 8)
-Thu Nov 24 23:52:18 2022
-	- Picked Up Item -> Gold Coin @ position (81, 9)
-Thu Nov 24 23:52:19 2022
-	- Picked Up Item -> Gold Coin @ position (78, 6)
-Thu Nov 24 23:52:19 2022
-	- Picked Up Item -> Gold Coin @ position (78, 2)
-Thu Nov 24 23:52:21 2022
-	- Picked Up Weapon -> Mace(14 damage) @ position (70, 2)
-Thu Nov 24 23:52:27 2022
+Fri Nov 25 10:56:19 2022
+	- Picked Up Item -> Gold Coin @ position (1, 19)
+Fri Nov 25 10:56:19 2022
+	- Picked Up Item -> Gold Coin @ position (1, 15)
+Fri Nov 25 10:56:21 2022
+	- Picked Up Item -> Gold Coin @ position (15, 15)
+Fri Nov 25 10:56:22 2022
+	- Picked Up Item -> Gold Coin @ position (15, 19)
+Fri Nov 25 10:56:28 2022
 	- Used Item -> Health Potion
-Thu Nov 24 23:52:29 2022
+Fri Nov 25 10:56:32 2022
+	- Picked Up Weapon -> Baton(10 damage) @ position (42, 7)
+
+Fri Nov 25 10:56:36 2022
+	- Attack Started -> Attacking Goblin (100hp) @ position (19, 8)
+
+		- Dealt 10 damage to Goblin (90hp remaining)
+		- Goblin dealt 10 damage to You (90hp remaining)
+		- Dealt 10 damage to Goblin (80hp remaining)
+		- Goblin dealt 10 damage to You (80hp remaining)
+		- Dealt 10 damage to Goblin (70hp remaining)
+		- Goblin dealt 10 damage to You (70hp remaining)
+		- Dealt 10 damage to Goblin (60hp remaining)
+		- Goblin dealt 10 damage to You (60hp remaining)
+		- Dealt 10 damage to Goblin (50hp remaining)
+		- Goblin dealt 10 damage to You (50hp remaining)
+		- Dealt 10 damage to Goblin (40hp remaining)
+		- Goblin dealt 10 damage to You (40hp remaining)
+		- Dealt 10 damage to Goblin (30hp remaining)
+		- Goblin dealt 10 damage to You (30hp remaining)
+		- Dealt 10 damage to Goblin (20hp remaining)
+		- Goblin dealt 10 damage to You (20hp remaining)
+		- Dealt 10 damage to Goblin (10hp remaining)
+		- Goblin dealt 10 damage to You (10hp remaining)
+		- Dealt 10 damage to Goblin (0hp remaining)
+
+		- Killed Monster -> Goblin(+10xp) w/ Baton(2 attacks remaining) @ position (19, 8)
+
+Fri Nov 25 10:56:51 2022
+	- Picked Up Item -> Gold Coin @ position (53, 8)
+Fri Nov 25 10:56:54 2022
+	- Picked Up Item -> Gold Coin @ position (72, 9)
+Fri Nov 25 10:56:55 2022
+	- Picked Up Item -> Gold Coin @ position (76, 8)
+Fri Nov 25 10:56:56 2022
+	- Picked Up Item -> Gold Coin @ position (81, 9)
+Fri Nov 25 10:56:57 2022
+	- Picked Up Item -> Gold Coin @ position (78, 6)
+Fri Nov 25 10:56:57 2022
+	- Picked Up Item -> Gold Coin @ position (78, 2)
+Fri Nov 25 10:56:59 2022
+	- Picked Up Weapon -> Stick(10 damage) @ position (70, 2)
+Fri Nov 25 10:57:00 2022
 	- Picked Up Item -> Health Potion @ position (62, 4)
-Thu Nov 24 23:52:35 2022
+Fri Nov 25 10:57:07 2022
 	- Picked Up Item -> Health Potion @ position (72, 17)
-Thu Nov 24 23:52:35 2022
-	- Picked Up Weapon -> Club(19 damage) @ position (72, 19)
-Thu Nov 24 23:52:36 2022
+Fri Nov 25 10:57:07 2022
+	- Picked Up Weapon -> Pike(17 damage) @ position (72, 19)
+Fri Nov 25 10:57:08 2022
 	- Picked Up Item -> Gold Coin @ position (65, 19)
-Thu Nov 24 23:52:37 2022
+Fri Nov 25 10:57:08 2022
 	- Picked Up Item -> Gold Coin @ position (65, 16)
-Thu Nov 24 23:52:42 2022
+Fri Nov 25 10:57:12 2022
+	- Used Item -> Health Potion
+Fri Nov 25 10:57:14 2022
 	- Picked Up Item -> Gold Coin @ position (79, 16)
-Thu Nov 24 23:52:43 2022
+Fri Nov 25 10:57:15 2022
 	- Picked Up Item -> Gold Coin @ position (79, 19)
-Thu Nov 24 23:52:49 2022
+Fri Nov 25 10:57:21 2022
 	- Picked Up Item -> Gold Coin @ position (43, 19)
 
-Thu Nov 24 23:52:50 2022
-	- Attack Started -> Attacking Goblin (100hp) @ position (35, 20)
+Fri Nov 25 10:57:22 2022
+	- Attack Started -> Attacking Goblin (100hp) @ position (37, 20)
 
-		- Dealt 19 damage to Goblin (81hp remaining)
+		- Dealt 17 damage to Goblin (83hp remaining)
 		- Goblin dealt 10 damage to You (90hp remaining)
-		- Dealt 19 damage to Goblin (62hp remaining)
+		- Dealt 17 damage to Goblin (66hp remaining)
 		- Goblin dealt 10 damage to You (80hp remaining)
-		- Dealt 19 damage to Goblin (43hp remaining)
+		- Dealt 17 damage to Goblin (49hp remaining)
 		- Goblin dealt 10 damage to You (70hp remaining)
-		- Dealt 19 damage to Goblin (24hp remaining)
+		- Dealt 17 damage to Goblin (32hp remaining)
 		- Goblin dealt 10 damage to You (60hp remaining)
-		- Dealt 19 damage to Goblin (5hp remaining)
+		- Dealt 17 damage to Goblin (15hp remaining)
 		- Goblin dealt 10 damage to You (50hp remaining)
-		- Dealt 19 damage to Goblin (0hp remaining)
+		- Dealt 17 damage to Goblin (0hp remaining)
 
-		- Killed Monster -> Goblin(+10xp) w/ Club(2 attacks remaining) @ position (35, 20)
+		- Killed Monster -> Goblin(+10xp) w/ Pike(2 attacks remaining) @ position (37, 20)
 
-Thu Nov 24 23:52:58 2022
+Fri Nov 25 10:57:30 2022
 	- Picked Up Item -> Gold Coin @ position (31, 19)
-Thu Nov 24 23:52:59 2022
+Fri Nov 25 10:57:31 2022
 	- Picked Up Item -> Health Potion @ position (28, 22)
-Thu Nov 24 23:52:59 2022
+Fri Nov 25 10:57:32 2022
 	- Used Item -> Health Potion
 
-Thu Nov 24 23:53:03 2022
-	- Attack Started -> Attacking Goblin (100hp) @ position (37, 23)
+Fri Nov 25 10:57:35 2022
+	- Attack Started -> Attacking Goblin (100hp) @ position (37, 21)
 
-		- Dealt 19 damage to Goblin (81hp remaining)
+		- Dealt 17 damage to Goblin (83hp remaining)
 		- Goblin dealt 10 damage to You (90hp remaining)
-		- Dealt 19 damage to Goblin (62hp remaining)
+		- Dealt 17 damage to Goblin (66hp remaining)
 		- Goblin dealt 10 damage to You (80hp remaining)
-		- Dealt 19 damage to Goblin (43hp remaining)
+		- Dealt 17 damage to Goblin (49hp remaining)
 		- Goblin dealt 10 damage to You (70hp remaining)
-		- Dealt 19 damage to Goblin (24hp remaining)
+		- Dealt 17 damage to Goblin (32hp remaining)
 		- Goblin dealt 10 damage to You (60hp remaining)
-		- Dealt 19 damage to Goblin (5hp remaining)
+		- Dealt 17 damage to Goblin (15hp remaining)
 		- Goblin dealt 10 damage to You (50hp remaining)
-		- Dealt 19 damage to Goblin (0hp remaining)
+		- Dealt 17 damage to Goblin (0hp remaining)
 
-		- Killed Monster -> Goblin(+10xp) w/ Club(1 attacks remaining) @ position (37, 23)
+		- Killed Monster -> Goblin(+10xp) w/ Pike(1 attacks remaining) @ position (37, 21)
 
 
 ====================================================
-Thu Nov 24 23:53:18 2022
+Fri Nov 25 10:57:43 2022
 	 Moved to Level 2
 ====================================================
+Fri Nov 25 10:57:54 2022
+	- Used Item -> Gold Coin
+Fri Nov 25 10:57:54 2022
+	- Used Item -> Gold Coin
+Fri Nov 25 10:57:54 2022
+	- Used Item -> Gold Coin
+Fri Nov 25 10:57:54 2022
+	- Used Item -> Gold Coin
+Fri Nov 25 10:57:54 2022
+	- Used Item -> Gold Coin
+Fri Nov 25 10:57:54 2022
+	- Used Item -> Gold Coin
+Fri Nov 25 10:57:54 2022
+	- Used Item -> Gold Coin
+Fri Nov 25 10:57:54 2022
+	- Used Item -> Gold Coin
+Fri Nov 25 10:57:54 2022
+	- Used Item -> Gold Coin
+Fri Nov 25 10:57:54 2022
+	- Used Item -> Gold Coin
+Fri Nov 25 10:57:54 2022
+	- Used Item -> Gold Coin
+Fri Nov 25 10:57:54 2022
+	- Used Item -> Gold Coin
+Fri Nov 25 10:57:54 2022
+	- Used Item -> Gold Coin
+Fri Nov 25 10:57:54 2022
+	- Used Item -> Gold Coin
+Fri Nov 25 10:57:54 2022
+	- Used Item -> Gold Coin
+Fri Nov 25 10:57:54 2022
+	- Used Item -> Gold Coin
+Fri Nov 25 10:57:54 2022
+	- Used Item -> Gold Coin
+Fri Nov 25 10:57:54 2022
+	- Used Item -> Gold Coin
+Fri Nov 25 10:57:54 2022
+	- Bought Weapon for 18 gold coins -> Balisong(38 damage)
+Fri Nov 25 10:58:02 2022
+	- Picked Up Item -> Health Potion @ position (15, 1)
+Fri Nov 25 10:58:05 2022
+	- Picked Up Item -> Gold Coin @ position (15, 8)
+Fri Nov 25 10:58:07 2022
+	- Picked Up Weapon -> Pike(14 damage) @ position (7, 16)
+Fri Nov 25 10:58:22 2022
+	- Picked Up Item -> Gold Coin @ position (47, 3)
+Fri Nov 25 10:58:24 2022
+	- Picked Up Item -> Gold Coin @ position (37, 3)
+Fri Nov 25 10:58:33 2022
+	- Picked Up Item -> Gold Coin @ position (7, 22)
+Fri Nov 25 10:58:33 2022
+	- Picked Up Item -> Gold Coin @ position (7, 24)
+Fri Nov 25 10:58:36 2022
+	- Picked Up Item -> Health Potion @ position (30, 24)
+Fri Nov 25 10:58:41 2022
+	- Dropped Weapon -> Baton
+Fri Nov 25 10:58:46 2022
+	- Picked Up Weapon -> Pike(12 damage) @ position (57, 18)
+Fri Nov 25 10:58:46 2022
+	- Picked Up Item -> Health Potion @ position (60, 17)
+Fri Nov 25 10:58:47 2022
+	- Picked Up Item -> Gold Coin @ position (54, 17)
+Fri Nov 25 10:58:51 2022
+	- Picked Up Item -> Gold Coin @ position (66, 23)
+Fri Nov 25 10:58:54 2022
+	- Picked Up Item -> Health Potion @ position (79, 24)
+Fri Nov 25 10:58:56 2022
+	- Dropped Weapon -> Stick
 
-Game Over @ Thu Nov 24 23:53:28 2022
+====================================================
+Fri Nov 25 10:59:05 2022
+	 Moved to Level 3
+====================================================
+Fri Nov 25 10:59:13 2022
+	- Picked Up Item -> Gold Coin @ position (1, 1)
+Fri Nov 25 10:59:15 2022
+	- Picked Up Item -> Health Potion @ position (4, 6)
+Fri Nov 25 10:59:16 2022
+	- Used Item -> Health Potion
+Fri Nov 25 10:59:23 2022
+	- Picked Up Item -> Health Potion @ position (15, 1)
 
+Fri Nov 25 10:59:24 2022
+	- Attack Started -> Attacking Goblin (100hp) @ position (9, 2)
+
+		- Dealt 12 damage to Goblin (88hp remaining)
+		- Goblin dealt 10 damage to You (90hp remaining)
+		- Dealt 12 damage to Goblin (76hp remaining)
+		- Goblin dealt 10 damage to You (80hp remaining)
+		- Dealt 12 damage to Goblin (64hp remaining)
+		- Goblin dealt 10 damage to You (70hp remaining)
+		- Dealt 12 damage to Goblin (52hp remaining)
+		- Goblin dealt 10 damage to You (60hp remaining)
+		- Dealt 12 damage to Goblin (40hp remaining)
+		- Goblin dealt 10 damage to You (50hp remaining)
+		- Dealt 12 damage to Goblin (28hp remaining)
+		- Goblin dealt 10 damage to You (40hp remaining)
+		- Dealt 12 damage to Goblin (16hp remaining)
+		- Goblin dealt 10 damage to You (30hp remaining)
+		- Dealt 12 damage to Goblin (4hp remaining)
+		- Goblin dealt 10 damage to You (20hp remaining)
+		- Dealt 12 damage to Goblin (0hp remaining)
+
+		- Killed Monster -> Goblin(+10xp) w/ Pike(2 attacks remaining) @ position (9, 2)
+
+Fri Nov 25 10:59:35 2022
+	- Used Item -> Health Potion
+Fri Nov 25 10:59:41 2022
+	- Picked Up Item -> Gold Coin @ position (37, 3)
+Fri Nov 25 10:59:41 2022
+	- Picked Up Weapon -> Tonfa(10 damage) @ position (37, 6)
+
+Fri Nov 25 10:59:58 2022
+	- Attack Started -> Attacking Goblin (100hp) @ position (31, 5)
+
+		- Dealt 10 damage to Goblin (90hp remaining)
+		- Goblin dealt 10 damage to You (90hp remaining)
+		- Dealt 10 damage to Goblin (80hp remaining)
+		- Goblin dealt 10 damage to You (80hp remaining)
+		- Dealt 10 damage to Goblin (70hp remaining)
+		- Goblin dealt 10 damage to You (70hp remaining)
+		- Dealt 10 damage to Goblin (60hp remaining)
+		- Goblin dealt 10 damage to You (60hp remaining)
+		- Dealt 10 damage to Goblin (50hp remaining)
+		- Goblin dealt 10 damage to You (50hp remaining)
+		- Dealt 10 damage to Goblin (40hp remaining)
+		- Goblin dealt 10 damage to You (40hp remaining)
+		- Dealt 10 damage to Goblin (30hp remaining)
+		- Goblin dealt 10 damage to You (30hp remaining)
+		- Dealt 10 damage to Goblin (20hp remaining)
+		- Goblin dealt 10 damage to You (20hp remaining)
+		- Dealt 10 damage to Goblin (10hp remaining)
+		- Goblin dealt 10 damage to You (10hp remaining)
+		- Dealt 10 damage to Goblin (0hp remaining)
+
+		- Killed Monster -> Goblin(+10xp) w/ Tonfa(2 attacks remaining) @ position (31, 5)
+
+Fri Nov 25 11:00:24 2022
+	- Picked Up Item -> Health Potion @ position (12, 13)
+Fri Nov 25 11:00:24 2022
+	- Used Item -> Health Potion
+Fri Nov 25 11:00:28 2022
+	- Picked Up Item -> Gold Coin @ position (25, 17)
+Fri Nov 25 11:00:29 2022
+	- Picked Up Item -> Gold Coin @ position (26, 22)
+Fri Nov 25 11:00:33 2022
+	- Picked Up Item -> Gold Coin @ position (39, 17)
+Fri Nov 25 11:00:35 2022
+	- Picked Up Item -> Gold Coin @ position (40, 22)
+
+====================================================
+Fri Nov 25 11:00:47 2022
+	 Moved to Level 4
+====================================================
+Fri Nov 25 11:00:55 2022
+	- Picked Up Item -> Gold Coin @ position (1, 6)
+Fri Nov 25 11:00:56 2022
+	- Picked Up Item -> Gold Coin @ position (2, 4)
+Fri Nov 25 11:00:59 2022
+	- Picked Up Item -> Gold Coin @ position (15, 4)
+Fri Nov 25 11:01:02 2022
+	- Picked Up Item -> Health Potion @ position (12, 11)
+
+Fri Nov 25 11:01:16 2022
+	- Attack Started -> Attacking Goblin (100hp) @ position (25, 4)
+
+		- Dealt 10 damage to Goblin (90hp remaining)
+		- Goblin dealt 10 damage to You (90hp remaining)
+		- Dealt 10 damage to Goblin (80hp remaining)
+		- Goblin dealt 10 damage to You (80hp remaining)
+		- Dealt 10 damage to Goblin (70hp remaining)
+		- Goblin dealt 10 damage to You (70hp remaining)
+		- Dealt 10 damage to Goblin (60hp remaining)
+		- Goblin dealt 10 damage to You (60hp remaining)
+		- Dealt 10 damage to Goblin (50hp remaining)
+		- Goblin dealt 10 damage to You (50hp remaining)
+		- Dealt 10 damage to Goblin (40hp remaining)
+		- Goblin dealt 10 damage to You (40hp remaining)
+		- Dealt 10 damage to Goblin (30hp remaining)
+		- Goblin dealt 10 damage to You (30hp remaining)
+		- Dealt 10 damage to Goblin (20hp remaining)
+		- Goblin dealt 10 damage to You (20hp remaining)
+		- Dealt 10 damage to Goblin (10hp remaining)
+		- Goblin dealt 10 damage to You (10hp remaining)
+		- Dealt 10 damage to Goblin (0hp remaining)
+
+		- Killed Monster -> Goblin(+10xp) w/ Tonfa(1 attacks remaining) @ position (25, 4)
+
+Fri Nov 25 11:01:29 2022
+	- Picked Up Item -> Health Potion @ position (44, 4)
+Fri Nov 25 11:01:30 2022
+	- Used Item -> Health Potion
+Fri Nov 25 11:01:35 2022
+	- Picked Up Weapon -> Stick(10 damage) @ position (70, 2)
+Fri Nov 25 11:01:35 2022
+	- Picked Up Item -> Gold Coin @ position (70, 7)
+Fri Nov 25 11:01:37 2022
+	- Picked Up Item -> Gold Coin @ position (63, 6)
+Fri Nov 25 11:01:38 2022
+	- Picked Up Item -> Gold Coin @ position (58, 7)
+Fri Nov 25 11:01:50 2022
+	- Dropped Weapon -> Tonfa
+Fri Nov 25 11:01:53 2022
+	- Picked Up Item -> Health Potion @ position (54, 10)
+Fri Nov 25 11:01:54 2022
+	- Picked Up Weapon -> Mace(13 damage) @ position (47, 10)
+Fri Nov 25 11:01:59 2022
+	- Picked Up Item -> Gold Coin @ position (40, 15)
+Fri Nov 25 11:02:02 2022
+	- Picked Up Item -> Gold Coin @ position (31, 19)
+Fri Nov 25 11:02:08 2022
+	- Picked Up Item -> Gold Coin @ position (58, 24)
+Fri Nov 25 11:02:09 2022
+	- Picked Up Item -> Gold Coin @ position (60, 24)
+Fri Nov 25 11:02:09 2022
+	- Picked Up Item -> Gold Coin @ position (62, 24)
