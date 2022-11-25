@@ -48,14 +48,16 @@ Project for my 3rd Software Development for Gaming Module - [Project Brief](http
 ## Gameplay
 
 ### Player
-The player is represented by the '@' symbol. The objective of the player is to make their way through
+The player is represented by the '@' symbol. The objective of the player is to survive their way through
 each level wiping out all the monsters that they face. The  player has a few different attributes: strength,
 health points, experience points level and experience points. These stats are displayed just above the inventory.
 
 - **Strength:** This is the damage the player does when are not holding a weapon.
-- **Health Points:** This is the players health. The player can restore their health to the max by using a heath potion.
-- **Experience Points Level:** This is the experience level the player is at. Every time the player collects 100xp, they level up. When the player does level up, their max health and strength get increased.
-- **Experience Points:** Experience points are collected by killing monsters. Each monster give different xp when killed.
+- **Health Points:** This is the player's health. The player can restore their health to the max by using a heath potion.
+- **Experience Points Level:** This is the experience level the player is at. Every time the player collects 70xp, they level up. When the player does level up, their max health and strength get increased.
+- **Experience Points:** Experience points are collected by killing monsters. Each monster gives different xp when killed.
+
+![stats](https://user-images.githubusercontent.com/73957889/203876543-b0d1d787-6e27-47d8-9c76-ce30e21482e7.png)
 
 #### Controls
 | **Key**     | **Description**       |
@@ -75,7 +77,9 @@ items are gold coins, health potions, weapons and the buy menu. Each item that t
 menu gets added to their inventory and can then be used. The players inventory is displayed at the bottom of the screen,
 and it shows how many gold coins, health potion and what weapons the player has and is currently using. The strength of
 each weapon and the number of attacks remaining on each weapon is also displayed so the player can use their strongest
-weapons.
+weapons. When all of a weapons attacks have been used, the weapon is then removed from the players inventory.
+
+![inventory](https://user-images.githubusercontent.com/73957889/203876530-868dbc71-9be1-4720-b28b-c921ca9f17ae.png)
 
 The buy menu game item gives the player a single opportunity to buy stronger weapons. Once picked up, the buy menu can be
 activated by pressing 'B'. This will display three weapons at the bottom of the screen that the player can buy using the
@@ -88,7 +92,7 @@ coins are removed.
 #### Attacking
 The player can attack a monster by trying to move into the same position as the monster. Once the player has done this, the
 attack loop automatically starts and both the player and the monster will have a chance to make their attack. Neither the player
-or monster will be able to move once a attack has started. The player gets the first chance to attack and then the monster gets their 
+nor monster will be able to move once an attack has started. The player gets the first chance to attack and then the monster gets their
 chance. This will continue until either the player of monster is killed.
 
 ### Monster Behaviour
@@ -107,6 +111,7 @@ List of events that get logged:
 - When the player picks up an item.
 - When the player buys a weapon from the buy menu.
 - When the player uses an item (Gold Coin/Heath Potion or Drops Weapon).
+- When the player's weapon breaks.
 - When the player xp is leveled up.
 - When the player moves to a new level.
 - When the player starts an attack on a monster.
@@ -114,6 +119,7 @@ List of events that get logged:
 - When the monster deals damage to the player.
 - When a monster is killed.
 - When the player is killed.
+- When the player beats the game.
 - When the game is over.
 
 Here is an example GameSessionHistory txt file:
@@ -296,10 +302,10 @@ Game Over @ Wed Nov 23 14:36:20 2022
 ```
 
 ## Game Levels
-There are 5 different levels that the player must make their way through. The levels are all in basic txt files can be
+There are five different levels that the player must make their way through. The levels are all in basic txt files can be
 found [here](https://github.com/rossliam2212/ASCIIRogueLikeGame/tree/main/Code/levels). The '=' characters that are in the
-level txt files represent spaces in the level. They do not appear while playing the game, they are replayed with
-spaces when the level txt file is read in during the game.
+level txt files represent spaces in the level. They do not appear while playing the game, they are replaced with
+spaces when each level txt file is read in during the game.
 
 Here is an example of how the level 1 looks when playing the game:
 ![1](https://user-images.githubusercontent.com/73957889/203439973-41bdd2e2-830e-4bb4-b654-c86a336b2ae8.png)
