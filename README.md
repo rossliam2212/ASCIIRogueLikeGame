@@ -93,7 +93,7 @@ coins are removed.
 The player can attack a monster by trying to move into the same position as the monster. Once the player has done this, the
 attack loop automatically starts and both the player and the monster will have a chance to make their attack. Neither the player
 nor monster will be able to move once an attack has started. The player gets the first chance to attack and then the monster gets their
-chance. This will continue until either the player of monster is killed.
+chance. This will continue until either the player or monster is killed.
 
 ### Monster Behaviour
 There are a few types of monsters, which are shown in the [character table](#player-and-monster-characters) above. Monsters have
