@@ -72,7 +72,7 @@ health points, experience points level and experience points. These stats are di
 | Right Arrow | Cycle through weapons |
 
 #### Game Items
-There are four different game items scattered throughout each level that the player must use to their advantage.These
+There are four different game items scattered throughout each level that the player must use to their advantage. These
 items are gold coins, health potions, weapons and the buy menu. Each item that the player picks up, aside from the buy
 menu gets added to their inventory and can then be used. The players inventory is displayed at the bottom of the screen,
 and it shows how many gold coins, health potion and what weapons the player has and is currently using. The strength of
@@ -91,9 +91,10 @@ coins are removed.
 
 #### Attacking
 The player can attack a monster by trying to move into the same position as the monster. Once the player has done this, the
-attack loop automatically starts and both the player and the monster will have a chance to make their attack. Neither the player
-nor monster will be able to move once an attack has started. The player gets the first chance to attack and then the monster gets their
-chance. This will continue until either the player or monster is killed.
+attack loop automatically starts and both the player and the monster will have a chance to make their attack. The attacking UI, 
+which is displayd at the bottom of the screen under the inventory, is displayed and shows each attack that the player and monster 
+make. Neither the player nor monster will be able to move once an attack has started. The player gets the first chance to attack and 
+then the monster gets their chance. This will continue until either the player or monster is killed. 
 
 ### Monster Behaviour
 There are a few types of monsters, which are shown in the [character table](#player-and-monster-characters) above. Monsters have
