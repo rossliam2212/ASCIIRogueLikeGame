@@ -53,10 +53,14 @@ Weapon& Weapon::operator=(const Weapon &rhs) {
  * The number of attacks that the weapon has is decremented.
  * @return The damageAmount of the weapon.
  */
-int Weapon::attack() {
+int Weapon::attack() const {
     return damageAmount;
 }
 
+/**
+ * Decrements the number of a attacks the weapon has whenever it
+ * is used.
+ */
 void Weapon::useWeapon() {
     numberOfAttacks--;
 }

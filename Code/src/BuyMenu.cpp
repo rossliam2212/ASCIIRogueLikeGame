@@ -59,9 +59,9 @@ void BuyMenu::createWeapons() {
     }
 
     for (int i = 0; i < numberOfWeapons; i++) {
-        auto name = buyMenuWeaponNames[Weapon::randomNum(0, (int)buyMenuWeaponNames.size() - 1)];
-        auto strength = Weapon::randomNum(minStrength, maxStrength);
-        auto cost = getWeaponCost(strength);
+        const auto& name = buyMenuWeaponNames[Weapon::randomNum(0, (int)buyMenuWeaponNames.size() - 1)];
+        int strength = Weapon::randomNum(minStrength, maxStrength);
+        int cost = getWeaponCost(strength);
         auto attacks = Weapon::randomNum(minNumberOfAttacks, maxNumberOfAttacks);
 
         weapons.emplace_back(new Weapon{name, strength, cost, attacks});
