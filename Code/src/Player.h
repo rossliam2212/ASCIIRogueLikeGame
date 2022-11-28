@@ -99,6 +99,7 @@ private:
     void checkMonster(int x, int y);
     void checkItem(int x, int y);
     void openBuyMenu();
+    static void clearAttackInfo(int y);
 };
 
 

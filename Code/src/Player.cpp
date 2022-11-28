@@ -276,42 +276,85 @@ void Player::attack(Monster* monster) {
         damageAmount = strength;
 
 
+    utility::gotoScreenPosition(0, 44);
+    std::cout << "** Attack Started! **\n";
+    system("pause");
+    Sleep(500); // Half second delay
+
     while (attacking) {
         if (!isDead()) {
             // Players turn
             monster->takeDamage(damageAmount);
             historyLogger.logDamageDealtToMonster(monster, damageAmount);
 
+            // Attacking UI for Players turn
+            clearAttackInfo(45);
+            utility::gotoScreenPosition(0, 45);
+            std::cout << "Players Turn...\n";
+            std::cout << "Player dealt " << damageAmount << " to the " << monster->getName() << " (" << monster->getHealth() << "hp remaining)\n\n";
+            std::cin.clear();
+            system("pause");
+            Sleep(500); // Half second delay
+
             // If the monster is dead...
             if (monster->isDead()) {
                 attacking = false;
 
-                utility::gotoScreenPosition(monster->getPosition());
-                std::cout << " DEAD!\n";
+//                utility::gotoScreenPosition(monster->getPosition());
+//                std::cout << " DEAD!\n";
 
                 increaseXP(monster->getDeathXP());
                 historyLogger.logMonsterKilled(monster, w);
 
                 auto p = monster->getPosition();
                 map.setXY(p, GameMap::defaultChar);
+
+                // Attacking UI for Monsters death
+                clearAttackInfo(45);
+                utility::gotoScreenPosition(0, 45);
+                std::cout << "Player killed " << monster->getName() << " -> +" << monster->getDeathXP() << "xp\n\n";
+                std::cin.clear();
+                system("pause");
             }
             else {
                 // Monsters Turn
-                Sleep(1000); // One second delay
                 takeDamage(monster->attack());
                 historyLogger.logDamageDealtToPlayer(monster, health, monster->attack());
+
+                // Attacking UI for Monsters turn
+                clearAttackInfo(45);
+                utility::gotoScreenPosition(0, 45);
+                std::cout << monster->getName() << "'s turn...\n";
+                std::cout << monster->getName() << " dealt " << monster->attack() << " damage to the player (" << health << "hp remaining)\n\n";
+                std::cin.clear();
+                system("pause");
+                Sleep(500); // Half second delay
             }
         } else {
             attacking = false;
             historyLogger.logPlayerKilled(monster);
         }
     }
+    clearAttackInfo(44);
 
     if (w->isBroken()) {
         removeCurrentWeaponPressed = true;
         inventory.removeCurrentWeapon(true);
         Sleep(500); // Half second delay
     }
+}
+
+/**
+ * Clears the attacking UI from the screen.
+ * @param y The height to start clearing from.
+ */
+void Player::clearAttackInfo(int y) {
+    utility::gotoScreenPosition(0, (short)y);
+    std::cout << "                                                                                       \n";
+    std::cout << "                                                                                       \n";
+    std::cout << "                                                                                       \n";
+    std::cout << "                                                                                       \n";
+    std::cout << "                                                                                       \n";
 }
 
 
@@ -424,7 +467,12 @@ void Player::setPosition(const Point& newPos) {
  * Deals damage to the player.
  * @param amount The amount of damage to deal to the player.
  */
-void Player::takeDamage(int amount) { health -= amount; }
+void Player::takeDamage(int amount) {
+    health -= amount;
+
+    if (health <= 0)
+        health = 0;
+}
 
 /**
  * Checks if the player is dead - If their health is <= 0.

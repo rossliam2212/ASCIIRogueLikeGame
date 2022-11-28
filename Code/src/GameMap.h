@@ -13,7 +13,7 @@
 #include "Point.h"
 
 #define WINDOWSIZE_X 800 // in px
-#define WINDOWSIZE_Y 800 // in px
+#define WINDOWSIZE_Y 875 // in px
 
 class GameMap {
 public:
