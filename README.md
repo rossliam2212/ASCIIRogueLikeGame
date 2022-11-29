@@ -88,7 +88,7 @@ weapons. When all of a weapons attacks have been used, the weapon is then remove
 ![2](https://user-images.githubusercontent.com/73957889/204525765-34eb1d87-b3f6-4fb2-8da7-46ae709e9ea0.PNG)
 
 The buy menu game item gives the player a single opportunity to buy stronger weapons. Once picked up, the buy menu can be
-activated by pressing 'B'. This will display three weapons at the bottom of the screen that the player can buy using the
+activated by pressing 'B'. This will display three weapons at the bottom of the screen which the player can buy using the
 gold coins that they have collected. The stats for these weapons are calculated based on the players current xp level and also the
 level that the buy menu is activated in. Once a weapon is purchased, it is added to the players inventory and the gold
 coins are removed.
@@ -97,19 +97,21 @@ coins are removed.
 
 #### Attacking
 The player can attack a monster by trying to move into the same position as the monster. Once the player has done this, the
-attack loop automatically starts and both the player and the monster will have a chance to make their attack. The attacking UI, 
-which is displayd at the bottom of the screen under the inventory, is displayed and shows each attack that the player and monster 
-make. Neither the player nor monster will be able to move once an attack has started. The player gets the first chance to attack and 
-then the monster gets their chance. This will continue until either the player or monster is killed. 
+attack loop automatically starts and both the player and the monster will have a chance to make their attack. The attacking UI,
+which is displayed at the bottom of the screen under the inventory, is displayed and shows each attack that the player and monster
+make. Neither the player nor monster will be able to move once an attack has started. The player gets the first chance to attack and
+then the monster gets their chance. This will continue until either the player or monster is killed.
 
 ![3](https://user-images.githubusercontent.com/73957889/204525875-1e6aa8b7-77ad-4f6c-af90-134a4170da69.PNG)
 
 ### Monster Behaviour
 There are a few types of monsters, which are shown in the [character table](#player-and-monster-characters) above. Monsters have
-similar attributes to the player. They have a strength, health points and a death xp. They also have a follow distance.
-This is the amount of spaces that can be between them and the player before they start to follow the player. All monsters
-work in the same way but have different stats for each of their attributes. Therefore, some monsters are stronger and more
-dangerous than others, so the player must choose their weapons and attacks and use their health potions wisely.
+similar attributes to the player. They have a strength, health points, a death xp. The death xp is the amount of xp that the player 
+receives when they kill the monster. They also have a follow distance. This is the amount of spaces that can be between them and the 
+player before they start to follow the player. All monsters work in the same way but have different stats for each of their attributes. 
+Therefore, some monsters are stronger and more dangerous than others, so the player must choose their weapons and attacks and use 
+their health potions wisely. Monsters also drop gold coins when they are killed which get added to the players inventory. The amount 
+of gold coins dropped depends on the monster.
 
 ### Game History
 All the events that occur while playing the game are logged to the [GameSessionHistory txt file](https://github.com/rossliam2212/ASCIIRogueLikeGame/blob/main/Code/GameSessionHistory.txt)
