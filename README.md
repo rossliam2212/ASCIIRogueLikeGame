@@ -57,7 +57,10 @@ health points, experience points level and experience points. These stats are di
 - **Experience Points Level:** This is the experience level the player is at. Every time the player collects 70xp, they level up. When the player does level up, their max health and strength get increased.
 - **Experience Points:** Experience points are collected by killing monsters. Each monster gives different xp when killed.
 
+<!--
 ![stats](https://user-images.githubusercontent.com/73957889/203876543-b0d1d787-6e27-47d8-9c76-ce30e21482e7.png)
+-->
+![4](https://user-images.githubusercontent.com/73957889/204525670-a9f2a4d9-6013-4b3a-8a0e-5ee8f7eeffb2.PNG)
 
 #### Controls
 | **Key**     | **Description**       |
@@ -79,7 +82,10 @@ and it shows how many gold coins, health potion and what weapons the player has 
 each weapon and the number of attacks remaining on each weapon is also displayed so the player can use their strongest
 weapons. When all of a weapons attacks have been used, the weapon is then removed from the players inventory.
 
+<!--
 ![inventory](https://user-images.githubusercontent.com/73957889/203876530-868dbc71-9be1-4720-b28b-c921ca9f17ae.png)
+-->
+![2](https://user-images.githubusercontent.com/73957889/204525765-34eb1d87-b3f6-4fb2-8da7-46ae709e9ea0.PNG)
 
 The buy menu game item gives the player a single opportunity to buy stronger weapons. Once picked up, the buy menu can be
 activated by pressing 'B'. This will display three weapons at the bottom of the screen that the player can buy using the
@@ -95,6 +101,8 @@ attack loop automatically starts and both the player and the monster will have a
 which is displayd at the bottom of the screen under the inventory, is displayed and shows each attack that the player and monster 
 make. Neither the player nor monster will be able to move once an attack has started. The player gets the first chance to attack and 
 then the monster gets their chance. This will continue until either the player or monster is killed. 
+
+![3](https://user-images.githubusercontent.com/73957889/204525875-1e6aa8b7-77ad-4f6c-af90-134a4170da69.PNG)
 
 ### Monster Behaviour
 There are a few types of monsters, which are shown in the [character table](#player-and-monster-characters) above. Monsters have
