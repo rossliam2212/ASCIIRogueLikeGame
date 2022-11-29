@@ -13,6 +13,7 @@ private:
     static constexpr int ogreStrength{25};
     static constexpr int ogreHealth{120};
     static constexpr int ogreDeathXP{30};
+    static constexpr int ogreDeathGold{8};
     static constexpr int ogreFollowDistance{3};
 
 public:

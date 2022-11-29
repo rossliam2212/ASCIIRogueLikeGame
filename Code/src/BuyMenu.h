@@ -43,7 +43,7 @@ public:
     BuyMenu(int currentLevel, int playersXPLevel);
     ~BuyMenu();
     void displayWeapons();
-    static void clearBuyMenu();
+    void clearBuyMenu();
     Weapon* pickWeapon(int choice);
 
 private:

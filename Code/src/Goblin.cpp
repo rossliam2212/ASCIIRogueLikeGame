@@ -6,7 +6,7 @@
 #include "Player.h"
 
 Goblin::Goblin(Player* player, const GameMap& map, const Point& position)
-    : Monster{player, map, goblinStrength, goblinHealth, goblinDeathXP, goblinFollowDistance, position} {
+    : Monster{player, map, goblinStrength, goblinHealth, goblinDeathXP, goblinFollowDistance, goblinDeathGold,position} {
     name = goblinName;
 }
 

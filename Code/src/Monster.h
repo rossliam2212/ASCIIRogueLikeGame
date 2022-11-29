@@ -28,6 +28,7 @@ protected:
     int health;
     int deathXP;
     int followDistance;
+    int deathGold;
 
     bool attacking{false};
     bool dead{false};
@@ -37,7 +38,7 @@ protected:
     MoveState move{Idle};
 
 public:
-    Monster(Player* player, const GameMap& map, int strength, int health, int deathXP, int followDistance, Point startPosition);
+    Monster(Player* player, const GameMap& map, int strength, int health, int deathXP, int followDistance, int deathGold, Point startPosition);
     virtual ~Monster() = default;
 
     bool operator==(const Monster& rhs) const;
@@ -54,6 +55,7 @@ public:
     int getStrength() const;
     int getHealth() const;
     int getDeathXP() const;
+    int getDeathGold() const;
     Point getPosition() const;
 
     bool getIsAttacking() const;

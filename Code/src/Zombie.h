@@ -13,6 +13,7 @@ private:
     static constexpr int zombieStrength{15};
     static constexpr int zombieHealth{100};
     static constexpr int zombieDeathXP{15};
+    static constexpr int zombieDeathGold{3};
     static constexpr int zombieFollowDistance{4};
 
 public:

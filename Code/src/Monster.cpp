@@ -5,13 +5,14 @@
 #include "Monster.h"
 #include "Player.h"
 
-Monster::Monster(Player* player, const GameMap& map, int strength, int health, int deathXP, int followDistance, Point startPosition)
+Monster::Monster(Player* player, const GameMap& map, int strength, int health, int deathXP, int followDistance, int deathGold, Point startPosition)
     : player{player},
       map{map},
       strength{strength},
       health{health},
       deathXP{deathXP},
       followDistance{followDistance},
+      deathGold{deathGold},
       position{startPosition},
       newPosition{startPosition}{
 }
@@ -96,6 +97,7 @@ std::string Monster::getName() const { return name; }
 int Monster::getStrength() const { return strength; }
 int Monster::getHealth() const { return health; }
 int Monster::getDeathXP() const { return deathXP; }
+int Monster::getDeathGold() const { return deathGold; }
 Point Monster::getPosition() const { return position; }
 
 bool Monster::getIsAttacking() const { return attacking; }

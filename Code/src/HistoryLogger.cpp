@@ -120,7 +120,7 @@ void HistoryLogger::logMonsterKilled(Monster* monster, Weapon* weaponUsed) {
     if (!outputFile)
         return;
 
-    outputFile << "\n\t\t- Killed Monster -> " << monster->getName() << "(+" << monster->getDeathXP() << "xp) w/ " << weaponUsed->getName()
+    outputFile << "\n\t\t- Killed Monster -> " << monster->getName() << "(+" << monster->getDeathXP() << "xp, +" << monster->getDeathGold() << " gold coins) w/ " << weaponUsed->getName()
                                                << "(" << weaponUsed->getAttacksRemaining() << " attacks remaining) @ position " << monster->getPosition() << "\n\n";
     outputFile.close();
 }

@@ -6,7 +6,7 @@
 #include "Player.h"
 
 Ogre::Ogre(Player* player, const GameMap& map, const Point& position)
-    : Monster{player, map, ogreStrength, ogreHealth, ogreDeathXP, ogreFollowDistance, position} {
+    : Monster{player, map, ogreStrength, ogreHealth, ogreDeathXP, ogreFollowDistance, ogreDeathGold, position} {
     name = ogreName;
 }
 

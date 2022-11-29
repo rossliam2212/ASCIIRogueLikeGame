@@ -13,6 +13,7 @@ private:
     static constexpr int goblinStrength{10};
     static constexpr int goblinHealth{100};
     static constexpr int goblinDeathXP{10};
+    static constexpr int goblinDeathGold{2};
     static constexpr int goblinFollowDistance{5};
 
 public:

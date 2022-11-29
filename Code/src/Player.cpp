@@ -199,7 +199,7 @@ void Player::handleInput() {
  * Called when the player presses 'B' to open the buy menu.
  */
 void Player::openBuyMenu() {
-    auto bm = new BuyMenu{gameLevel, xpLevel};
+    auto* bm = new BuyMenu{gameLevel, xpLevel};
     Weapon* w;
     int weaponPrice;
     int goldCoins{inventory.getNumGoldCoins()};
@@ -245,7 +245,7 @@ void Player::openBuyMenu() {
     }
 
     bm->clearBuyMenu();
-//            delete bm; // Breaking game
+//    delete bm; // Breaking game
 }
 
 
@@ -288,7 +288,7 @@ void Player::attack(Monster* monster) {
             historyLogger.logDamageDealtToMonster(monster, damageAmount);
 
             // Attacking UI for Players turn
-            clearAttackInfo(45);
+            clearAttackUI(45);
             utility::gotoScreenPosition(0, 45);
             std::cout << "Players Turn...\n";
             std::cout << "Player dealt " << damageAmount << " to the " << monster->getName() << " (" << monster->getHealth() << "hp remaining)\n\n";
@@ -306,13 +306,15 @@ void Player::attack(Monster* monster) {
                 increaseXP(monster->getDeathXP());
                 historyLogger.logMonsterKilled(monster, w);
 
+                addMonsterDeathGold(monster->getDeathGold());
+
                 auto p = monster->getPosition();
-                map.setXY(p, GameMap::defaultChar);
+                map.setXY(p, GameMap::floorChar);
 
                 // Attacking UI for Monsters death
-                clearAttackInfo(45);
+                clearAttackUI(45);
                 utility::gotoScreenPosition(0, 45);
-                std::cout << "Player killed " << monster->getName() << " -> +" << monster->getDeathXP() << "xp\n\n";
+                std::cout << "Player killed " << monster->getName() << " -> +" << monster->getDeathXP() << "xp, +" << monster->getDeathGold() << " gold coins\n\n";
                 std::cin.clear();
                 system("pause");
             }
@@ -322,7 +324,7 @@ void Player::attack(Monster* monster) {
                 historyLogger.logDamageDealtToPlayer(monster, health, monster->attack());
 
                 // Attacking UI for Monsters turn
-                clearAttackInfo(45);
+                clearAttackUI(45);
                 utility::gotoScreenPosition(0, 45);
                 std::cout << monster->getName() << "'s turn...\n";
                 std::cout << monster->getName() << " dealt " << monster->attack() << " damage to the player (" << health << "hp remaining)\n\n";
@@ -333,9 +335,10 @@ void Player::attack(Monster* monster) {
         } else {
             attacking = false;
             historyLogger.logPlayerKilled(monster);
+            return;
         }
     }
-    clearAttackInfo(44);
+    clearAttackUI(44);
 
     if (w->isBroken()) {
         removeCurrentWeaponPressed = true;
@@ -348,7 +351,7 @@ void Player::attack(Monster* monster) {
  * Clears the attacking UI from the screen.
  * @param y The height to start clearing from.
  */
-void Player::clearAttackInfo(int y) {
+void Player::clearAttackUI(int y) {
     utility::gotoScreenPosition(0, (short)y);
     std::cout << "                                                                                       \n";
     std::cout << "                                                                                       \n";
@@ -357,6 +360,19 @@ void Player::clearAttackInfo(int y) {
     std::cout << "                                                                                       \n";
 }
 
+/**
+ * Adds the number of gold coins dropped by the monster when they are killed to the players inventory.
+ * @param gold The number of gold coins the monster dropped.
+ */
+void Player::addMonsterDeathGold(int gold) {
+    for (int i = 0; i < gold; i++) {
+        auto* gc = new GoldCoin(Point{});
+        items.emplace_back(gc);
+
+        inventory.addItem(gc);
+        delete gc;
+    }
+}
 
 /**
  * Called when the player is within one space from a monster. This function finds the monster at the given

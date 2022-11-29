@@ -13,6 +13,7 @@ private:
     static constexpr int skeletonStrength{20};
     static constexpr int skeletonHealth{100};
     static constexpr int skeletonDeathXP{20};
+    static constexpr int skeletonDeathGold{5};
     static constexpr int skeletonFollowDistance{3};
 
 public:

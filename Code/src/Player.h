@@ -96,10 +96,11 @@ private:
     void renderPlayer();
     void checkCollisions();
     void attack(Monster* monster);
+    void addMonsterDeathGold(int gold);
     void checkMonster(int x, int y);
     void checkItem(int x, int y);
     void openBuyMenu();
-    static void clearAttackInfo(int y);
+    static void clearAttackUI(int y);
 };
 
 
