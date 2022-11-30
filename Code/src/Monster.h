@@ -20,10 +20,13 @@ enum MoveState {
 
 class Monster {
 protected:
+    static constexpr int strengthLevelIncrease{5}; // The amount the strength increases every level
+
     std::string name;
     GameMap map;
     Player* player;
 
+    int level;
     int strength;
     int health;
     int deathXP;
@@ -38,7 +41,7 @@ protected:
     MoveState move{Idle};
 
 public:
-    Monster(Player* player, const GameMap& map, int strength, int health, int deathXP, int followDistance, int deathGold, Point startPosition);
+    Monster(Player* player, const GameMap& map, int level, int health, int deathXP, int followDistance, int deathGold, Point startPosition);
     virtual ~Monster() = default;
 
     bool operator==(const Monster& rhs) const;
@@ -63,6 +66,7 @@ public:
 
 protected:
     void checkInFollowRange();
+    void setStrength(int defaultStrength);
 };
 
 

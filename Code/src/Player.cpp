@@ -257,6 +257,7 @@ void Player::openBuyMenu() {
  * @param monster The monster that the player is attacking.
  */
 void Player::attack(Monster* monster) {
+    bool usingStrength{false};
     int damageAmount;
     Weapon* w{nullptr};
 
@@ -270,10 +271,14 @@ void Player::attack(Monster* monster) {
             w->useWeapon();
             damageAmount = w->attack();
         }
-        else
+        else{
+            usingStrength = true;
             damageAmount = strength;
-    } else
+        }
+    } else {
+        usingStrength = true;
         damageAmount = strength;
+    }
 
 
     utility::gotoScreenPosition(0, 44);
@@ -290,8 +295,8 @@ void Player::attack(Monster* monster) {
             // Attacking UI for Players turn
             clearAttackUI(45);
             utility::gotoScreenPosition(0, 45);
-            std::cout << "Players Turn...\n";
-            std::cout << "Player dealt " << damageAmount << " to the " << monster->getName() << " (" << monster->getHealth() << "hp remaining)\n\n";
+            std::cout << "Player's Turn...\n";
+            std::cout << "Player dealt " << damageAmount << " damage to the " << monster->getName() << " (" << monster->getHealth() << "hp remaining)\n\n";
             std::cin.clear();
             system("pause");
             Sleep(500); // Half second delay
@@ -300,16 +305,19 @@ void Player::attack(Monster* monster) {
             if (monster->isDead()) {
                 attacking = false;
 
-//                utility::gotoScreenPosition(monster->getPosition());
-//                std::cout << " DEAD!\n";
+                increaseXP(monster->getDeathXP()); // Increase players xp
 
-                increaseXP(monster->getDeathXP());
-                historyLogger.logMonsterKilled(monster, w);
+                // Checks if the player killed the monster with their weapon or with their strength
+                // and logs the correct output message.
+                if (!usingStrength)
+                    historyLogger.logMonsterKilled(monster, w); // Log monsters death to output file
+                else
+                    historyLogger.logMonsterKilled(monster, strength); // Log monsters death to output file
 
-                addMonsterDeathGold(monster->getDeathGold());
+                addMonsterDeathGold(monster->getDeathGold()); // Adding the gold dropped by the monster to the players inventory
 
                 auto p = monster->getPosition();
-                map.setXY(p, GameMap::floorChar);
+                map.setXY(p, 'X');
 
                 // Attacking UI for Monsters death
                 clearAttackUI(45);
@@ -334,16 +342,19 @@ void Player::attack(Monster* monster) {
             }
         } else {
             attacking = false;
-            historyLogger.logPlayerKilled(monster);
+            historyLogger.logPlayerKilled(monster); // Logging players death to output file
             return;
         }
     }
     clearAttackUI(44);
 
-    if (w->isBroken()) {
-        removeCurrentWeaponPressed = true;
-        inventory.removeCurrentWeapon(true);
-        Sleep(500); // Half second delay
+    if (!usingStrength) {
+        // If the players current weapon has no attacks left, remove it from the inventory
+        if (w->isBroken()) {
+            removeCurrentWeaponPressed = true;
+            inventory.removeCurrentWeapon(true);
+            Sleep(500); // Half second delay
+        }
     }
 }
 

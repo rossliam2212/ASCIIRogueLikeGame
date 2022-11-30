@@ -5,10 +5,10 @@
 #include "Monster.h"
 #include "Player.h"
 
-Monster::Monster(Player* player, const GameMap& map, int strength, int health, int deathXP, int followDistance, int deathGold, Point startPosition)
+Monster::Monster(Player* player, const GameMap& map, int level, int health, int deathXP, int followDistance, int deathGold, Point startPosition)
     : player{player},
       map{map},
-      strength{strength},
+      level{level},
       health{health},
       deathXP{deathXP},
       followDistance{followDistance},
@@ -92,9 +92,33 @@ void Monster::setIsDead() {
     dead = true;
 }
 
+/**
+ * Sets the monsters strength based on the current level.
+ * Every level the monsters strength is increased by 5.
+ * @param defaultStrength The monsters starting strength.
+ */
+void Monster::setStrength(int defaultStrength) {
+    switch(level) {
+        case 1:
+            strength = defaultStrength;
+            break;
+        case 2:
+            strength = defaultStrength + strengthLevelIncrease;
+            break;
+        case 3:
+            strength = defaultStrength + (strengthLevelIncrease * 2);
+            break;
+        case 4:
+            strength = defaultStrength + (strengthLevelIncrease * 3);
+            break;
+        case 5:
+            strength = defaultStrength + (strengthLevelIncrease * 4);
+            break;
+    }
+}
+
 // Getters & Setters
 std::string Monster::getName() const { return name; }
-int Monster::getStrength() const { return strength; }
 int Monster::getHealth() const { return health; }
 int Monster::getDeathXP() const { return deathXP; }
 int Monster::getDeathGold() const { return deathGold; }

@@ -5,9 +5,10 @@
 #include "Ogre.h"
 #include "Player.h"
 
-Ogre::Ogre(Player* player, const GameMap& map, const Point& position)
-    : Monster{player, map, ogreStrength, ogreHealth, ogreDeathXP, ogreFollowDistance, ogreDeathGold, position} {
+Ogre::Ogre(Player* player, const GameMap& map, int level, const Point& position)
+    : Monster{player, map, level, ogreHealth, ogreDeathXP, ogreFollowDistance, ogreDeathGold, position} {
     name = ogreName;
+    setStrength(ogreStrength);
 }
 
 /**

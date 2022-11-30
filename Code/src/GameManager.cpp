@@ -96,16 +96,16 @@ void GameManager::setUpGameItemsAndMonsters() {
 
     for (auto& monstersAndItem : monstersAndItems) {
         if (monstersAndItem.first == GameMap::skeletonChar){
-            monsters.emplace_back(new Skeleton(&player, map, monstersAndItem.second));
+            monsters.emplace_back(new Skeleton(&player, map, level,monstersAndItem.second));
         }
         else if (monstersAndItem.first == GameMap::zombieChar) {
-            monsters.emplace_back(new Zombie(&player, map, monstersAndItem.second));
+            monsters.emplace_back(new Zombie(&player, map, level, monstersAndItem.second));
         }
         else if (monstersAndItem.first == GameMap::goblinChar) {
-            monsters.emplace_back(new Goblin(&player, map, monstersAndItem.second));
+            monsters.emplace_back(new Goblin(&player, map, level, monstersAndItem.second));
         }
         else if (monstersAndItem.first == GameMap::ogreChar) {
-            monsters.emplace_back(new Ogre(&player, map, monstersAndItem.second));
+            monsters.emplace_back(new Ogre(&player, map, level, monstersAndItem.second));
         }
         else if (monstersAndItem.first == GameMap::goldCoinChar) {
             mapItems.emplace_back(new GoldCoin{monstersAndItem.second});

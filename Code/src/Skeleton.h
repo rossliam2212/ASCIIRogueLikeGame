@@ -17,7 +17,7 @@ private:
     static constexpr int skeletonFollowDistance{3};
 
 public:
-    Skeleton(Player* player, const GameMap& map, const Point& position);
+    Skeleton(Player* player, const GameMap& map, int level, const Point& position);
     ~Skeleton() override = default;
 
     void update() override;

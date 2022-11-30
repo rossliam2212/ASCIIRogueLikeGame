@@ -5,9 +5,10 @@
 #include "Zombie.h"
 #include "Player.h"
 
-Zombie::Zombie(Player* player, const GameMap& map, const Point& position)
-    : Monster(player, map, zombieStrength, zombieHealth, zombieDeathXP, zombieFollowDistance, zombieDeathGold, position) {
+Zombie::Zombie(Player* player, const GameMap& map, int level, const Point& position)
+    : Monster(player, map, level, zombieHealth, zombieDeathXP, zombieFollowDistance, zombieDeathGold, position) {
     name = zombieName;
+    setStrength(zombieStrength);
 }
 
 /**

@@ -5,9 +5,10 @@
 #include "Skeleton.h"
 #include "Player.h"
 
-Skeleton::Skeleton(Player* player, const GameMap& map, const Point& position)
-    : Monster(player, map, skeletonStrength, skeletonHealth, skeletonDeathXP, skeletonFollowDistance, skeletonDeathGold, position) {
+Skeleton::Skeleton(Player* player, const GameMap& map, int level, const Point& position)
+    : Monster(player, map, level, skeletonHealth, skeletonDeathXP, skeletonFollowDistance, skeletonDeathGold, position) {
     name = skeletonName;
+    setStrength(skeletonStrength);
 }
 
 /**

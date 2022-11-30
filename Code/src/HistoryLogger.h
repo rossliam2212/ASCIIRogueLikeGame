@@ -35,6 +35,7 @@ public:
     void logDamageDealtToPlayer(Monster* monster, int hp, int damageAmount);
     void logPlayerKilled(Monster* monster);
     void logMonsterKilled(Monster* monster, Weapon* weaponUsed);
+    void logMonsterKilled(Monster* monster, int strength);
     void logLevelChange(int level);
     void logGameOver();
     void logPlayerWinsGame();

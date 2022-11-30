@@ -17,7 +17,7 @@ private:
     static constexpr int ogreFollowDistance{3};
 
 public:
-    Ogre(Player* player, const GameMap& map, const Point& position);
+    Ogre(Player* player, const GameMap& map, int level, const Point& position);
     ~Ogre() override = default;
 
     void update() override;

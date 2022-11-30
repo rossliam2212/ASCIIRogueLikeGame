@@ -17,7 +17,7 @@ private:
     static constexpr int goblinFollowDistance{5};
 
 public:
-    Goblin(Player* player, const GameMap& map, const Point& position);
+    Goblin(Player* player, const GameMap& map, int level, const Point& position);
     ~Goblin() override = default;
 
     void update() override;

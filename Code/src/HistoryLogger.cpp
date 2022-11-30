@@ -112,6 +112,7 @@ void HistoryLogger::logWeaponBroke(Item* weapon) {
 
 /**
  * Logs monster killed message to the output file.
+ * Called when the player kills a monster WITH a weapon.
  * @param monster The monster that was killed.
  * @param weaponUsed The weapon used to kill the monster.
  */
@@ -122,6 +123,21 @@ void HistoryLogger::logMonsterKilled(Monster* monster, Weapon* weaponUsed) {
 
     outputFile << "\n\t\t- Killed Monster -> " << monster->getName() << "(+" << monster->getDeathXP() << "xp, +" << monster->getDeathGold() << " gold coins) w/ " << weaponUsed->getName()
                                                << "(" << weaponUsed->getAttacksRemaining() << " attacks remaining) @ position " << monster->getPosition() << "\n\n";
+    outputFile.close();
+}
+
+/**
+ * Logs monster killed message to the output file.
+ * Called when the player kills a monster WITHOUT a weapons.
+ * @param monster The monster that was killed.
+ * @param strength The strength of the player.
+ */
+void HistoryLogger::logMonsterKilled(Monster* monster, int strength) {
+    std::ofstream outputFile{fileName, std::ios::app};
+    if (!outputFile)
+        return;
+
+    outputFile << "\n\t\t- Killed Monster -> " << monster->getName() << "(+" << monster->getDeathXP() << "xp, +" << monster->getDeathGold() << " gold coins) w/ fists (strength: " << strength << ") @ position " << monster->getPosition() << "\n\n";
     outputFile.close();
 }
 

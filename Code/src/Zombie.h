@@ -17,7 +17,7 @@ private:
     static constexpr int zombieFollowDistance{4};
 
 public:
-    Zombie(Player* player, const GameMap& map, const Point& position);
+    Zombie(Player* player, const GameMap& map, int level, const Point& position);
     ~Zombie() override = default;
 
     void update() override;
