@@ -88,7 +88,7 @@ int Weapon::getAttacksRemaining() const {
  * @return A reference to the output stream.
  */
 std::ostream& Weapon::write(std::ostream& os) const {
-    os << std::left << std::setw(8) << name << ": " << damageAmount << " damage (" << numberOfAttacks << " attacks)";
+    os << std::left << std::setw(8) << name << ": " << damageAmount << " damage (" << numberOfAttacks << " attack(s)";
     return os;
 }
 

@@ -9,6 +9,7 @@ Monster::Monster(Player* player, const GameMap& map, int level, int health, int 
     : player{player},
       map{map},
       level{level},
+      strength{0},
       health{health},
       deathXP{deathXP},
       followDistance{followDistance},
@@ -124,5 +125,4 @@ int Monster::getDeathXP() const { return deathXP; }
 int Monster::getDeathGold() const { return deathGold; }
 Point Monster::getPosition() const { return position; }
 
-bool Monster::getIsAttacking() const { return attacking; }
 void Monster::setAttacking() { attacking = true; }

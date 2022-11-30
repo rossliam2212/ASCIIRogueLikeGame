@@ -143,6 +143,4 @@ int Inventory::getNumGoldCoins() const { return goldCoins; }
 int Inventory::getNumHealthPotions() const { return healthPotions; }
 std::vector<Item*> Inventory::getWeapons() const { return weapons; }
 
-// Test
-int Inventory::getCurrentWeaponIndex() const { return currentWeapon; }
 

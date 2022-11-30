@@ -13,6 +13,11 @@ GameMap::~GameMap() {
     delete[] map;
 }
 
+/**
+ * Loads the current level map from the text file.
+ * @param level The current level.
+ * @param levels The level text files.
+ */
 void GameMap::loadMap(int level, const std::array<std::string, 5>& levels) {
     HWND console = GetConsoleWindow();
     RECT r;

@@ -54,8 +54,8 @@ public:
 private:
     void update();
     void renderUI();
-    void renderGameOverWinUI();
-    void renderGameOverUI();
+    static void renderGameOverWinUI();
+    static void renderGameOverUI();
     void setUpGameItemsAndMonsters();
     void cleanResourcesOnLevelChange();
 };

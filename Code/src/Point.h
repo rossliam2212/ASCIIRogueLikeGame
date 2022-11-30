@@ -21,7 +21,6 @@ public:
     bool operator==(const Point& rhs) const; // Overloaded == operator
 
     void setXY(int newX, int newY);
-
     int getX() const;
     int getY() const;
 };

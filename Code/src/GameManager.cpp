@@ -56,7 +56,7 @@ void GameManager::startGame() {
 
 void GameManager::nextLevel() {
     level++;
-    if (level >= 5) {
+    if (level > 5) {
         levelsCompleted = true;
         return;
     }
@@ -180,8 +180,6 @@ void GameManager::renderUI() {
             }
         }
     }
-
-//    std::cout << "}";
 }
 
 /**

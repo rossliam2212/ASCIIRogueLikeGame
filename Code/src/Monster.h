@@ -55,13 +55,11 @@ public:
     void setIsDead();
 
     std::string getName() const;
-    int getStrength() const;
     int getHealth() const;
     int getDeathXP() const;
     int getDeathGold() const;
     Point getPosition() const;
 
-    bool getIsAttacking() const;
     void setAttacking();
 
 protected:

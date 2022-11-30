@@ -7,7 +7,6 @@
 
 #include <iostream>
 #include <fstream>
-#include <string>
 #include <ctime>
 #include "Item.h"
 #include "GoldCoin.h"
