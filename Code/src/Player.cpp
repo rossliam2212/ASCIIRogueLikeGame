@@ -348,8 +348,9 @@ void Player::attack(Monster* monster) {
     }
     clearAttackUI(44);
 
+    // If the players current weapon has no attacks left, remove it from the inventory
+    // Only checked when the player has a weapon.
     if (!usingStrength) {
-        // If the players current weapon has no attacks left, remove it from the inventory
         if (w->isBroken()) {
             removeCurrentWeaponPressed = true;
             inventory.removeCurrentWeapon(true);
@@ -509,7 +510,7 @@ bool Player::isDead() const { return health <= 0; }
 
 
 // Getters & Setters
-int Player::getStrength() const { return  strength; }
+int Player::getStrength() const { return strength; }
 int Player::getHealth() const { return health; }
 int Player::getXP() const { return xp; }
 int Player::getXPLevel() const { return xpLevel; }

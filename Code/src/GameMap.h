@@ -57,7 +57,7 @@ public:
     char getXY(int x, int y);
     char getXY(const Point &position);
     void setXY(int x, int y, char value);
-    void setXY(Point& position, char value);
+    void setXY(const Point& position, char value);
 
     void clearResourcesForLevelChange();
     std::vector<std::pair<char, Point>> getMonstersAndItems() const;

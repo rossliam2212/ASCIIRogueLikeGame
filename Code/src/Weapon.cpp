@@ -93,7 +93,7 @@ std::ostream& Weapon::write(std::ostream& os) const {
 }
 
 /**
- *
+ * Checks if the weapons are equal to each other.
  * @param item The weapon to compare to.
  * @return True if the weapons are equal, False otherwise.
  */

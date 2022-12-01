@@ -21,7 +21,7 @@ public:
     static constexpr int defaultStrength{10};
     static constexpr int defaultHealth{50};
 
-    static constexpr int xpLevelUpValue{70};
+    static constexpr int xpLevelUpValue{70}; // Amount of xp needed to level up
     static constexpr int maxXPLevel{5};
     static constexpr int defaultXP{0};
 

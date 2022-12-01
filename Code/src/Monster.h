@@ -19,9 +19,10 @@ enum MoveState {
 };
 
 class Monster {
-protected:
+private:
     static constexpr int strengthLevelIncrease{5}; // The amount the strength increases every level
 
+protected:
     std::string name;
     GameMap map;
     Player* player;

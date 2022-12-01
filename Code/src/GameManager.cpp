@@ -54,20 +54,24 @@ void GameManager::startGame() {
     historyLogger.logGameOver();
 }
 
+/**
+ * Handles the change over to the next level.
+ */
 void GameManager::nextLevel() {
     level++;
+
+    // If level > 5, then the game is over and the player has won
     if (level > 5) {
         levelsCompleted = true;
         return;
     }
 
     cleanResourcesOnLevelChange();
-    map.loadMap(level, levels);
-    setUpGameItemsAndMonsters();
+    map.loadMap(level, levels); // Load the next map
+    setUpGameItemsAndMonsters(); // Set up the items and monsters from the next level
     historyLogger.logLevelChange(level);
 
-
-    player.setPosition(Point{2, 1});
+    player.setPosition(Point{2, 1}); // Set the player starting position for the next level
     player.resetLevelChange();
 }
 
@@ -152,7 +156,6 @@ void GameManager::renderUI() {
 
     // Weapons
     std::cout << " Current Weapon: ";
-//    std::cout << " Current Weapon: (" << player.getInventory().getCurrentWeaponIndex() << ") ";
 
     if (!player.getInventory().getWeapons().empty()) {
         if (player.getNextWeaponPressed()) {
@@ -249,11 +252,10 @@ void GameManager::cleanResourcesOnLevelChange() {
             m->setIsDead();
     }
 
+    // Breaking Game
 //    monsters.clear();
-
 //    for (auto* i : mapItems)
 //        delete i;
-
 //    mapItems.clear();
 
     map.clearResourcesForLevelChange();

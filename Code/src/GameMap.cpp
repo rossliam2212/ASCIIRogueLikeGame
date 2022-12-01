@@ -24,7 +24,7 @@ void GameMap::loadMap(int level, const std::array<std::string, 5>& levels) {
     GetWindowRect(console, &r);
 
     MoveWindow(console, r.left, r.top, WINDOWSIZE_X, WINDOWSIZE_Y, TRUE); // window size in pixels
-    utility::showConsoleCursor(FALSE);
+    utility::showConsoleCursor(false);
 
 
     // Read level maps from text files
@@ -142,7 +142,7 @@ void GameMap::setXY(int x, int y, char value) {
  * @param position The xy position.
  * @param value The new character to set the given position to.
  */
-void GameMap::setXY(Point& position, char value) {
+void GameMap::setXY(const Point& position, char value) {
     map[position.getY() * mapWidth + position.getX()] = value;
 }
 
